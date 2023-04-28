@@ -1,0 +1,51 @@
+{
+    "name": "DefaultControls",
+    "maps": [
+        {
+            "name": "DefaultActionMap",
+            "id": "22b83292-5659-462f-8604-3abe2c1d9915",
+            "actions": [
+                {
+                    "name": "LeftMouseButtonPress",
+                    "type": "Button",
+                    "id": "743150e6-73bd-4d02-b80d-65940503c1dc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f2b33c34-10f6-42df-bf81-32e96fe482b5",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "MouseAndKeyboard",
+                    "action": "LeftMouseButtonPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "MouseAndKeyboard",
+            "bindingGroup": "MouseAndKeyboard",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
