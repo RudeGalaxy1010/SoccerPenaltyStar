@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Starter : MonoBehaviour
@@ -13,7 +12,7 @@ public class Starter : MonoBehaviour
     private const int CurrentRating = 0;
 
     [SerializeField] private SmoothFollow _smoothFollow;
-    [SerializeField] private Vector3 _ballSpawnOffset;
+    [SerializeField] private ForceArrow _forceArrow;
 
     // Resources
     private Ball _ballPrefab;
@@ -29,8 +28,9 @@ public class Starter : MonoBehaviour
         Ball ball = InitBall(_ballPrefab, map.PlayerSpawnPosition + BallOffset);
         Player player = InitPlayer(_playerPrefab, map.PlayerSpawnPosition);
         BallLauncher ballLauncher = new BallLauncher(controls, player, ball);
-        
+
         _smoothFollow.SetTarget(ball.transform);
+        _forceArrow.Construct(player.transform, ballLauncher);
     }
 
     private void LoadResources()
