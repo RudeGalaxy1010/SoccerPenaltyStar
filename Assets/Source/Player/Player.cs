@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,8 @@ public class Player : MonoBehaviour
 
     private bool _isHoldingMouse;
     private Vector2 _onClickMousePosition;
+
+    private int _score;
 
     public void Construct(Ball ball, DefaultControls controls)
     {
@@ -44,6 +47,7 @@ public class Player : MonoBehaviour
     {
         _ball = ball;
         _ballOffset = transform.position - _ball.transform.position;
+        _ball.GotInGates += OnBallGotInGates;
     }
 
     private void InitControls(DefaultControls controls)
@@ -69,5 +73,11 @@ public class Player : MonoBehaviour
         Vector3 forceDirection = (_ball.transform.position - transform.position).normalized;
         forceDirection.y = 0;
         _ball.AddForce(forceDirection * mouseDelta);
+    }
+
+    private void OnBallGotInGates()
+    {
+        _score++;
+        Debug.Log(_score);
     }
 }
