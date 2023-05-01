@@ -5,9 +5,16 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
 
+    public void ResetMove()
+    {
+        _rigidbody.Sleep();
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.WakeUp();
+    }
+
     public void AddForce(Vector3 force)
     {
-        _rigidbody.velocity = Vector3.zero;
+        ResetMove();
         _rigidbody.AddForce(force, ForceMode.Impulse);
     }
 }

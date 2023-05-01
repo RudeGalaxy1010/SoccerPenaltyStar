@@ -35,6 +35,15 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseX"",
+                    ""type"": ""Value"",
+                    ""id"": ""6b8ca104-5bd6-4511-8015-c595766b2d75"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -46,6 +55,17 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""MouseAndKeyboard"",
                     ""action"": ""LeftMouseButtonPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed035bc4-7690-48d0-b300-65023bc149cf"",
+                    ""path"": ""<Mouse>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseAndKeyboard"",
+                    ""action"": ""MouseX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -74,6 +94,7 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
         // DefaultActionMap
         m_DefaultActionMap = asset.FindActionMap("DefaultActionMap", throwIfNotFound: true);
         m_DefaultActionMap_LeftMouseButtonPress = m_DefaultActionMap.FindAction("LeftMouseButtonPress", throwIfNotFound: true);
+        m_DefaultActionMap_MouseX = m_DefaultActionMap.FindAction("MouseX", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -136,11 +157,13 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_DefaultActionMap;
     private List<IDefaultActionMapActions> m_DefaultActionMapActionsCallbackInterfaces = new List<IDefaultActionMapActions>();
     private readonly InputAction m_DefaultActionMap_LeftMouseButtonPress;
+    private readonly InputAction m_DefaultActionMap_MouseX;
     public struct DefaultActionMapActions
     {
         private @DefaultControls m_Wrapper;
         public DefaultActionMapActions(@DefaultControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @LeftMouseButtonPress => m_Wrapper.m_DefaultActionMap_LeftMouseButtonPress;
+        public InputAction @MouseX => m_Wrapper.m_DefaultActionMap_MouseX;
         public InputActionMap Get() { return m_Wrapper.m_DefaultActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -153,6 +176,9 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
             @LeftMouseButtonPress.started += instance.OnLeftMouseButtonPress;
             @LeftMouseButtonPress.performed += instance.OnLeftMouseButtonPress;
             @LeftMouseButtonPress.canceled += instance.OnLeftMouseButtonPress;
+            @MouseX.started += instance.OnMouseX;
+            @MouseX.performed += instance.OnMouseX;
+            @MouseX.canceled += instance.OnMouseX;
         }
 
         private void UnregisterCallbacks(IDefaultActionMapActions instance)
@@ -160,6 +186,9 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
             @LeftMouseButtonPress.started -= instance.OnLeftMouseButtonPress;
             @LeftMouseButtonPress.performed -= instance.OnLeftMouseButtonPress;
             @LeftMouseButtonPress.canceled -= instance.OnLeftMouseButtonPress;
+            @MouseX.started -= instance.OnMouseX;
+            @MouseX.performed -= instance.OnMouseX;
+            @MouseX.canceled -= instance.OnMouseX;
         }
 
         public void RemoveCallbacks(IDefaultActionMapActions instance)
@@ -189,5 +218,6 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
     public interface IDefaultActionMapActions
     {
         void OnLeftMouseButtonPress(InputAction.CallbackContext context);
+        void OnMouseX(InputAction.CallbackContext context);
     }
 }
