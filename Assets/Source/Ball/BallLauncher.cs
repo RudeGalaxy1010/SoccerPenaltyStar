@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.InputSystem.InputAction;
 
 public class BallLauncher
 {
@@ -19,8 +18,8 @@ public class BallLauncher
     public BallLauncher(Controls controls, Player player, Ball ball)
     {
         _controls = controls;
-        _controls.DefaultActionMap.LeftMouseButtonPress.started += OnLeftMouseButtonPressStarted;
-        _controls.DefaultActionMap.LeftMouseButtonPress.canceled += OnLeftMouseButtonPressCanceled;
+        _controls.DefaultActionMap.LeftMouseButtonPress.started += (ctx) => OnLeftMouseButtonPressStarted();
+        _controls.DefaultActionMap.LeftMouseButtonPress.canceled += (ctx) => OnLeftMouseButtonPressCanceled();
         _player = player;
         _ball = ball;
     }
@@ -28,22 +27,13 @@ public class BallLauncher
     public bool IsHolding => _startMousePosition != Vector3.zero;
     public Vector3 Force => GetForce(GetDelta());
 
-    public void Destruct()
-    {
-        if (_controls != null)
-        {
-            _controls.DefaultActionMap.LeftMouseButtonPress.started -= OnLeftMouseButtonPressStarted;
-            _controls.DefaultActionMap.LeftMouseButtonPress.canceled -= OnLeftMouseButtonPressCanceled;
-        }
-    }
-
-    private void OnLeftMouseButtonPressStarted(CallbackContext context)
+    private void OnLeftMouseButtonPressStarted()
     {
         _ball.ResetMove();
         _startMousePosition = GetMousePositionInWorld();
     }
 
-    private void OnLeftMouseButtonPressCanceled(CallbackContext context)
+    private void OnLeftMouseButtonPressCanceled()
     {
         Vector3 force = GetForce(GetDelta());
         ResetMousePositions();

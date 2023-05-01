@@ -26,7 +26,7 @@ public class Starter : MonoBehaviour
         Controls controls = InitInput();
         Map map = InitMap(_mapPrefabs);
         Ball ball = InitBall(_ballPrefab, map.PlayerSpawnPosition + BallOffset);
-        Player player = InitPlayer(_playerPrefab, map.PlayerSpawnPosition);
+        Player player = InitPlayer(_playerPrefab, map.PlayerSpawnPosition, ball, controls);
         BallLauncher ballLauncher = new BallLauncher(controls, player, ball);
 
         _smoothFollow.SetTarget(ball.transform);
@@ -60,9 +60,11 @@ public class Starter : MonoBehaviour
         return ball;
     }
 
-    private Player InitPlayer(Player playerPrefab, Vector3 position)
+    private Player InitPlayer(Player playerPrefab, Vector3 position, Ball ball, Controls controls)
     {
         Player player = Instantiate(playerPrefab, position, Quaternion.identity);
+        player.GetComponent<PlayerMover>().Construct(player, ball.transform, controls, -BallOffset);
+        player.GetComponent<PlayerRotation>().Construct(player, ball.transform, controls);
         return player;
     }
 }

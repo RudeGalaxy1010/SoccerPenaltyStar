@@ -7,7 +7,7 @@ public class Gates : MonoBehaviour
     {
         if (other.TryGetComponent(out Ball ball))
         {
-            ball.GetInGates();
+            
         }
     }
 }
