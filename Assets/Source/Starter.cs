@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Starter : MonoBehaviour
@@ -6,13 +7,15 @@ public class Starter : MonoBehaviour
     private const string BallPrefabPath = "BallPrefabs/Ball";
     private const string PlayerPrefabPath = "PlayerPrefabs/Player";
 
+    private readonly Vector3 BallOffset = new Vector3(0, 0, 1);
+
+    // TODO: remove temp const
+    private const int CurrentRating = 0;
+
     [SerializeField] private SmoothFollow _smoothFollow;
     [SerializeField] private Vector3 _ballSpawnOffset;
 
-    private DefaultControls _defaultControls;
-    private MapPicker _mapPicker;
-    private PlayerSpawner _playerSpawner;
-
+    // Resources
     private Ball _ballPrefab;
     private Map[] _mapPrefabs;
     private Player _playerPrefab;
@@ -20,10 +23,14 @@ public class Starter : MonoBehaviour
     private void Start()
     {
         LoadResources();
-        InitInput();
+
+        Controls controls = InitInput();
         Map map = InitMap(_mapPrefabs);
-        Player player = InitPlayer(map, _playerPrefab, _ballPrefab);
-        _smoothFollow.SetTarget(player.Ball.transform);
+        Ball ball = InitBall(_ballPrefab, map.PlayerSpawnPosition + BallOffset);
+        Player player = InitPlayer(_playerPrefab, map.PlayerSpawnPosition);
+        BallLauncher ballLauncher = new BallLauncher(controls, player, ball);
+        
+        _smoothFollow.SetTarget(ball.transform);
     }
 
     private void LoadResources()
@@ -33,24 +40,29 @@ public class Starter : MonoBehaviour
         _playerPrefab = Resources.Load<Player>(PlayerPrefabPath);
     }
 
-    private void InitInput()
+    private Controls InitInput()
     {
-        _defaultControls = new DefaultControls();
-        _defaultControls.Enable();
+        Controls controls = new Controls();
+        controls.Enable();
+        return controls;
     }
 
     private Map InitMap(Map[] mapPrefabs)
     {
-        _mapPicker = new MapPicker(mapPrefabs);
-        return _mapPicker.CreateMap(0);
+        MapPicker mapPicker = new MapPicker();
+        Map mapPrefab = mapPicker.GetMapPrefab(mapPrefabs, CurrentRating);
+        return Instantiate(mapPrefab);
     }
 
-    private Player InitPlayer(Map map, Player playerPrefab, Ball ballPrefab)
+    private Ball InitBall(Ball ballPrefab, Vector3 position)
     {
-        _playerSpawner = new PlayerSpawner(_ballSpawnOffset);
-        Player player = _playerSpawner.CreatePlayer(map, playerPrefab);
-        Ball ball = _playerSpawner.CreateBall(player.transform.position, ballPrefab);
-        player.Construct(ball, _defaultControls);
+        Ball ball = Instantiate(ballPrefab, position, Quaternion.identity);
+        return ball;
+    }
+
+    private Player InitPlayer(Player playerPrefab, Vector3 position)
+    {
+        Player player = Instantiate(playerPrefab, position, Quaternion.identity);
         return player;
     }
 }

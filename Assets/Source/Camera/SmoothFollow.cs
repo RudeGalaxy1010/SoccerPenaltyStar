@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class SmoothFollow : MonoBehaviour
 {
     [SerializeField] private float _speed = 12.5f;

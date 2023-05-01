@@ -15,10 +15,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @DefaultControls: IInputActionCollection2, IDisposable
+public partial class Controls: IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @DefaultControls()
+    public Controls()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""DefaultControls"",
@@ -160,8 +160,8 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_DefaultActionMap_MouseX;
     public struct DefaultActionMapActions
     {
-        private @DefaultControls m_Wrapper;
-        public DefaultActionMapActions(@DefaultControls wrapper) { m_Wrapper = wrapper; }
+        private Controls m_Wrapper;
+        public DefaultActionMapActions(Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @LeftMouseButtonPress => m_Wrapper.m_DefaultActionMap_LeftMouseButtonPress;
         public InputAction @MouseX => m_Wrapper.m_DefaultActionMap_MouseX;
         public InputActionMap Get() { return m_Wrapper.m_DefaultActionMap; }

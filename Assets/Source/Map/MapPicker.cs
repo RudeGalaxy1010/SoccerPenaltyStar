@@ -1,34 +1,27 @@
-using System.Linq;
-using UnityEngine;
+using System;
 
 public class MapPicker
 {
+    private const int MapPrefabsCount = 4;
+    private const string MapPrefabsCountExceptionMessage = "Map prefabs count is wrong!";
+
     private const int MaxRatingForMap1 = 1200;
     private const int MaxRatingForMap2 = 1500;
     private const int MaxRatingForMap3 = 2000;
 
-    private Map[] _mapPrefabs;
-
-    public MapPicker(Map[] mapPrefabs)
+    public Map GetMapPrefab(Map[] mapPrefabs, int rating)
     {
-        _mapPrefabs = mapPrefabs;
-    }
+        if (mapPrefabs.Length != MapPrefabsCount)
+        {
+            throw new ArgumentException(MapPrefabsCountExceptionMessage);
+        }
 
-    public Map CreateMap(int rating)
-    {
-        Map prefab = GetMapPrefab(rating);
-        Map map = Object.Instantiate(prefab);
-        return map;
-    }
-
-    private Map GetMapPrefab(int rating)
-    {
         switch (rating)
         {
-            case >= MaxRatingForMap3: return _mapPrefabs[3];
-            case >= MaxRatingForMap2: return _mapPrefabs[2];
-            case >= MaxRatingForMap1: return _mapPrefabs[1];
-            default: return _mapPrefabs[0];
+            case >= MaxRatingForMap3: return mapPrefabs[3];
+            case >= MaxRatingForMap2: return mapPrefabs[2];
+            case >= MaxRatingForMap1: return mapPrefabs[1];
+            default: return mapPrefabs[0];
         }
     }
 }
