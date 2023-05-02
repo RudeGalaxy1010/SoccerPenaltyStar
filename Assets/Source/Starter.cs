@@ -14,6 +14,7 @@ public class Starter : MonoBehaviour
 
     [SerializeField] private SmoothFollow _smoothFollow;
     [SerializeField] private ForceArrow _forceArrow;
+    [SerializeField] private ScoreCounter _playerScoreCounter;
 
     // Resources
     private Ball _ballPrefab;
@@ -33,6 +34,7 @@ public class Starter : MonoBehaviour
 
         _smoothFollow.SetTarget(ball.transform);
         _forceArrow.Construct(player.transform, ballLauncher);
+        _playerScoreCounter.Construct(player);
         ball.SetOwner(player);
     }
 
