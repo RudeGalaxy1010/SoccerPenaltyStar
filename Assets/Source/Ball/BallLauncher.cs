@@ -3,8 +3,9 @@ using UnityEngine.InputSystem;
 
 public class BallLauncher
 {
-    private const float MinForce = 0f;
+    private const float MinForce = 1f;
     private const float MaxForce = 10f;
+    private const float ForceScale = 4f;
 
     private Controls _controls;
     private Player _player;
@@ -37,7 +38,7 @@ public class BallLauncher
     {
         Vector3 force = GetForce(GetDelta());
         ResetMousePositions();
-        _ball.AddForce(force);
+        _ball.AddForce(force * ForceScale);
     }
 
     private void ResetMousePositions()
@@ -68,7 +69,7 @@ public class BallLauncher
 
         if (_startMousePosition.z < endMousePosition.z)
         {
-            return 0;
+            return MinForce;
         }
         
         return delta.magnitude;
