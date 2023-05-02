@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class Gates : MonoBehaviour
 {
+    public event Action<Gates> GoalScored;
+
     private const int PointsToAdd = 1;
 
     private void OnTriggerEnter(Collider other)
@@ -10,6 +13,7 @@ public class Gates : MonoBehaviour
         if (other.TryGetComponent(out Ball ball))
         {
             ball.Owner.AddScore(PointsToAdd);
+            GoalScored?.Invoke(this);
         }
     }
 }
