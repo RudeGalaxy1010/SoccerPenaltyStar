@@ -25,12 +25,13 @@ public class Starter : MonoBehaviour
 
         Controls controls = InitInput();
         Map map = InitMap(_mapPrefabs);
-        Ball ball = InitBall(_ballPrefab, map.PlayerSpawnPosition + BallOffset);
+        Ball ball = CreateBall(_ballPrefab, map.PlayerSpawnPosition + BallOffset);
         Player player = InitPlayer(_playerPrefab, map.PlayerSpawnPosition, ball, controls);
         BallLauncher ballLauncher = new BallLauncher(controls, player, ball);
 
         _smoothFollow.SetTarget(ball.transform);
         _forceArrow.Construct(player.transform, ballLauncher);
+        ball.SetOwner(player);
     }
 
     private void LoadResources()
@@ -54,7 +55,7 @@ public class Starter : MonoBehaviour
         return Instantiate(mapPrefab);
     }
 
-    private Ball InitBall(Ball ballPrefab, Vector3 position)
+    private Ball CreateBall(Ball ballPrefab, Vector3 position)
     {
         Ball ball = Instantiate(ballPrefab, position, Quaternion.identity);
         return ball;

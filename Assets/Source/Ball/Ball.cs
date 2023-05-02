@@ -6,18 +6,13 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
 
-    //private Controls _controls;
+    private Player _owner;
+    public Player Owner => _owner;
 
-    //public void Construct(Controls controls)
-    //{
-    //    _controls = controls;
-    //    _controls.DefaultActionMap.LeftMouseButtonPress.started += (ctx) => OnLeftMouseButtonPressStarted();
-    //}
-
-    //private void OnLeftMouseButtonPressStarted()
-    //{
-    //    ResetMove();
-    //}
+    public void SetOwner(Player owner)
+    {
+        _owner = owner;
+    }
 
     public void ResetMove()
     {
