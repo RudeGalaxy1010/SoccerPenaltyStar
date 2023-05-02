@@ -65,13 +65,7 @@ public class BallLauncher
     private float GetDelta()
     {
         Vector3 endMousePosition = GetMousePositionInWorld();
-        Vector3 delta = endMousePosition - _startMousePosition;
-
-        if (_startMousePosition.z < endMousePosition.z)
-        {
-            return MinForce;
-        }
-        
+        Vector3 delta = endMousePosition - _startMousePosition;        
         return delta.magnitude;
     }
 
