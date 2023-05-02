@@ -32,6 +32,7 @@ Transform:
   - {fileID: 258231908416908857}
   - {fileID: 5447909397322404281}
   - {fileID: 4811608377739899499}
+  - {fileID: 456562048989962311}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49,6 +50,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSpawnPoint: {fileID: 5447909397322404281}
   _botSpawnPoint: {fileID: 4811608377739899499}
+  _gatesSpawnPoints:
+  - {fileID: 8907013161905319147}
+  - {fileID: 2867891663243940707}
+  - {fileID: 769705170535542395}
+  - {fileID: 3958007582852900093}
+  - {fileID: 7312425878670539974}
 --- !u!1 &518587023112808890
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,6 +87,37 @@ Transform:
   m_Father: {fileID: 297191327906162291}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &983992633819652508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3958007582852900093}
+  m_Layer: 0
+  m_Name: Gates Point (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3958007582852900093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983992633819652508}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -20.000002, y: 0, z: -1.499999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 456562048989962311}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &2300573835409499144
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,6 +149,166 @@ Transform:
   m_Father: {fileID: 297191327906162291}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2388908521698747571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2867891663243940707}
+  m_Layer: 0
+  m_Name: Gates Point (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2867891663243940707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388908521698747571}
+  m_LocalRotation: {x: 0, y: 0.13052616, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: 10.236345, y: 0, z: -15.454778}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 456562048989962311}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 15, z: 0}
+--- !u!1 &3020763906791152484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7312425878670539974}
+  m_Layer: 0
+  m_Name: Gates Point (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7312425878670539974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020763906791152484}
+  m_LocalRotation: {x: -0, y: 0.7071066, z: -0, w: -0.70710707}
+  m_LocalPosition: {x: 29.476599, y: 0, z: -0.5873389}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 456562048989962311}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!1 &6629294875369670691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8907013161905319147}
+  m_Layer: 0
+  m_Name: Gates Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8907013161905319147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629294875369670691}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 4, y: 0, z: 14.030001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 456562048989962311}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &8647769473101610096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 456562048989962311}
+  m_Layer: 0
+  m_Name: Gates Points
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &456562048989962311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8647769473101610096}
+  m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8907013161905319147}
+  - {fileID: 2867891663243940707}
+  - {fileID: 769705170535542395}
+  - {fileID: 3958007582852900093}
+  - {fileID: 7312425878670539974}
+  m_Father: {fileID: 297191327906162291}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &8689219129607051551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 769705170535542395}
+  m_Layer: 0
+  m_Name: Gates Point (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &769705170535542395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8689219129607051551}
+  m_LocalRotation: {x: 0, y: 0.8660254, z: -0, w: -0.5}
+  m_LocalPosition: {x: 17.398874, y: 0, z: -0.63573265}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 456562048989962311}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 240, z: 0}
 --- !u!1001 &297191327406295506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136,31 +334,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7438a3419b1cd4143be93bf752c6c555, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.5
+      value: 11.806112
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7438a3419b1cd4143be93bf752c6c555, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.000011444092
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7438a3419b1cd4143be93bf752c6c555, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52
+      value: -50.669918
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7438a3419b1cd4143be93bf752c6c555, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7064338
+      value: -0.0308436
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7438a3419b1cd4143be93bf752c6c555, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7064338
+      value: 0.03084352
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7438a3419b1cd4143be93bf752c6c555, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.030843573
+      value: -0.7064339
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7438a3419b1cd4143be93bf752c6c555, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.030843573
+      value: -0.7064337
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7438a3419b1cd4143be93bf752c6c555, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -172,7 +370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7438a3419b1cd4143be93bf752c6c555, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -5
+      value: -185
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7438a3419b1cd4143be93bf752c6c555, type: 3}
       propertyPath: m_Name
