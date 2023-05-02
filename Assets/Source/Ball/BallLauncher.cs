@@ -66,7 +66,7 @@ public class BallLauncher
         Vector3 endMousePosition = GetMousePositionInWorld();
         Vector3 delta = endMousePosition - _startMousePosition;
 
-        if (_startMousePosition.z <= endMousePosition.z)
+        if (_startMousePosition.z < endMousePosition.z)
         {
             return 0;
         }

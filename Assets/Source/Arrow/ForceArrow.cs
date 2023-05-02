@@ -3,7 +3,7 @@ using UnityEngine;
 public class ForceArrow : MonoBehaviour
 {
     [SerializeField] private LineRenderer _lineRenderer;
-    [SerializeField] private SpriteRenderer _arrowSprite;
+    [SerializeField] private GameObject _arrowSprite;
 
     private Transform _startPoint;
     private BallLauncher _ballLauncher;
@@ -33,18 +33,32 @@ public class ForceArrow : MonoBehaviour
 
     public void DrawArrow(Vector3 force)
     {
-        _lineRenderer.positionCount = 2;
-        Vector3 endPoint = (_startPoint.position + force);
-        Vector3[] positions = new Vector3[] { _startPoint.position, endPoint };
+        RenderLine(force);
+        RenderArrow(force);
+    }
 
-        _arrowSprite.gameObject.SetActive(true);
-        _arrowSprite.transform.position = endPoint;
+    private void RenderArrow(Vector3 force)
+    {
+        _arrowSprite.SetActive(true);
+        _arrowSprite.transform.position = GetLineEndPoint(force);
+        _arrowSprite.transform.LookAt(_arrowSprite.transform.position + force, Vector3.up);
+    }
+
+    private void RenderLine(Vector3 force)
+    {
+        _lineRenderer.positionCount = 2;
+        Vector3[] positions = new Vector3[] { _startPoint.position, GetLineEndPoint(force) };
         _lineRenderer.SetPositions(positions);
+    }
+
+    private Vector3 GetLineEndPoint(Vector3 force)
+    {
+        return _startPoint.position + force;
     }
 
     public void ResetArrow()
     {
         _lineRenderer.positionCount = 0;
-        _arrowSprite.gameObject.SetActive(false);
+        _arrowSprite.SetActive(false);
     }
 }
