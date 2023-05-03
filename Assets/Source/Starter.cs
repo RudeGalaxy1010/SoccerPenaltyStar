@@ -5,6 +5,7 @@ public class Starter : MonoBehaviour
     private const string MapPrefabsFolderPath = "MapPrefabs";
     private const string BallPrefabPath = "BallPrefabs/Ball";
     private const string PlayerPrefabPath = "PlayerPrefabs/Player";
+    private const string BotPrefabPath = "BotPrefabs/Bot";
     private const string GatesPrefabPath = "GatePrefabs/Gates";
 
     private readonly Vector3 BallOffset = new Vector3(0, 0, 1);
@@ -12,14 +13,19 @@ public class Starter : MonoBehaviour
     // TODO: remove temp const
     private const int CurrentRating = 0;
 
+    [Header("Player")]
     [SerializeField] private SmoothFollow _smoothFollow;
     [SerializeField] private ForceArrow _forceArrow;
     [SerializeField] private ScoreCounter _playerScoreCounter;
 
+    [Header("Bot")]
+    [SerializeField] private ScoreCounter _botScoreCounter;
+
     // Resources
     private Ball _ballPrefab;
     private Map[] _mapPrefabs;
-    private Player _playerPrefab;
+    private ActualPlayer _playerPrefab;
+    private Bot _botPrefab;
     private Gates _gatesPrefab;
 
     private void Start()
@@ -28,22 +34,17 @@ public class Starter : MonoBehaviour
 
         Controls controls = InitInput();
         Map map = InitMap(_mapPrefabs, _gatesPrefab);
-        Ball ball = CreateBall(_ballPrefab, map.PlayerSpawnPosition + BallOffset);
-        Player player = CreatePlayer(_playerPrefab, map.PlayerSpawnPosition);
-        InitPlayer(player, new Score(), controls, ball.transform, -BallOffset);
-        BallLauncher ballLauncher = new BallLauncher(controls, player, ball);
 
-        _smoothFollow.SetTarget(ball.transform);
-        _forceArrow.Construct(player.transform, ballLauncher);
-        _playerScoreCounter.Construct(player.Score);
-        ball.SetOwner(player);
+        InitPlayer(controls, map);
+        InitBot(map);
     }
 
     private void LoadResources()
     {
         _mapPrefabs = Resources.LoadAll<Map>(MapPrefabsFolderPath);
         _ballPrefab = Resources.Load<Ball>(BallPrefabPath);
-        _playerPrefab = Resources.Load<Player>(PlayerPrefabPath);
+        _playerPrefab = Resources.Load<ActualPlayer>(PlayerPrefabPath);
+        _botPrefab = Resources.Load<Bot>(BotPrefabPath);
         _gatesPrefab = Resources.Load<Gates>(GatesPrefabPath);
     }
 
@@ -63,18 +64,34 @@ public class Starter : MonoBehaviour
         return map;
     }
 
-    private Ball CreateBall(Ball ballPrefab, Vector3 position)
+    private void InitPlayer(Controls controls, Map map)
     {
-        return Instantiate(ballPrefab, position, Quaternion.identity);
+        Ball ball = Create(_ballPrefab, map.PlayerSpawnPosition + BallOffset);
+        ActualPlayer player = Create(_playerPrefab, map.PlayerSpawnPosition);
+        Score score = new Score();
+        player.Construct(score, controls, ball.transform, -BallOffset);
+        BallLauncher ballLauncher = new BallLauncher(controls, player, ball);
+
+        _smoothFollow.SetTarget(ball.transform);
+        _forceArrow.Construct(player.transform, ballLauncher);
+        _playerScoreCounter.Construct(score);
+        ball.SetOwner(player);
     }
 
-    private Player CreatePlayer(Player playerPrefab, Vector3 position)
+    private void InitBot(Map map)
     {
-        return Instantiate(playerPrefab, position, Quaternion.identity);
+        Ball ball = Create(_ballPrefab, map.BotSpawnPosition + BallOffset);
+        Bot bot = Create(_botPrefab, map.BotSpawnPosition);
+        Score score = new Score();
+        bot.Construct(score, ball.transform, -BallOffset);
+
+        _botScoreCounter.Construct(score);
+        ball.SetOwner(bot);
     }
 
-    private void InitPlayer(Player player, Score score, Controls controls, Transform ballTransform, Vector3 offsetFromBall)
+    private T Create<T>(T prefab, Vector3 position)
+        where T : MonoBehaviour
     {
-        player.Construct(score, controls, ballTransform, offsetFromBall);
+        return Instantiate(prefab, position, Quaternion.identity);
     }
 }

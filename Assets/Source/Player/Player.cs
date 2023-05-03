@@ -1,34 +1,16 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public abstract class Player : MonoBehaviour
 {
-    private Score _score;
-    private PlayerMove _move;
-    private PlayerRotation _rotation;
+    protected Score Score;
 
-    public Score Score => _score;
-
-    public void Construct(Score score, Controls controls, Transform ballTransform, Vector3 offsetFromBall)
+    public void Construct(Score score)
     {
-        _score = score;
-        _move = GetComponent<PlayerMove>();
-        _move.Construct(transform, ballTransform, offsetFromBall);
-        _rotation = GetComponent<PlayerRotation>();
-        _rotation.Construct(controls, transform, ballTransform);
+        Score = score;
     }
 
-    public void TeleportToBall()
+    public void AddPoints(int value)
     {
-        _move.TeleportToBall();
-    }
-
-    public void EnableRotation()
-    {
-        _rotation.Enable();
-    }
-
-    public void DisableRotation()
-    {
-        _rotation.Disable();
+        Score.AddPoints(value);
     }
 }

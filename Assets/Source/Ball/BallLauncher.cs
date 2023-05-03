@@ -8,7 +8,7 @@ public class BallLauncher
     private const float ForceScale = 4f;
 
     private Controls _controls;
-    private Player _player;
+    private ActualPlayer _player;
     private Ball _ball;
 
     private Vector3 _startMousePosition;
@@ -16,7 +16,7 @@ public class BallLauncher
     private float _cameraPositionZ;
     private Camera _camera;
 
-    public BallLauncher(Controls controls, Player player, Ball ball)
+    public BallLauncher(Controls controls, ActualPlayer player, Ball ball)
     {
         _controls = controls;
         _controls.DefaultActionMap.LeftMouseButtonPress.started += (ctx) => OnLeftMouseButtonPressStarted();
