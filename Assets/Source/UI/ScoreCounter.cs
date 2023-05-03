@@ -5,24 +5,24 @@ public class ScoreCounter : MonoBehaviour
 {
     [SerializeField] private TMP_Text _scoreText;
 
-    private Player _player;
+    private Score _score;
 
-    public void Construct(Player player)
+    public void Construct(Score score)
     {
-        _player = player;
-        _player.ScoreChanged += OnScoreChanged;
+        _score = score;
+        _score.ScoreChanged += OnScoreChanged;
     }
 
     private void OnDestroy()
     {
-        if (_player != null)
+        if (_score != null)
         {
-            _player.ScoreChanged -= OnScoreChanged;
+            _score.ScoreChanged -= OnScoreChanged;
         }
     }
 
-    private void OnScoreChanged(int score)
+    private void OnScoreChanged(int value)
     {
-        _scoreText.text = score.ToString();
+        _scoreText.text = value.ToString();
     }
 }

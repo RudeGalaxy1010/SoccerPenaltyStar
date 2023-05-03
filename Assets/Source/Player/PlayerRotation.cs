@@ -1,30 +1,27 @@
-using System;
 using UnityEngine;
 
 public class PlayerRotation : MonoBehaviour
 {
     private const float Speed = 180f;
 
-    private Player _player;
-    private Transform _point;
+    private Transform _playerTransform;
+    private Transform _ballTransform;
     private Controls _controls;
     private bool _isHolding;
 
-    public void Construct(Player player, Transform point, Controls controls)
+    public void Construct(Controls controls, Transform playerTransform, Transform ballTransform)
     {
-        _player = player;
-        _point = point;
         _controls = controls;
-        _controls.DefaultActionMap.LeftMouseButtonPress.started += (ctx) => OnLeftMouseButtonPressStarted();
-        _controls.DefaultActionMap.LeftMouseButtonPress.canceled += (ctx) => OnLeftMouseButtonPressCanceled();
+        _playerTransform = playerTransform;
+        _ballTransform = ballTransform;
     }
 
-    private void OnLeftMouseButtonPressStarted()
+    public void Enable()
     {
         _isHolding = true;
     }
 
-    private void OnLeftMouseButtonPressCanceled()
+    public void Disable()
     {
         _isHolding = false;
     }
@@ -37,6 +34,6 @@ public class PlayerRotation : MonoBehaviour
         }
 
         float delta = -_controls.DefaultActionMap.MouseX.ReadValue<float>();
-        _player.transform.RotateAround(_point.position, Vector3.up, Speed * delta * Time.deltaTime);
+        _playerTransform.transform.RotateAround(_ballTransform.position, Vector3.up, Speed * delta * Time.deltaTime);
     }
 }

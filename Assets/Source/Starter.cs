@@ -29,12 +29,13 @@ public class Starter : MonoBehaviour
         Controls controls = InitInput();
         Map map = InitMap(_mapPrefabs, _gatesPrefab);
         Ball ball = CreateBall(_ballPrefab, map.PlayerSpawnPosition + BallOffset);
-        Player player = InitPlayer(_playerPrefab, map.PlayerSpawnPosition, ball, controls);
+        Player player = CreatePlayer(_playerPrefab, map.PlayerSpawnPosition);
+        InitPlayer(player, new Score(), controls, ball.transform, -BallOffset);
         BallLauncher ballLauncher = new BallLauncher(controls, player, ball);
 
         _smoothFollow.SetTarget(ball.transform);
         _forceArrow.Construct(player.transform, ballLauncher);
-        _playerScoreCounter.Construct(player);
+        _playerScoreCounter.Construct(player.Score);
         ball.SetOwner(player);
     }
 
@@ -64,15 +65,16 @@ public class Starter : MonoBehaviour
 
     private Ball CreateBall(Ball ballPrefab, Vector3 position)
     {
-        Ball ball = Instantiate(ballPrefab, position, Quaternion.identity);
-        return ball;
+        return Instantiate(ballPrefab, position, Quaternion.identity);
     }
 
-    private Player InitPlayer(Player playerPrefab, Vector3 position, Ball ball, Controls controls)
+    private Player CreatePlayer(Player playerPrefab, Vector3 position)
     {
-        Player player = Instantiate(playerPrefab, position, Quaternion.identity);
-        player.GetComponent<PlayerMover>().Construct(player, ball.transform, controls, -BallOffset);
-        player.GetComponent<PlayerRotation>().Construct(player, ball.transform, controls);
-        return player;
+        return Instantiate(playerPrefab, position, Quaternion.identity);
+    }
+
+    private void InitPlayer(Player player, Score score, Controls controls, Transform ballTransform, Vector3 offsetFromBall)
+    {
+        player.Construct(score, controls, ballTransform, offsetFromBall);
     }
 }

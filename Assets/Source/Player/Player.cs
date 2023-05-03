@@ -1,22 +1,34 @@
-using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private const string NegativeScoreExceptionMessage = "Can't add negative value to score";
+    private Score _score;
+    private PlayerMove _move;
+    private PlayerRotation _rotation;
 
-    public event Action<int> ScoreChanged;
-    
-    private int _score;
+    public Score Score => _score;
 
-    public void AddScore(int value)
+    public void Construct(Score score, Controls controls, Transform ballTransform, Vector3 offsetFromBall)
     {
-        if (value < 0)
-        {
-            throw new ArgumentException(NegativeScoreExceptionMessage);
-        }
+        _score = score;
+        _move = GetComponent<PlayerMove>();
+        _move.Construct(transform, ballTransform, offsetFromBall);
+        _rotation = GetComponent<PlayerRotation>();
+        _rotation.Construct(controls, transform, ballTransform);
+    }
 
-        _score += value;
-        ScoreChanged?.Invoke(_score);
+    public void TeleportToBall()
+    {
+        _move.TeleportToBall();
+    }
+
+    public void EnableRotation()
+    {
+        _rotation.Enable();
+    }
+
+    public void DisableRotation()
+    {
+        _rotation.Disable();
     }
 }

@@ -12,7 +12,7 @@ public class Gates : MonoBehaviour
     {
         if (other.TryGetComponent(out Ball ball))
         {
-            ball.Owner.AddScore(PointsToAdd);
+            ball.Owner.Score.AddPoints(PointsToAdd);
             GoalScored?.Invoke(this);
         }
     }

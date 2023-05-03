@@ -31,11 +31,14 @@ public class BallLauncher
     private void OnLeftMouseButtonPressStarted()
     {
         _ball.ResetMove();
+        _player.TeleportToBall();
+        _player.EnableRotation();
         _startMousePosition = GetMousePositionInWorld();
     }
 
     private void OnLeftMouseButtonPressCanceled()
     {
+        _player.DisableRotation();
         Vector3 force = GetForce(GetDelta());
         ResetMousePositions();
         _ball.AddForce(force * ForceScale);
