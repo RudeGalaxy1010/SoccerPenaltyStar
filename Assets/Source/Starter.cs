@@ -70,7 +70,7 @@ public class Starter : MonoBehaviour
         ActualPlayer player = Create(_playerPrefab, map.PlayerSpawnPosition);
         Score score = new Score();
         player.Construct(score, controls, ball.transform, -BallOffset);
-        BallLauncher ballLauncher = new BallLauncher(controls, player, ball);
+        PlayerBallLauncher ballLauncher = new PlayerBallLauncher(player, ball, controls);
 
         _smoothFollow.SetTarget(ball.transform);
         _forceArrow.Construct(player.transform, ballLauncher);
@@ -84,6 +84,7 @@ public class Starter : MonoBehaviour
         Bot bot = Create(_botPrefab, map.BotSpawnPosition);
         Score score = new Score();
         bot.Construct(score, ball.transform, -BallOffset);
+        BotBallLauncher botBallLauncher = new BotBallLauncher(bot, ball);
 
         _botScoreCounter.Construct(score);
         ball.SetOwner(bot);
