@@ -8,10 +8,14 @@ public class Starter : MonoBehaviour
     private const string BotPrefabPath = "BotPrefabs/Bot";
     private const string GatesPrefabPath = "GatePrefabs/Gates";
 
+    private readonly float Time = 10;
     private readonly Vector3 BallOffset = new Vector3(0, 0, 1);
 
     // TODO: remove temp const
     private const int CurrentRating = 0;
+
+    [Header("Common")]
+    [SerializeField] private ReverseTimer _reverseTimer;
 
     [Header("Player")]
     [SerializeField] private SmoothFollow _smoothFollow;
@@ -37,6 +41,8 @@ public class Starter : MonoBehaviour
 
         InitPlayer(controls, map);
         InitBot(map);
+
+        _reverseTimer.Construct(Time);
     }
 
     private void LoadResources()
