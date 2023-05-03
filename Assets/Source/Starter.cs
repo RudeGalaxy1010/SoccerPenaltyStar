@@ -15,6 +15,7 @@ public class Starter : MonoBehaviour
     private const int CurrentRating = 0;
 
     [Header("Common")]
+    [SerializeField] private EndGame _endGame;
     [SerializeField] private ReverseTimer _reverseTimer;
 
     [Header("Player")]
@@ -39,9 +40,13 @@ public class Starter : MonoBehaviour
         Controls controls = InitInput();
         Map map = InitMap(_mapPrefabs, _gatesPrefab);
 
-        InitPlayer(controls, map);
-        InitBot(map);
+        Score playerScore = new Score();
+        Score botScore = new Score();
 
+        InitPlayer(playerScore, controls, map);
+        InitBot(botScore, map);
+
+        _endGame.Construct(playerScore, botScore);
         _reverseTimer.Construct(Time);
     }
 
@@ -70,11 +75,10 @@ public class Starter : MonoBehaviour
         return map;
     }
 
-    private void InitPlayer(Controls controls, Map map)
+    private void InitPlayer(Score score, Controls controls, Map map)
     {
         Ball ball = Create(_ballPrefab, map.PlayerSpawnPosition + BallOffset);
         ActualPlayer player = Create(_playerPrefab, map.PlayerSpawnPosition);
-        Score score = new Score();
         player.Construct(score, controls, ball.transform, -BallOffset);
         PlayerBallLauncher ballLauncher = new PlayerBallLauncher(player, ball, controls);
 
@@ -84,11 +88,10 @@ public class Starter : MonoBehaviour
         ball.SetOwner(player);
     }
 
-    private void InitBot(Map map)
+    private void InitBot(Score score, Map map)
     {
         Ball ball = Create(_ballPrefab, map.BotSpawnPosition + BallOffset);
         Bot bot = Create(_botPrefab, map.BotSpawnPosition);
-        Score score = new Score();
         bot.Construct(score, ball.transform, -BallOffset);
         BotBallLauncher botBallLauncher = new BotBallLauncher(bot, ball);
 

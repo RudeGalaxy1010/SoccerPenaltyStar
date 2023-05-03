@@ -6,7 +6,9 @@ public class Score
 
     public event Action<int> ScoreChanged;
 
-    private int _score;
+    private int _points;
+
+    public int Points => _points;
 
     public void AddPoints(int value)
     {
@@ -15,7 +17,7 @@ public class Score
             throw new ArgumentException(NegativeScoreExceptionMessage);
         }
 
-        _score += value;
-        ScoreChanged?.Invoke(_score);
+        _points += value;
+        ScoreChanged?.Invoke(_points);
     }
 }
