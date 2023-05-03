@@ -3,22 +3,22 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    public event Action Passed;
+    private const float MinGatesRotationAngle = 0f;
+    private const float MaxGatesRotationAngle = 359f;
 
     [SerializeField] private Transform _playerSpawnPoint;
     [SerializeField] private Transform _botSpawnPoint;
     [SerializeField] private Transform[] _gatesSpawnPoints;
 
     private Gates _gates;
-    private int _currentGatesPointIndex;
+    private Vector3 _lastPosition;
 
     public Vector3 PlayerSpawnPosition => _playerSpawnPoint.position;
     public Vector3 BotSpawnPosition => _botSpawnPoint.position;
 
     public void Construct(Gates gatesPrefab)
     {
-        _currentGatesPointIndex = 0;
-        _gates = CreateGates(gatesPrefab, _gatesSpawnPoints[_currentGatesPointIndex].position);
+        _gates = Instantiate(gatesPrefab);
         _gates.GoalScored += OnGoalScored;
         MoveGates(_gates);
     }
@@ -31,28 +31,32 @@ public class Map : MonoBehaviour
         }
     }
 
-    private Gates CreateGates(Gates gatesPrefab, Vector3 position)
-    {
-        return Instantiate(gatesPrefab, position, Quaternion.identity);
-    }
-
     private void MoveGates(Gates gates)
     {
-        if (_currentGatesPointIndex >= _gatesSpawnPoints.Length)
-        {
-            Passed?.Invoke();
-            _gates.GoalScored -= OnGoalScored;
-            Destroy(gates.gameObject);
-            return;
-        }
-
-        gates.transform.position = _gatesSpawnPoints[_currentGatesPointIndex].position;
-        gates.transform.rotation = _gatesSpawnPoints[_currentGatesPointIndex].rotation;
-        _currentGatesPointIndex++;
+        gates.transform.position = GetRandomGatesPosition();
+        gates.transform.rotation = GetRandomGatesRotation();
     }
 
     private void OnGoalScored(Gates gates)
     {
         MoveGates(gates);
+    }
+
+    private Vector3 GetRandomGatesPosition()
+    {
+        Vector3 newPosition = _lastPosition;
+
+        while (newPosition == _lastPosition)
+        {
+            newPosition = _gatesSpawnPoints[UnityEngine.Random.Range(0, _gatesSpawnPoints.Length)].position;
+        }
+
+        _lastPosition = newPosition;
+        return newPosition;
+    }
+
+    private Quaternion GetRandomGatesRotation()
+    {
+        return Quaternion.Euler(0, UnityEngine.Random.Range(MinGatesRotationAngle, MaxGatesRotationAngle), 0);
     }
 }
