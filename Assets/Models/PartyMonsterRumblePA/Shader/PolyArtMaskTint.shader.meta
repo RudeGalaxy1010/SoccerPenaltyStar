@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ed92ecac49b84b2184d9b64d8a9b7a04
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _PolyArtAlbedo: {instanceID: 0}
+  - _Mask01: {instanceID: 0}
+  - _Mask02: {instanceID: 0}
+  - _Mask03: {instanceID: 0}
+  - _texcoord: {instanceID: 0}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
