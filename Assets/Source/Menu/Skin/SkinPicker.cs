@@ -13,7 +13,7 @@ public class SkinPicker
     {
         _skinSpawnPoint = skinSpawnPoint;
         _skins = LoadSkins();
-        _currentSkinIndex = 0;
+        _currentSkinIndex = DataHolder.PlayerData.PlayerSkinIndex;
         SetSkin(_currentSkinIndex);
     }
 
@@ -57,6 +57,8 @@ public class SkinPicker
 
     private void SetSkin(int index)
     {
+        DataHolder.PlayerData.PlayerSkinIndex = index;
+
         for (int i = 0; i < _skins.Count; i++)
         {
             if (i == index)
