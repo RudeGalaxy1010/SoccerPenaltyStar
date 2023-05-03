@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Bot : Player
+public class Bot : Player, IPauseable
 {
     private const float LaunchesRate = 0.3f;
     private const float Second = 1f;
@@ -11,6 +11,7 @@ public class Bot : Player
 
     private PlayerMove _move;
     private BotRotation _rotation;
+    private Coroutine _makeLaunchesCoroutine;
 
     public void Construct(Score score, Transform ballTransform, Vector3 offsetFromBall)
     {
@@ -20,7 +21,7 @@ public class Bot : Player
         _rotation = GetComponent<BotRotation>();
         _rotation.Construct(transform, ballTransform);
 
-        StartCoroutine(MakeLaunches(Second / LaunchesRate));
+        StartMakeLaunches();
     }
 
     public void TeleportToBall()
@@ -32,6 +33,11 @@ public class Bot : Player
     {
         _rotation.RotateRandom();
     }
+
+    private void StartMakeLaunches()
+    {
+        _makeLaunchesCoroutine = StartCoroutine(MakeLaunches(Second / LaunchesRate));
+    }
     
     private IEnumerator MakeLaunches(float launchesDelay)
     {
@@ -42,5 +48,18 @@ public class Bot : Player
             yield return waitForSeconds;
             LaunchNeeded?.Invoke();
         }
+    }
+
+    public void Pause()
+    {
+        if (_makeLaunchesCoroutine != null)
+        {
+            StopCoroutine(_makeLaunchesCoroutine);
+        }
+    }
+
+    public void Resume()
+    {
+        StartMakeLaunches();
     }
 }

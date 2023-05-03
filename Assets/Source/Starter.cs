@@ -10,7 +10,6 @@ public class Starter : MonoBehaviour
 
     private readonly float Time = 10;
     private readonly Vector3 BallOffset = new Vector3(0, 0, 1);
-
     // TODO: remove temp const
     private const int CurrentRating = 0;
 
@@ -33,20 +32,23 @@ public class Starter : MonoBehaviour
     private Bot _botPrefab;
     private Gates _gatesPrefab;
 
+    private Pause _pause;
+
     private void Start()
     {
         LoadResources();
 
         Controls controls = InitInput();
         Map map = InitMap(_mapPrefabs, _gatesPrefab);
+        _pause = new Pause();
 
         Score playerScore = new Score();
         Score botScore = new Score();
 
-        InitPlayer(playerScore, controls, map);
-        InitBot(botScore, map);
-
-        _endGame.Construct(playerScore, botScore);
+        InitPlayer(playerScore, controls, map, _pause);
+        InitBot(botScore, map, _pause);
+        
+        _endGame.Construct(playerScore, botScore, _pause);
         _reverseTimer.Construct(Time);
     }
 
@@ -75,7 +77,7 @@ public class Starter : MonoBehaviour
         return map;
     }
 
-    private void InitPlayer(Score score, Controls controls, Map map)
+    private ActualPlayer InitPlayer(Score score, Controls controls, Map map, Pause pause)
     {
         Ball ball = Create(_ballPrefab, map.PlayerSpawnPosition + BallOffset);
         ActualPlayer player = Create(_playerPrefab, map.PlayerSpawnPosition);
@@ -86,9 +88,12 @@ public class Starter : MonoBehaviour
         _forceArrow.Construct(player.transform, ballLauncher);
         _playerScoreCounter.Construct(score);
         ball.SetOwner(player);
+        pause.Add(player, ball, ballLauncher);
+
+        return player;
     }
 
-    private void InitBot(Score score, Map map)
+    private Bot InitBot(Score score, Map map, Pause pause)
     {
         Ball ball = Create(_ballPrefab, map.BotSpawnPosition + BallOffset);
         Bot bot = Create(_botPrefab, map.BotSpawnPosition);
@@ -97,6 +102,9 @@ public class Starter : MonoBehaviour
 
         _botScoreCounter.Construct(score);
         ball.SetOwner(bot);
+        pause.Add(bot, ball);
+
+        return bot;
     }
 
     private T Create<T>(T prefab, Vector3 position)

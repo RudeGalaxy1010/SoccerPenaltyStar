@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class ActualPlayer : Player
+public class ActualPlayer : Player, IPauseable
 {
     private PlayerMove _move;
     private PlayerRotation _rotation;
+    private bool _isPause;
 
     public void Construct(Score score, Controls controls, Transform ballTransform, Vector3 offsetFromBall)
     {
@@ -16,16 +17,37 @@ public class ActualPlayer : Player
 
     public void TeleportToBall()
     {
+        if (_isPause)
+        {
+            return;
+        }
+
         _move.TeleportToBall();
     }
 
     public void EnableRotation()
     {
+        if (_isPause)
+        {
+            return;
+        }
+
         _rotation.Enable();
     }
 
     public void DisableRotation()
     {
         _rotation.Disable();
+    }
+
+    public void Pause()
+    {
+        _isPause = true;
+        DisableRotation();
+    }
+
+    public void Resume() 
+    { 
+        _isPause = false;
     }
 }

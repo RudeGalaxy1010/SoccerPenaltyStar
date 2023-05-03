@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider), typeof(Rigidbody))]
-public class Ball : MonoBehaviour
+public class Ball : MonoBehaviour, IPauseable
 {
     [SerializeField] private Rigidbody _rigidbody;
 
@@ -25,5 +24,15 @@ public class Ball : MonoBehaviour
     {
         ResetMove();
         _rigidbody.AddForce(force, ForceMode.Impulse);
+    }
+
+    public void Pause()
+    {
+        _rigidbody.Sleep();
+    }
+
+    public void Resume()
+    {
+        _rigidbody.WakeUp();
     }
 }

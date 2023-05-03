@@ -6,11 +6,13 @@ public class EndGame : MonoBehaviour
 
     private Score _playerScore;
     private Score _botScore;
+    private Pause _pause;
 
-    public void Construct(Score playerScore, Score botScore)
+    public void Construct(Score playerScore, Score botScore, Pause pause)
     {
         _playerScore = playerScore;
         _botScore = botScore;
+        _pause = pause;
     }
 
     private void OnEnable()
@@ -25,6 +27,8 @@ public class EndGame : MonoBehaviour
 
     private void OnTimerExpired()
     {
+        _pause.SetPause(true);
+
         if (_playerScore.Points > _botScore.Points)
         {
             Debug.Log("Win!");

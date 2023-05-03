@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBallLauncher : BallLauncher
+public class PlayerBallLauncher : BallLauncher, IPauseable
 {
     private Controls _controls;
     private ActualPlayer _player;
@@ -10,6 +10,7 @@ public class PlayerBallLauncher : BallLauncher
 
     private float _cameraPositionZ;
     private Camera _camera;
+    private bool _isPause;
 
     public PlayerBallLauncher(ActualPlayer player, Ball ball, Controls controls) : base(player, ball)
     {
@@ -24,11 +25,21 @@ public class PlayerBallLauncher : BallLauncher
 
     private void OnLeftMouseButtonPressStarted()
     {
+        if (_isPause == true)
+        {
+            return;
+        }
+
         PrepareLaunch();
     }
 
     private void OnLeftMouseButtonPressCanceled()
     {
+        if (_isPause == true)
+        {
+            return;
+        }
+
         Launch();
     }
 
@@ -72,5 +83,16 @@ public class PlayerBallLauncher : BallLauncher
         Vector2 rawScreenPosition = Mouse.current.position.ReadValue();
         Vector3 screenPosition = new Vector3(rawScreenPosition.x, rawScreenPosition.y, -_cameraPositionZ);
         return _camera.ScreenToWorldPoint(screenPosition);
+    }
+
+    public void Pause()
+    {
+        _isPause = true;
+        ResetMousePositions();
+    }
+
+    public void Resume()
+    {
+        _isPause = false;
     }
 }
