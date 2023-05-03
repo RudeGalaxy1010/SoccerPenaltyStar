@@ -35,5 +35,8 @@ public class PlayerRotation : MonoBehaviour
 
         float delta = -_controls.DefaultActionMap.MouseX.ReadValue<float>();
         _playerTransform.transform.RotateAround(_ballTransform.position, Vector3.up, Speed * delta * Time.deltaTime);
+        Vector3 lookDirection = _ballTransform.position;
+        lookDirection.y = transform.position.y;
+        _playerTransform.LookAt(lookDirection);
     }
 }
