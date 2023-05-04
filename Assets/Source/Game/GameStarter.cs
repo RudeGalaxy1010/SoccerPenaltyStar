@@ -8,7 +8,7 @@ public class GameStarter : MonoBehaviour
     private const string BotPrefabPath = "BotPrefabs/Bot";
     private const string GatesPrefabPath = "GatePrefabs/Gates";
 
-    private readonly float Time = 10;
+    private readonly float Time = 30;
     private readonly Vector3 BallOffset = new Vector3(0, 0, 1);
     // TODO: remove temp const
     private const int CurrentRating = 0;

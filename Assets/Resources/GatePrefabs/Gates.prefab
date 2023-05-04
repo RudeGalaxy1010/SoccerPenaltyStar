@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5133701260374746525}
   - component: {fileID: 9070806130879314794}
   - component: {fileID: 3086335357719068676}
+  - component: {fileID: 349636343410388689}
+  - component: {fileID: 4171731997930056568}
   m_Layer: 0
   m_Name: Gates
   m_TagString: Untagged
@@ -59,6 +61,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b3e6f889df24946bcb9308fb1890b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveAnimation: {fileID: 349636343410388689}
+  _scaleAnimation: {fileID: 4171731997930056568}
+--- !u!114 &349636343410388689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5133701260374746526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc231e26e2764974bb97a92d0518899d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shift: {x: 0, y: 3, z: 0}
+  _duration: 0.5
+--- !u!114 &4171731997930056568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5133701260374746526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369583926cd31b8409e1f5f1ad4d4279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scaleEndValue: 1.25
+  _duration: 0.5
 --- !u!1001 &5133701260335619977
 PrefabInstance:
   m_ObjectHideFlags: 0
