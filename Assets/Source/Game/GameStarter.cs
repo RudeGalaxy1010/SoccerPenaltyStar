@@ -9,6 +9,7 @@ public class GameStarter : MonoBehaviour
     private const string PlayerPrefabPath = "PlayerPrefabs/Player";
     private const string BotPrefabPath = "BotPrefabs/Bot";
     private const string GatesPrefabPath = "GatePrefabs/Gates";
+    private const string BonusGatesPrefabPath = "GatePrefabs/BonusGates";
 
     private readonly float Time = 30;
     private readonly Vector3 BallOffset = new Vector3(0, 0, 1);
@@ -34,6 +35,7 @@ public class GameStarter : MonoBehaviour
     private ActualPlayer _playerPrefab;
     private Bot _botPrefab;
     private Gates _gatesPrefab;
+    private BonusGates _bonusGatesPrefab;
 
     private Pause _pause;
 
@@ -43,7 +45,7 @@ public class GameStarter : MonoBehaviour
         LoadResources();
 
         Controls controls = InitInput();
-        Map map = InitMap(_mapPrefabs, _gatesPrefab);
+        Map map = InitMap(_mapPrefabs, _gatesPrefab, _bonusGatesPrefab, _pause);
         _pause = new Pause();
 
         Score playerScore = new Score();
@@ -75,6 +77,7 @@ public class GameStarter : MonoBehaviour
         _playerPrefab = Resources.Load<ActualPlayer>(PlayerPrefabPath);
         _botPrefab = Resources.Load<Bot>(BotPrefabPath);
         _gatesPrefab = Resources.Load<Gates>(GatesPrefabPath);
+        _bonusGatesPrefab = Resources.Load<BonusGates>(BonusGatesPrefabPath);
     }
 
     private Controls InitInput()
@@ -84,12 +87,12 @@ public class GameStarter : MonoBehaviour
         return controls;
     }
 
-    private Map InitMap(Map[] mapPrefabs, Gates gatesPrefab)
+    private Map InitMap(Map[] mapPrefabs, Gates gatesPrefab, BonusGates bonusGatesPrefab, Pause pause)
     {
         MapPicker mapPicker = new MapPicker();
         Map mapPrefab = mapPicker.GetMapPrefab(mapPrefabs, CurrentRating);
         Map map = Instantiate(mapPrefab);
-        map.Construct(gatesPrefab);
+        map.Construct(gatesPrefab, bonusGatesPrefab, pause);
         return map;
     }
 

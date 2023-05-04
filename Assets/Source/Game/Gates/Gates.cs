@@ -7,8 +7,7 @@ public class Gates : MonoBehaviour
 {
     public event Action<Gates> GoalScored;
 
-    private const int PointsToAdd = 1;
-
+    [SerializeField] private int PointsToAdd = 1;
     [SerializeField] private MoveAnimation _moveAnimation;
     [SerializeField] private ScaleAnimation _scaleAnimation;
 

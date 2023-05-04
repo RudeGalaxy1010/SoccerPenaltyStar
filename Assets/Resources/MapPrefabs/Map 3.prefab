@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 297191327906162291}
   - component: {fileID: -1847421069047404261}
+  - component: {fileID: 8895677451033741474}
+  - component: {fileID: 7720498177281983431}
   m_Layer: 0
   m_Name: Map 3
   m_TagString: Untagged
@@ -56,6 +58,32 @@ MonoBehaviour:
   - {fileID: 769705170535542395}
   - {fileID: 3958007582852900093}
   - {fileID: 7312425878670539974}
+  _gatesSpawner: {fileID: 8895677451033741474}
+  _bonusGatesSpawner: {fileID: 7720498177281983431}
+--- !u!114 &8895677451033741474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297191327906162300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0a9777655f8ba4ca37bd05fe506cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7720498177281983431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297191327906162300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47bd264a875ca744b467c1fefdaebbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &518587023112808890
 GameObject:
   m_ObjectHideFlags: 0
