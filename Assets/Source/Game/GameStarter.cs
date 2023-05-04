@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameStarter : MonoBehaviour
 {
+    private const string SkinPrefabsPath = "SkinPrefabs/Skin";
     private const string MapPrefabsFolderPath = "MapPrefabs";
     private const string BallPrefabPath = "BallPrefabs/Ball";
     private const string PlayerPrefabPath = "PlayerPrefabs/Player";
@@ -27,6 +28,7 @@ public class GameStarter : MonoBehaviour
     [SerializeField] private ScoreCounter _botScoreCounter;
 
     // Resources
+    private SkinCustomization _skinPrefab;
     private Ball _ballPrefab;
     private Map[] _mapPrefabs;
     private ActualPlayer _playerPrefab;
@@ -47,7 +49,7 @@ public class GameStarter : MonoBehaviour
         Score playerScore = new Score();
         Score botScore = new Score();
 
-        InitPlayer(playerScore, controls, map, _pause);
+        InitPlayer(_skinPrefab, playerScore, controls, map, _pause);
         InitBot(botScore, map, _pause);
         
         _endGame.Construct(playerScore, botScore, _pause);
@@ -67,6 +69,7 @@ public class GameStarter : MonoBehaviour
 
     private void LoadResources()
     {
+        _skinPrefab = Resources.Load<SkinCustomization>(SkinPrefabsPath);
         _mapPrefabs = Resources.LoadAll<Map>(MapPrefabsFolderPath);
         _ballPrefab = Resources.Load<Ball>(BallPrefabPath);
         _playerPrefab = Resources.Load<ActualPlayer>(PlayerPrefabPath);
@@ -90,11 +93,11 @@ public class GameStarter : MonoBehaviour
         return map;
     }
 
-    private ActualPlayer InitPlayer(Score score, Controls controls, Map map, Pause pause)
+    private ActualPlayer InitPlayer(SkinCustomization skinPrefab, Score score, Controls controls, Map map, Pause pause)
     {
         Ball ball = Create(_ballPrefab, map.PlayerSpawnPosition + BallOffset);
         ActualPlayer player = Create(_playerPrefab, map.PlayerSpawnPosition);
-        player.Construct(score, controls, ball.transform, -BallOffset);
+        player.Construct(skinPrefab, score, controls, ball.transform, -BallOffset);
         PlayerBallLauncher ballLauncher = new PlayerBallLauncher(player, ball, controls);
 
         _smoothFollow.SetTarget(ball.transform);

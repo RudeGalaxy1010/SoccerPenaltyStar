@@ -1377,7 +1377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e28057e4e63ebe54195234592fb74f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _progressImage: {fileID: 1803815323}
   _timeText: {fileID: 715099406}
   _timer: {fileID: 1824412713}
 --- !u!114 &1824412713

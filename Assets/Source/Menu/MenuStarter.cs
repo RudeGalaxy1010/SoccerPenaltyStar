@@ -3,20 +3,32 @@ using UnityEngine;
 
 public class MenuStarter : MonoBehaviour
 {
+    private const string SkinPrefabsPath = "SkinPrefabs/Skin";
+
     [SerializeField] private Transform _skinSpawnPoint;
     [SerializeField] private SkinButtons _skinButtons;
     [SerializeField] private LevelButtons _levelButtons;
+
+    // Resources
+    private SkinCustomization _skinPrefab;
 
     private DataSaveLoad _dataSaveLoad;
 
     private void Start()
     {
-        InitData();
+        LoadResources();
+        LoadData();
+
         InitLevel();
-        InitSkins();
+        InitSkins(_skinPrefab, _skinSpawnPoint);
     }
 
-    private void InitData()
+    private void LoadResources()
+    {
+        _skinPrefab = Resources.Load<SkinCustomization>(SkinPrefabsPath);
+    }
+
+    private void LoadData()
     {
         _dataSaveLoad = new DataSaveLoad();
         _dataSaveLoad.LoadData();
@@ -28,11 +40,11 @@ public class MenuStarter : MonoBehaviour
         _levelButtons.Construct(levelLoader);
     }
 
-    private void InitSkins()
+    private void InitSkins(SkinCustomization skinPrefab, Transform spawnPoint)
     {
-        SkinPicker skinPicker = new SkinPicker();
-        skinPicker.Construct(_skinSpawnPoint);
-        _skinButtons.Construct(skinPicker);
+        SkinCustomization skin = Instantiate(skinPrefab, spawnPoint.position, spawnPoint.rotation);
+        skin.Apply(DataHolder.PlayerData.SkinCustomizationData);
+        _skinButtons.Construct(skin);
     }
 
     private void OnDestroy()

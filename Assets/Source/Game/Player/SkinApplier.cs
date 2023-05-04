@@ -2,19 +2,13 @@ using UnityEngine;
 
 public class SkinApplier : MonoBehaviour
 {
-    private const string SkinPrefabsPath = "SkinPrefabs";
-
     [SerializeField] private Transform _skinSpawnPoint;
 
-    private void Awake()
+    public void Construct(SkinCustomization skinPrefab)
     {
-        LoadSkin();
-    }
-
-    private void LoadSkin()
-    {
-        int skinIndex = DataHolder.PlayerData.PlayerSkinIndex;
-        GameObject[] skinPrefabs = Resources.LoadAll<GameObject>(SkinPrefabsPath);
-        Instantiate(skinPrefabs[skinIndex], _skinSpawnPoint.position, Quaternion.identity, _skinSpawnPoint);
+        Vector3 position = _skinSpawnPoint.position;
+        Quaternion rotation = _skinSpawnPoint.rotation;
+        SkinCustomization skin = Instantiate(skinPrefab, position, rotation, transform);
+        skin.Apply(DataHolder.PlayerData.SkinCustomizationData);
     }
 }
