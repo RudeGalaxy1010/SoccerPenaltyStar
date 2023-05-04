@@ -44,9 +44,9 @@ public class GameStarter : MonoBehaviour
         LoadData();
         LoadResources();
 
+        _pause = new Pause();
         Controls controls = InitInput();
         Map map = InitMap(_mapPrefabs, _gatesPrefab, _bonusGatesPrefab, _pause);
-        _pause = new Pause();
 
         Score playerScore = new Score();
         Score botScore = new Score();

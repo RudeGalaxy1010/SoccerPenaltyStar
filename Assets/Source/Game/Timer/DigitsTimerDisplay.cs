@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class TimerDisplay : MonoBehaviour
+public class DigitsTimerDisplay : MonoBehaviour
 {
     [SerializeField] private TMP_Text _timeText;
     [SerializeField] private ReverseTimer _timer;

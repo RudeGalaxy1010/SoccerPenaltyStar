@@ -18,6 +18,7 @@ public class ReverseTimer : MonoBehaviour, IPauseable
     }
 
     public float Value => _timer;
+    public float Progress => _timer / _duration;
 
     private void Update()
     {
