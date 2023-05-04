@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameStarter : MonoBehaviour
@@ -36,6 +37,7 @@ public class GameStarter : MonoBehaviour
 
     private void Start()
     {
+        LoadData();
         LoadResources();
 
         Controls controls = InitInput();
@@ -50,6 +52,17 @@ public class GameStarter : MonoBehaviour
         
         _endGame.Construct(playerScore, botScore, _pause);
         _reverseTimer.Construct(Time);
+    }
+
+    private void LoadData()
+    {
+        if (DataHolder.PlayerData != null)
+        {
+            return;
+        }
+
+        DataSaveLoad dataSaveLoad = new DataSaveLoad();
+        dataSaveLoad.LoadData();
     }
 
     private void LoadResources()
