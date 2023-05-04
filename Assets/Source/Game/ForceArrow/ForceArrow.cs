@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ForceArrow : MonoBehaviour
 {
-    private const float MaxLength = 10f;
+    private const float MaxLength = 6f;
 
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private GameObject _arrowSprite;
