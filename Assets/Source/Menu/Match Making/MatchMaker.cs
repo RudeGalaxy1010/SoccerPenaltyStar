@@ -7,6 +7,7 @@ public class MatchMaker : MonoBehaviour
     private const float StartDelay = 1.5f;
 
     public event Action MatchMakingStarted;
+    public event Action MatchMakingFinished;
 
     private BotSelector _botSelector;
     private LevelLoader _levelLoader;
@@ -26,6 +27,7 @@ public class MatchMaker : MonoBehaviour
 
     private void OnBotSelected()
     {
+        MatchMakingFinished?.Invoke();
         StartCoroutine(WaitAndStart(StartDelay));
     }
 
