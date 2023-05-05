@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class MenuStarter : MonoBehaviour
@@ -7,6 +8,7 @@ public class MenuStarter : MonoBehaviour
     [SerializeField] private Transform _botSkinSpawnPoint;
     [SerializeField] private MatchMaker _matchMaker;
     [SerializeField] private BotSelector _botSelector;
+    [SerializeField] private TMP_Text _botNickText;
 
     [Header("Buttons")]
     [SerializeField] private SkinButtons _skinButtons;
@@ -17,7 +19,7 @@ public class MenuStarter : MonoBehaviour
     private void Start()
     {
         LoadData();
-        InitMatchMaking(_matchMaker, _botSelector, _botSkinSpawnPoint);
+        InitMatchMaking(_matchMaker, _botSelector, _botSkinSpawnPoint, _botNickText);
         InitPlayerSkin(GamePrefabs.SkinPrefab, _playerSkinSpawnPoint);
     }
 
@@ -27,10 +29,11 @@ public class MenuStarter : MonoBehaviour
         _dataSaveLoad.LoadData();
     }
 
-    private void InitMatchMaking(MatchMaker matchMaker, BotSelector botSelector, Transform botSkinSpawnPoint)
+    private void InitMatchMaking(MatchMaker matchMaker, BotSelector botSelector, 
+        Transform botSkinSpawnPoint, TMP_Text botNickText)
     {
         LevelLoader levelLoader = new LevelLoader();
-        botSelector.Construct(botSkinSpawnPoint);
+        botSelector.Construct(botSkinSpawnPoint, botNickText);
         matchMaker.Construct(botSelector, levelLoader);
     }
 

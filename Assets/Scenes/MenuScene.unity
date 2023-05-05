@@ -5301,6 +5301,7 @@ MonoBehaviour:
   _botSkinSpawnPoint: {fileID: 1447760984}
   _matchMaker: {fileID: 1431425495}
   _botSelector: {fileID: 1431425494}
+  _botNickText: {fileID: 1243063799}
   _skinButtons: {fileID: 333864057}
   _levelButtons: {fileID: 333864058}
 --- !u!4 &1440333524
