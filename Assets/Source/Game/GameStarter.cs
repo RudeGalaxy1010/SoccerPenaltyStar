@@ -2,14 +2,6 @@ using UnityEngine;
 
 public class GameStarter : MonoBehaviour
 {
-    private const string SkinPrefabsPath = "SkinPrefabs/Skin";
-    private const string MapPrefabsFolderPath = "MapPrefabs";
-    private const string BallPrefabPath = "BallPrefabs/Ball";
-    private const string PlayerPrefabPath = "PlayerPrefabs/Player";
-    private const string BotPrefabPath = "BotPrefabs/Bot";
-    private const string GatesPrefabPath = "GatePrefabs/Gates";
-    private const string BonusGatesPrefabPath = "GatePrefabs/BonusGates";
-
     private readonly float Time = 30;
     private readonly Vector3 BallOffset = new Vector3(0, 0, 1);
     // TODO: remove temp const
@@ -29,30 +21,20 @@ public class GameStarter : MonoBehaviour
     [Header("Bot")]
     [SerializeField] private ScoreCounter _botScoreCounter;
 
-    // Resources
-    private SkinCustomization _skinPrefab;
-    private Ball _ballPrefab;
-    private Map[] _mapPrefabs;
-    private ActualPlayer _playerPrefab;
-    private Bot _botPrefab;
-    private Gates _gatesPrefab;
-    private BonusGates _bonusGatesPrefab;
-
     private Pause _pause;
 
     private void Start()
     {
         LoadData();
-        LoadResources();
 
         _pause = new Pause();
         Controls controls = InitInput();
-        Map map = InitMap(_mapPrefabs, _gatesPrefab, _bonusGatesPrefab, _pause);
+        Map map = InitMap(GamePrefabs.MapPrefabs, GamePrefabs.GatesPrefab, GamePrefabs.BonusGatesPrefab, _pause);
 
         Score playerScore = new Score();
         Score botScore = new Score();
 
-        ActualPlayer player = InitPlayer(_skinPrefab, playerScore, controls, map, _pause);
+        ActualPlayer player = InitPlayer(GamePrefabs.SkinPrefab, playerScore, controls, map, _pause);
         Bot bot = InitBot(botScore, map, _pause);
 
         _endGame.Construct(playerScore, botScore, _pause);
@@ -72,16 +54,7 @@ public class GameStarter : MonoBehaviour
         dataSaveLoad.LoadData();
     }
 
-    private void LoadResources()
-    {
-        _skinPrefab = Resources.Load<SkinCustomization>(SkinPrefabsPath);
-        _mapPrefabs = Resources.LoadAll<Map>(MapPrefabsFolderPath);
-        _ballPrefab = Resources.Load<Ball>(BallPrefabPath);
-        _playerPrefab = Resources.Load<ActualPlayer>(PlayerPrefabPath);
-        _botPrefab = Resources.Load<Bot>(BotPrefabPath);
-        _gatesPrefab = Resources.Load<Gates>(GatesPrefabPath);
-        _bonusGatesPrefab = Resources.Load<BonusGates>(BonusGatesPrefabPath);
-    }
+    
 
     private Controls InitInput()
     {
@@ -101,8 +74,8 @@ public class GameStarter : MonoBehaviour
 
     private ActualPlayer InitPlayer(SkinCustomization skinPrefab, Score score, Controls controls, Map map, Pause pause)
     {
-        Ball ball = Create(_ballPrefab, map.PlayerSpawnPosition + BallOffset);
-        ActualPlayer player = Create(_playerPrefab, map.PlayerSpawnPosition);
+        Ball ball = Create(GamePrefabs.BallPrefab, map.PlayerSpawnPosition + BallOffset);
+        ActualPlayer player = Create(GamePrefabs.PlayerPrefab, map.PlayerSpawnPosition);
         player.Construct(skinPrefab, score, controls, ball.transform, -BallOffset);
         PlayerBallLauncher ballLauncher = new PlayerBallLauncher(player, ball, controls);
 
@@ -117,8 +90,8 @@ public class GameStarter : MonoBehaviour
 
     private Bot InitBot(Score score, Map map, Pause pause)
     {
-        Ball ball = Create(_ballPrefab, map.BotSpawnPosition + BallOffset);
-        Bot bot = Create(_botPrefab, map.BotSpawnPosition);
+        Ball ball = Create(GamePrefabs.BallPrefab, map.BotSpawnPosition + BallOffset);
+        Bot bot = Create(GamePrefabs.BotPrefab, map.BotSpawnPosition);
         bot.Construct(score, ball.transform, -BallOffset);
         BotBallLauncher botBallLauncher = new BotBallLauncher(bot, ball);
 
