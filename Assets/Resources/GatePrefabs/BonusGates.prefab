@@ -4761,6 +4761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scaleEndValue: 1.25
   _duration: 0.5
+  _isRelativeScale: 1
 --- !u!114 &3407578443073767630
 MonoBehaviour:
   m_ObjectHideFlags: 0

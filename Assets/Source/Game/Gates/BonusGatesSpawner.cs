@@ -25,13 +25,14 @@ public class BonusGatesSpawner : MonoBehaviour
         _bonusGates.Gates.GoalScored += OnGoalScored;
         _bonusGates.Timer.Expired += OnGatesTimerExpired;
         MoveGates(_bonusGates.Gates.transform);
-        
+
         _timer = 0;
         _timeToSpawn = GetRandomTimeToSpawn();
         _bonusGates.gameObject.SetActive(false);
         pause.Add(_bonusGates.Timer);
     }
 
+    public Gates Gates => _bonusGates.Gates;
     private bool IsGatesActive => _bonusGates.gameObject.activeInHierarchy == true;
 
     private void Update()

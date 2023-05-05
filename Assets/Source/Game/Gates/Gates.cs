@@ -11,6 +11,7 @@ public class Gates : MonoBehaviour
     [SerializeField] private int PointsToAdd = 1;
     [SerializeField] private MoveAnimation _moveAnimation;
     [SerializeField] private ScaleAnimation _scaleAnimation;
+    [SerializeField] private GoalSign _goalSign;
 
     private Collider _collider;
 

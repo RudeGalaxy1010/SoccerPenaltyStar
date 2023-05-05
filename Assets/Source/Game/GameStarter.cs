@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class GameStarter : MonoBehaviour
@@ -19,6 +18,7 @@ public class GameStarter : MonoBehaviour
     [Header("Common")]
     [SerializeField] private EndGame _endGame;
     [SerializeField] private ReverseTimer _reverseTimer;
+    [SerializeField] private GoalSign _goalSign;
 
     [Header("Player")]
     [SerializeField] private SmoothFollow _smoothFollow;
@@ -53,7 +53,9 @@ public class GameStarter : MonoBehaviour
 
         InitPlayer(_skinPrefab, playerScore, controls, map, _pause);
         InitBot(botScore, map, _pause);
-        
+
+        _goalSign.Construct(map.Gates, map.BonusGates);
+
         _endGame.Construct(playerScore, botScore, _pause);
         _reverseTimer.Construct(Time);
     }

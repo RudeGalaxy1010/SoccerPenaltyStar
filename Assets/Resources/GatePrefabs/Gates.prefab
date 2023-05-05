@@ -66,6 +66,7 @@ MonoBehaviour:
   PointsToAdd: 1
   _moveAnimation: {fileID: 349636343410388689}
   _scaleAnimation: {fileID: 4171731997930056568}
+  _goalSign: {fileID: 0}
 --- !u!114 &349636343410388689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scaleEndValue: 1.25
   _duration: 0.5
+  _isRelativeScale: 1
 --- !u!114 &261500202854961764
 MonoBehaviour:
   m_ObjectHideFlags: 0

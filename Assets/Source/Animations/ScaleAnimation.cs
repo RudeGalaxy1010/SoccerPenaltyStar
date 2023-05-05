@@ -5,6 +5,7 @@ public class ScaleAnimation : MonoBehaviour
 {
     [SerializeField] private float _scaleEndValue;
     [SerializeField] private float _duration;
+    [SerializeField] private bool _isRelativeScale;
 
     private Tween _tween;
 
@@ -31,7 +32,7 @@ public class ScaleAnimation : MonoBehaviour
 
     private void Play(int loops)
     {
-        float relativeScaleEndValue = _scaleEndValue * transform.localScale.x;
+        float relativeScaleEndValue = _isRelativeScale ? _scaleEndValue * transform.localScale.x : _scaleEndValue;
         float halfDuration = _duration / 2f; // Scale up and return to default takes double time
         _tween = transform.DOScale(relativeScaleEndValue, halfDuration).SetLoops(loops, LoopType.Yoyo);
         _tween.Play();

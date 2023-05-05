@@ -10,6 +10,8 @@ public class Map : MonoBehaviour
 
     public Vector3 PlayerSpawnPosition => _playerSpawnPoint.position;
     public Vector3 BotSpawnPosition => _botSpawnPoint.position;
+    public Gates Gates => _gatesSpawner.Gates;
+    public Gates BonusGates => _bonusGatesSpawner.Gates;
 
     public void Construct(Gates gatesPrefab, BonusGates bonusGatesPrefab, Pause pause)
     {
