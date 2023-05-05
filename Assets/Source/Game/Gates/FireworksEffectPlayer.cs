@@ -8,15 +8,22 @@ public class FireworksEffectPlayer : MonoBehaviour
     private void OnEnable()
     {
         _gates.GoalStarted += OnGoalStarted;
+        _gates.GoalScored += OnGoalScored;
     }
 
     private void OnDisable()
     {
         _gates.GoalStarted -= OnGoalStarted;
+        _gates.GoalScored -= OnGoalScored;
     }
 
     private void OnGoalStarted(Gates gates)
     {
         _effect.Play();
+    }
+
+    private void OnGoalScored(Gates obj)
+    {
+        _effect.Stop();
     }
 }
