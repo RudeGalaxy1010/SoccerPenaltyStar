@@ -3,27 +3,34 @@ using UnityEngine.UI;
 
 public class LevelButtons : MonoBehaviour
 {
-    [SerializeField] private Button _startButton;
+    [SerializeField] private Button _readyButton;
 
-    private LevelLoader _levelLoader;
+    [Header("Match Maker")]
+    [SerializeField] private MatchMaker _matchMaker;
 
-    public void Construct(LevelLoader levelLoader)
+    private void Start()
     {
-        _levelLoader = levelLoader;
+        _readyButton.interactable = true;
     }
 
     private void OnEnable()
     {
-        _startButton.onClick.AddListener(OnStartButtonClicked);
+        _readyButton.onClick.AddListener(OnStartButtonClicked);
+        _matchMaker.MatchMakingStarted += OnMatchMakingStarted;
     }
 
     private void OnDisable()
     {
-        _startButton.onClick.RemoveListener(OnStartButtonClicked);
+        _readyButton.onClick.RemoveListener(OnStartButtonClicked);
+    }
+
+    private void OnMatchMakingStarted()
+    {
+        _readyButton.interactable = false;
     }
 
     private void OnStartButtonClicked()
     {
-        _levelLoader.LoadGame();
+        _matchMaker.StartSelectingBot();
     }
 }

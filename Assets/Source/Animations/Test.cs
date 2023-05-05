@@ -9,7 +9,7 @@ public class Test : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            _moveAnimation.PlayOnce();
+            _moveAnimation.PlayOnceWithRewind();
         }
     }
 }

@@ -33,7 +33,8 @@ public class Gates : MonoBehaviour
     private IEnumerator PlayGoalAnimation()
     {
         PlayAnimations();
-        yield return new WaitForSeconds(_moveAnimation.Duration);
+        float waitTime = Mathf.Max(_moveAnimation.Duration, _scaleAnimation.Duration);
+        yield return new WaitForSeconds(waitTime);
         StopAnimations();
         GoalScored?.Invoke(this);
     }
@@ -48,7 +49,7 @@ public class Gates : MonoBehaviour
     private void PlayAnimations()
     {
         _collider.enabled = false;
-        _moveAnimation.PlayOnce();
-        _scaleAnimation.PlayOnce();
+        _moveAnimation.PlayOnceWithRewind();
+        _scaleAnimation.PlayOnceWithRewind();
     }
 }

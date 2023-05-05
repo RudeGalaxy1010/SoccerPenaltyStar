@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,11 +25,15 @@ public class SkinButtons : MonoBehaviour
     [SerializeField] private Button _nextTailButton;
     [SerializeField] private Button _randomSkinButton;
 
+    [Header("Match Maker")]
+    [SerializeField] private MatchMaker _matchMaker;
+
     private SkinCustomization _skin;
 
     public void Construct(SkinCustomization skinCustomization)
     {
         _skin = skinCustomization;
+        Enable();
     }
 
     private void OnEnable()
@@ -54,6 +59,7 @@ public class SkinButtons : MonoBehaviour
         _nextTailButton.onClick.AddListener(OnNextTailButtonClicked);
 
         _randomSkinButton.onClick.AddListener(OnRandomSkinButtonClicked);
+        _matchMaker.MatchMakingStarted += OnMatchMakingStarted;
     }
 
     private void OnDisable()
@@ -79,6 +85,62 @@ public class SkinButtons : MonoBehaviour
         _nextTailButton.onClick.RemoveListener(OnNextTailButtonClicked);
 
         _randomSkinButton.onClick.RemoveListener(OnRandomSkinButtonClicked);
+        _matchMaker.MatchMakingStarted -= OnMatchMakingStarted;
+    }
+
+    private void OnMatchMakingStarted()
+    {
+        Disable();
+    }
+
+    private void Enable()
+    {
+        _previousColorButton.interactable = true;
+        _previousBodyButton.interactable = true;
+        _previousEyesButton.interactable = true;
+        _previousGlovesButton.interactable = true;
+        _previousHeadButton.interactable = true;
+        _previousMouthButton.interactable = true;
+        _previousNoseButton.interactable = true;
+        _previousHatButton.interactable = true;
+        _previousTailButton.interactable = true;
+
+        _nextColorButton.interactable = true;
+        _nextBodyButton.interactable = true;
+        _nextEyesButton.interactable = true;
+        _nextGlovesButton.interactable = true;
+        _nextHeadButton.interactable = true;
+        _nextMouthButton.interactable = true;
+        _nextNoseButton.interactable = true;
+        _nextHatButton.interactable = true;
+        _nextTailButton.interactable = true;
+
+        _randomSkinButton.interactable = true;
+    }
+
+    private void Disable()
+    {
+        _previousColorButton.interactable = false;
+        _previousBodyButton.interactable = false;
+        _previousEyesButton.interactable = false;
+        _previousGlovesButton.interactable = false;
+        _previousHeadButton.interactable = false;
+        _previousMouthButton.interactable = false;
+        _previousNoseButton.interactable = false;
+        _previousHatButton.interactable = false;
+        _previousTailButton.interactable = false;
+
+        _nextColorButton.interactable = false;
+        _nextBodyButton.interactable = false;
+        _nextEyesButton.interactable = false;
+        _nextGlovesButton.interactable = false;
+        _nextHeadButton.interactable = false;
+        _nextMouthButton.interactable = false;
+        _nextNoseButton.interactable = false;
+        _nextHatButton.interactable = false;
+        _nextTailButton.interactable = false;
+
+        _randomSkinButton.interactable = false;
     }
 
     private void OnPreviousColorButtonClicked()

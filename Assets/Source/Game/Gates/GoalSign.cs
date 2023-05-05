@@ -33,6 +33,6 @@ public class GoalSign : MonoBehaviour
 
     private void OnGoalStarted(Gates gates)
     {
-        _scaleAnimation.PlayOnce();
+        _scaleAnimation.PlayOnceWithRewind();
     }
 }

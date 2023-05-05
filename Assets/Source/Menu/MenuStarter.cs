@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class MenuStarter : MonoBehaviour
 {
-    [SerializeField] private Transform _skinSpawnPoint;
+    [Header("Common")]
+    [SerializeField] private Transform _playerSkinSpawnPoint;
+    [SerializeField] private Transform _botSkinSpawnPoint;
+    [SerializeField] private MatchMaker _matchMaker;
+    [SerializeField] private BotSelector _botSelector;
+
+    [Header("Buttons")]
     [SerializeField] private SkinButtons _skinButtons;
     [SerializeField] private LevelButtons _levelButtons;
 
@@ -11,8 +17,8 @@ public class MenuStarter : MonoBehaviour
     private void Start()
     {
         LoadData();
-        InitLevel();
-        InitSkins(GamePrefabs.SkinPrefab, _skinSpawnPoint);
+        InitMatchMaking(_matchMaker, _botSelector, _botSkinSpawnPoint);
+        InitPlayerSkin(GamePrefabs.SkinPrefab, _playerSkinSpawnPoint);
     }
 
     private void LoadData()
@@ -21,15 +27,16 @@ public class MenuStarter : MonoBehaviour
         _dataSaveLoad.LoadData();
     }
 
-    private void InitLevel()
+    private void InitMatchMaking(MatchMaker matchMaker, BotSelector botSelector, Transform botSkinSpawnPoint)
     {
         LevelLoader levelLoader = new LevelLoader();
-        _levelButtons.Construct(levelLoader);
+        botSelector.Construct(botSkinSpawnPoint);
+        matchMaker.Construct(botSelector, levelLoader);
     }
 
-    private void InitSkins(SkinCustomization skinPrefab, Transform spawnPoint)
+    private void InitPlayerSkin(SkinCustomization skinPrefab, Transform spawnPoint)
     {
-        SkinCustomization skin = Instantiate(skinPrefab, spawnPoint.position, spawnPoint.rotation);
+        SkinCustomization skin = Instantiate(skinPrefab, spawnPoint.position, spawnPoint.rotation, spawnPoint);
         skin.Apply(DataHolder.PlayerData.PlayerSkinCustomizationData);
         _skinButtons.Construct(skin);
     }
