@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,7 @@ public class SkinButtons : MonoBehaviour
     [SerializeField] private Button _nextHatButton;
     [SerializeField] private Button _previousTailButton;
     [SerializeField] private Button _nextTailButton;
+    [SerializeField] private Button _randomSkinButton;
 
     private SkinCustomization _skin;
 
@@ -50,6 +52,8 @@ public class SkinButtons : MonoBehaviour
         _nextNoseButton.onClick.AddListener(OnNextNoseButtonClicked);
         _nextHatButton.onClick.AddListener(OnNextHatButtonClicked);
         _nextTailButton.onClick.AddListener(OnNextTailButtonClicked);
+
+        _randomSkinButton.onClick.AddListener(OnRandomSkinButtonClicked);
     }
 
     private void OnDisable()
@@ -73,6 +77,8 @@ public class SkinButtons : MonoBehaviour
         _nextNoseButton.onClick.RemoveListener(OnNextNoseButtonClicked);
         _nextHatButton.onClick.RemoveListener(OnNextHatButtonClicked);
         _nextTailButton.onClick.RemoveListener(OnNextTailButtonClicked);
+
+        _randomSkinButton.onClick.RemoveListener(OnRandomSkinButtonClicked);
     }
 
     private void OnPreviousColorButtonClicked()
@@ -163,5 +169,10 @@ public class SkinButtons : MonoBehaviour
     private void OnNextTailButtonClicked()
     {
         _skin.SetNextPart(CustomizationPart.Tail);
+    }
+
+    private void OnRandomSkinButtonClicked()
+    {
+        _skin.ApplyRandom();
     }
 }

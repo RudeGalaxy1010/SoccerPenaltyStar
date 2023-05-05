@@ -29,6 +29,21 @@ public class SkinCustomization : MonoBehaviour
         ApplyAll(_skinCustomizationData);
     }
 
+    public void ApplyRandom()
+    {
+        _skinCustomizationData.ColorIndex = UnityEngine.Random.Range(0, _mainBodies.Length);
+        _skinCustomizationData.BodyPartsIndex = UnityEngine.Random.Range(0, _bodyPats.Length);
+        _skinCustomizationData.EyesIndex = UnityEngine.Random.Range(0, _eyes.Length);
+        _skinCustomizationData.GlovesIndex = UnityEngine.Random.Range(0, _gloves.Length);
+        _skinCustomizationData.HeadPartsIndex = UnityEngine.Random.Range(0, _headParts.Length);
+        _skinCustomizationData.MouthesIndex = UnityEngine.Random.Range(0, _mouthes.Length);
+        _skinCustomizationData.NosesIndex = UnityEngine.Random.Range(0, _noses.Length);
+        _skinCustomizationData.HatsIndex = UnityEngine.Random.Range(0, _hats.Length);
+        _skinCustomizationData.TailsIndex = UnityEngine.Random.Range(0, _tails.Length);
+
+        ApplyAll(_skinCustomizationData);
+    }
+
     private void ApplyAll(SkinCustomizationData skinCustomizationData)
     {
         SetPart(_mainBodies, skinCustomizationData.ColorIndex);
