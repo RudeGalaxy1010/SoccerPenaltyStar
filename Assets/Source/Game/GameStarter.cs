@@ -35,7 +35,7 @@ public class GameStarter : MonoBehaviour
         Score botScore = new Score();
 
         ActualPlayer player = InitPlayer(GamePrefabs.SkinPrefab, playerScore, controls, map, _pause);
-        Bot bot = InitBot(botScore, map, _pause);
+        Bot bot = InitBot(GamePrefabs.SkinPrefab, botScore, map, _pause);
 
         _endGame.Construct(playerScore, botScore, _pause);
         _reverseTimer.Construct(Time);
@@ -88,11 +88,11 @@ public class GameStarter : MonoBehaviour
         return player;
     }
 
-    private Bot InitBot(Score score, Map map, Pause pause)
+    private Bot InitBot(SkinCustomization skinPrefab, Score score, Map map, Pause pause)
     {
         Ball ball = Create(GamePrefabs.BallPrefab, map.BotSpawnPosition + BallOffset);
         Bot bot = Create(GamePrefabs.BotPrefab, map.BotSpawnPosition);
-        bot.Construct(score, ball.transform, -BallOffset);
+        bot.Construct(skinPrefab, score, ball.transform, -BallOffset);
         BotBallLauncher botBallLauncher = new BotBallLauncher(bot, ball);
 
         _botScoreCounter.Construct(score);

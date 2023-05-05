@@ -30,7 +30,7 @@ public class MenuStarter : MonoBehaviour
     private void InitSkins(SkinCustomization skinPrefab, Transform spawnPoint)
     {
         SkinCustomization skin = Instantiate(skinPrefab, spawnPoint.position, spawnPoint.rotation);
-        skin.Apply(DataHolder.PlayerData.SkinCustomizationData);
+        skin.Apply(DataHolder.PlayerData.PlayerSkinCustomizationData);
         _skinButtons.Construct(skin);
     }
 
