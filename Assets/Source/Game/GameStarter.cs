@@ -19,6 +19,7 @@ public class GameStarter : MonoBehaviour
     [SerializeField] private EndGame _endGame;
     [SerializeField] private ReverseTimer _reverseTimer;
     [SerializeField] private GoalSign _goalSign;
+    [SerializeField] private WinnerDisplayer _winnerDisplayer;
 
     [Header("Player")]
     [SerializeField] private SmoothFollow _smoothFollow;
@@ -51,13 +52,13 @@ public class GameStarter : MonoBehaviour
         Score playerScore = new Score();
         Score botScore = new Score();
 
-        InitPlayer(_skinPrefab, playerScore, controls, map, _pause);
-        InitBot(botScore, map, _pause);
-
-        _goalSign.Construct(map.Gates, map.BonusGates);
+        ActualPlayer player = InitPlayer(_skinPrefab, playerScore, controls, map, _pause);
+        Bot bot = InitBot(botScore, map, _pause);
 
         _endGame.Construct(playerScore, botScore, _pause);
         _reverseTimer.Construct(Time);
+        _goalSign.Construct(map.Gates, map.BonusGates);
+        _winnerDisplayer.Construct(playerScore, botScore, player.Star, bot.Star);
     }
 
     private void LoadData()
