@@ -8,6 +8,8 @@ public class SlideEffect : MonoBehaviour
     [SerializeField] private MoveAnimation _skinButtonsMoveAnimation;
     [SerializeField] private MoveAnimation _playerSkinMoveAnimation;
     [SerializeField] private MoveAnimation _botSkinMoveAnimation;
+    [SerializeField] private MoveAnimation _playerNickMoveAnimation;
+    [SerializeField] private MoveAnimation _botNickMoveAnimation;
 
     [Header("Match Maker")]
     [SerializeField] private MatchMaker _matchMaker;
@@ -26,6 +28,8 @@ public class SlideEffect : MonoBehaviour
     {
         _skinButtonsMoveAnimation.PlayOnce();
         _playerSkinMoveAnimation.PlayOnce();
+        _playerNickMoveAnimation.PlayOnce();
         _botSkinMoveAnimation.PlayOnce();
+        _botNickMoveAnimation.PlayOnce();
     }
 }
