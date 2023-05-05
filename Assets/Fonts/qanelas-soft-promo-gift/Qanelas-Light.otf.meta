@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: c2f74a4c0451a3e4085b13755f8dee0f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Qanelas
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 01541c0c0d093a8489ee9d736e58c45b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
