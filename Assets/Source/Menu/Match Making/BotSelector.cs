@@ -11,11 +11,8 @@ public class BotSelector : MonoBehaviour
     private const int MaxBotsChanges = 12;
     private const float SelectingTime = 5f;
 
-    private readonly string[] Nicks = new string[] { "John", "Doe", "The_bot" };
-
     private Transform _botSpawnPoint;
     private TMP_Text _botNickText;
-    private int _lastNickIndex;
 
     public void Construct(Transform botSpawnPoint, TMP_Text botNickText)
     {
@@ -54,21 +51,8 @@ public class BotSelector : MonoBehaviour
 
     private void ChangeBot(TMP_Text nickText, SkinCustomization skin)
     {
-        nickText.text = GetRandomNick();
+        nickText.text = NickNameGenerator.GetRandomName();
         skin.ApplyRandom();
-    }
-
-    private string GetRandomNick()
-    {
-        int index = _lastNickIndex;
-        
-        while (index == _lastNickIndex)
-        {
-            index = UnityEngine.Random.Range(0, Nicks.Length);
-        }
-
-        _lastNickIndex = index;
-        return Nicks[index];
     }
 
     private int GetBotsChanges()
