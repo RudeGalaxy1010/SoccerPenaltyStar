@@ -4,7 +4,7 @@ public class Map : MonoBehaviour
 {
     [SerializeField] private Transform _playerSpawnPoint;
     [SerializeField] private Transform _botSpawnPoint;
-    [SerializeField] private Transform[] _gatesSpawnPoints;
+    [SerializeField] private GatesPoint[] _gatesSpawnPoints;
     [SerializeField] private GatesSpawner _gatesSpawner;
     [SerializeField] private BonusGatesSpawner _bonusGatesSpawner;
 
@@ -16,6 +16,6 @@ public class Map : MonoBehaviour
     public void Construct(Gates gatesPrefab, BonusGates bonusGatesPrefab, Pause pause)
     {
         _gatesSpawner.Construct(gatesPrefab, _gatesSpawnPoints);
-        _bonusGatesSpawner.Construct(bonusGatesPrefab, _gatesSpawner.Gates.transform, pause, _gatesSpawnPoints);
+        _bonusGatesSpawner.Construct(bonusGatesPrefab, _gatesSpawnPoints, pause);
     }
 }

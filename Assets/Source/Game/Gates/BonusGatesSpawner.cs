@@ -2,29 +2,22 @@ using UnityEngine;
 
 public class BonusGatesSpawner : MonoBehaviour
 {
-    private const float MinGatesRotationAngle = 0f;
-    private const float MaxGatesRotationAngle = 359f;
-
     private const float GatesActiveTime = 10f;
     private const float MinTimeToSpawnGates = 5f;
     private const float MaxTimeToSpawnGates = 10f;
 
-    private Transform[] _gatesSpawnPoints;
-    private BonusGates _bonusGates;
-    private Transform _gatesTransform;
-    private Vector3 _lastGatesPosition;
+    [SerializeField] private GatesSpawner _gatesSpawner;
 
+    private BonusGates _bonusGates;
     private float _timer;
     private float _timeToSpawn;
 
-    public void Construct(BonusGates gatesPrefab, Transform gatesTransform, Pause pause, Transform[] gatesSpawnPoints)
+    public void Construct(BonusGates gatesPrefab, GatesPoint[] gatesSpawnPoints, Pause pause)
     {
-        _gatesSpawnPoints = gatesSpawnPoints;
-        _gatesTransform = gatesTransform;
-        _bonusGates = Instantiate(gatesPrefab);
+        _gatesSpawner.Construct(gatesPrefab.Gates, gatesSpawnPoints);
+        _bonusGates = _gatesSpawner.Gates.GetComponent<BonusGates>();
         _bonusGates.Gates.GoalScored += OnGoalScored;
         _bonusGates.Timer.Expired += OnGatesTimerExpired;
-        MoveGates(_bonusGates.Gates.transform);
 
         _timer = 0;
         _timeToSpawn = GetRandomTimeToSpawn();
@@ -32,8 +25,8 @@ public class BonusGatesSpawner : MonoBehaviour
         pause.Add(_bonusGates.Timer);
     }
 
-    public Gates Gates => _bonusGates.Gates;
-    private bool IsGatesActive => _bonusGates.gameObject.activeInHierarchy == true;
+    public Gates Gates => _gatesSpawner.Gates;
+    private bool IsGatesActive => _gatesSpawner.Gates.gameObject.activeInHierarchy == true;
 
     private void Update()
     {
@@ -45,7 +38,6 @@ public class BonusGatesSpawner : MonoBehaviour
         if (_timer >= _timeToSpawn)
         {
             _timer = 0;
-            MoveGates(_bonusGates.Gates.transform);
             _bonusGates.gameObject.SetActive(true);
             _bonusGates.Timer.Construct(GatesActiveTime);
         }
@@ -55,31 +47,7 @@ public class BonusGatesSpawner : MonoBehaviour
 
     private void OnGoalScored(Gates gates)
     {
-        MoveGates(gates.transform);
-    }
-
-    private void MoveGates(Transform gates)
-    {
-        gates.position = GetRandomGatesPosition();
-        gates.rotation = GetRandomGatesRotation();
-    }
-
-    private Vector3 GetRandomGatesPosition()
-    {
-        Vector3 newPosition = _lastGatesPosition;
-
-        while (newPosition == _lastGatesPosition || newPosition == _gatesTransform.position)
-        {
-            newPosition = _gatesSpawnPoints[Random.Range(0, _gatesSpawnPoints.Length)].position;
-        }
-
-        _lastGatesPosition = newPosition;
-        return newPosition;
-    }
-
-    private Quaternion GetRandomGatesRotation()
-    {
-        return Quaternion.Euler(0, Random.Range(MinGatesRotationAngle, MaxGatesRotationAngle), 0);
+        _bonusGates.gameObject.SetActive(false);
     }
 
     private void OnGatesTimerExpired()
@@ -93,7 +61,7 @@ public class BonusGatesSpawner : MonoBehaviour
         return Random.Range(MinTimeToSpawnGates, MaxTimeToSpawnGates);
     }
 
-    public void OnDisable()
+    private void OnDestroy()
     {
         if (_bonusGates != null && _bonusGates.Gates != null)
         {

@@ -5,13 +5,13 @@ public class GatesSpawner : MonoBehaviour
     private const float MinGatesRotationAngle = 0f;
     private const float MaxGatesRotationAngle = 359f;
 
-    private Transform[] _gatesSpawnPoints;
     private Gates _gates;
-    private Vector3 _lastGatesPosition;
+    private GatesPoint[] _gatesPoints;
+    private GatesPoint _lastGatesPoint;
 
-    public void Construct(Gates gatesPrefab, Transform[] gatesSpawnPoints)
+    public void Construct(Gates gatesPrefab, GatesPoint[] gatesSpawnPoints)
     {
-        _gatesSpawnPoints = gatesSpawnPoints;
+        _gatesPoints = gatesSpawnPoints;
         _gates = Instantiate(gatesPrefab);
         _gates.GoalScored += OnGoalScored;
         MoveGates(_gates);
@@ -32,20 +32,26 @@ public class GatesSpawner : MonoBehaviour
 
     private Vector3 GetRandomGatesPosition()
     {
-        Vector3 newPosition = _lastGatesPosition;
+        GatesPoint newPoint = _lastGatesPoint;
 
-        while (newPosition == _lastGatesPosition)
+        while (newPoint == null || newPoint.IsBusy == true)
         {
-            newPosition = _gatesSpawnPoints[UnityEngine.Random.Range(0, _gatesSpawnPoints.Length)].position;
+            newPoint = _gatesPoints[Random.Range(0, _gatesPoints.Length)];
         }
 
-        _lastGatesPosition = newPosition;
-        return newPosition;
+        if (_lastGatesPoint != null)
+        {
+            _lastGatesPoint.IsBusy = false;
+        }
+
+        _lastGatesPoint = newPoint;
+        newPoint.IsBusy = true;
+        return newPoint.transform.position;
     }
 
     private Quaternion GetRandomGatesRotation()
     {
-        return Quaternion.Euler(0, UnityEngine.Random.Range(MinGatesRotationAngle, MaxGatesRotationAngle), 0);
+        return Quaternion.Euler(0, Random.Range(MinGatesRotationAngle, MaxGatesRotationAngle), 0);
     }
 
     public void OnDisable()

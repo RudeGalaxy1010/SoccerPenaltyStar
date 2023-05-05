@@ -655,6 +655,64 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1625775637845127398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6292027304758906306}
+  - component: {fileID: 2918916377399569932}
+  - component: {fileID: 7319913892918400037}
+  m_Layer: 0
+  m_Name: Bonus Gates Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6292027304758906306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625775637845127398}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4804419059930685181}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2918916377399569932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625775637845127398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0a9777655f8ba4ca37bd05fe506cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7319913892918400037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625775637845127398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47bd264a875ca744b467c1fefdaebbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gatesSpawner: {fileID: 2918916377399569932}
 --- !u!1 &1941390231414698732
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 992006854171227582}
+  - component: {fileID: 6399111763690896978}
   m_Layer: 0
   m_Name: Gates Point (4)
   m_TagString: Untagged
@@ -686,6 +745,18 @@ Transform:
   m_Father: {fileID: 1923998214231815537}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!114 &6399111763690896978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941390231414698732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e23a7cafde70447866f310ef889362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2097627628035716785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,8 +2124,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4804419059930685181}
   - component: {fileID: -8776600860816755718}
-  - component: {fileID: 6811969234161085013}
-  - component: {fileID: 555037844110058474}
   m_Layer: 0
   m_Name: Map 1
   m_TagString: Untagged
@@ -2078,6 +2147,8 @@ Transform:
   - {fileID: 5949225645030828664}
   - {fileID: 2308945922712950296}
   - {fileID: 1923998214231815537}
+  - {fileID: 8701859777335717343}
+  - {fileID: 6292027304758906306}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2096,37 +2167,13 @@ MonoBehaviour:
   _playerSpawnPoint: {fileID: 5949225645030828664}
   _botSpawnPoint: {fileID: 2308945922712950296}
   _gatesSpawnPoints:
-  - {fileID: 593653187016037434}
-  - {fileID: 8377168784594698135}
-  - {fileID: 8220858560543892868}
-  - {fileID: 6117291318434189556}
-  - {fileID: 992006854171227582}
-  _gatesSpawner: {fileID: 6811969234161085013}
-  _bonusGatesSpawner: {fileID: 555037844110058474}
---- !u!114 &6811969234161085013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4804419059930685178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b0a9777655f8ba4ca37bd05fe506cc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &555037844110058474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4804419059930685178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b47bd264a875ca744b467c1fefdaebbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  - {fileID: 7147850523409096905}
+  - {fileID: 2257255119200794742}
+  - {fileID: 4217363768480664689}
+  - {fileID: 4089045874342825063}
+  - {fileID: 6399111763690896978}
+  _gatesSpawner: {fileID: 6896960298338803967}
+  _bonusGatesSpawner: {fileID: 7319913892918400037}
 --- !u!1 &4941586761716996928
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,6 +2529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8220858560543892868}
+  - component: {fileID: 4217363768480664689}
   m_Layer: 0
   m_Name: Gates Point (2)
   m_TagString: Untagged
@@ -2504,6 +2552,18 @@ Transform:
   m_Father: {fileID: 1923998214231815537}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 150, z: 0}
+--- !u!114 &4217363768480664689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5703645691600386348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e23a7cafde70447866f310ef889362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5749112121374653416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2710,6 +2770,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6117291318434189556}
+  - component: {fileID: 4089045874342825063}
   m_Layer: 0
   m_Name: Gates Point (3)
   m_TagString: Untagged
@@ -2732,6 +2793,18 @@ Transform:
   m_Father: {fileID: 1923998214231815537}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &4089045874342825063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6305354440229032355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e23a7cafde70447866f310ef889362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6449536137865630065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2829,6 +2902,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 26.500006, y: 16, z: 0.49503288}
   m_Center: {x: -13.074504, y: -7.6144147, z: -0.15137184}
+--- !u!1 &6515145151014211980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8701859777335717343}
+  - component: {fileID: 6896960298338803967}
+  m_Layer: 0
+  m_Name: Gates Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8701859777335717343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6515145151014211980}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4804419059930685181}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6896960298338803967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6515145151014211980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0a9777655f8ba4ca37bd05fe506cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6691269772019753429
 GameObject:
   m_ObjectHideFlags: 0
@@ -2935,6 +3052,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 593653187016037434}
+  - component: {fileID: 7147850523409096905}
   m_Layer: 0
   m_Name: Gates Point
   m_TagString: Untagged
@@ -2957,6 +3075,18 @@ Transform:
   m_Father: {fileID: 1923998214231815537}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &7147850523409096905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6853824297742566340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e23a7cafde70447866f310ef889362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7201243169927598581
 GameObject:
   m_ObjectHideFlags: 0
@@ -3589,6 +3719,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8377168784594698135}
+  - component: {fileID: 2257255119200794742}
   m_Layer: 0
   m_Name: Gates Point (1)
   m_TagString: Untagged
@@ -3611,6 +3742,18 @@ Transform:
   m_Father: {fileID: 1923998214231815537}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2257255119200794742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526224630308340526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e23a7cafde70447866f310ef889362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8590995770802495129
 GameObject:
   m_ObjectHideFlags: 0
