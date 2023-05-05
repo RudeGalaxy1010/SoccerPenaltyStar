@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Gates : MonoBehaviour
 {
+    public event Action<Gates> GoalStarted;
     public event Action<Gates> GoalScored;
 
     [SerializeField] private int PointsToAdd = 1;
@@ -23,6 +24,7 @@ public class Gates : MonoBehaviour
         if (other.TryGetComponent(out Ball ball))
         {
             ball.Owner.AddPoints(PointsToAdd);
+            GoalStarted?.Invoke(this);
             StartCoroutine(PlayGoalAnimation());
         }
     }
