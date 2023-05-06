@@ -4,8 +4,6 @@ public class GameStarter : MonoBehaviour
 {
     private readonly float Time = 30;
     private readonly Vector3 BallOffset = new Vector3(0, 0, 1);
-    // TODO: remove temp const
-    private const int CurrentRating = 0;
 
     [Header("Common")]
     [SerializeField] private EndGame _endGame;
@@ -21,6 +19,7 @@ public class GameStarter : MonoBehaviour
     [Header("Bot")]
     [SerializeField] private ScoreCounter _botScoreCounter;
 
+    private DataSaveLoad _dataSaveLoad;
     private Pause _pause;
 
     private void Start()
@@ -45,16 +44,13 @@ public class GameStarter : MonoBehaviour
 
     private void LoadData()
     {
-        if (DataHolder.PlayerData != null)
+        _dataSaveLoad = new DataSaveLoad();
+
+        if (DataHolder.PlayerData == null)
         {
-            return;
+            _dataSaveLoad.LoadData();
         }
-
-        DataSaveLoad dataSaveLoad = new DataSaveLoad();
-        dataSaveLoad.LoadData();
     }
-
-    
 
     private Controls InitInput()
     {
@@ -66,7 +62,7 @@ public class GameStarter : MonoBehaviour
     private Map InitMap(Map[] mapPrefabs, Gates gatesPrefab, BonusGates bonusGatesPrefab, Pause pause)
     {
         MapPicker mapPicker = new MapPicker();
-        Map mapPrefab = mapPicker.GetMapPrefab(mapPrefabs, CurrentRating);
+        Map mapPrefab = mapPicker.GetMapPrefab(mapPrefabs, DataHolder.PlayerData.PlayerRating);
         Map map = Instantiate(mapPrefab);
         map.Construct(gatesPrefab, bonusGatesPrefab, pause);
         return map;
@@ -106,5 +102,10 @@ public class GameStarter : MonoBehaviour
         where T : MonoBehaviour
     {
         return Instantiate(prefab, position, Quaternion.identity);
+    }
+
+    private void OnDestroy()
+    {
+        _dataSaveLoad.SaveData();
     }
 }
