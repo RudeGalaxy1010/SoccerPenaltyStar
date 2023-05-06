@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Bot : Player, IPauseable
 {
-    private const float LaunchesRate = 0.3f;
-    private const float Second = 1f;
+    private const float MinWaitingTime = 1f;
+    private const float MaxWaitingTime = 2f;
 
     public event Action LaunchNeeded;
 
@@ -13,13 +13,14 @@ public class Bot : Player, IPauseable
     private BotRotation _rotation;
     private Coroutine _makeLaunchesCoroutine;
 
-    public void Construct(SkinCustomization skinPrefab, Score score, Transform ballTransform, Vector3 offsetFromBall)
+    public void Construct(SkinCustomization skinPrefab, Score score, Transform ballTransform, 
+        Transform gatesTransform, Vector3 offsetFromBall)
     {
         Construct(score, skinPrefab, DataHolder.PlayerData.BotSkinCustomizationData);
         _move = GetComponent<PlayerMove>();
         _move.Construct(transform, ballTransform, offsetFromBall);
         _rotation = GetComponent<BotRotation>();
-        _rotation.Construct(transform, ballTransform);
+        _rotation.Construct(transform, ballTransform, gatesTransform);
 
         StartMakeLaunches();
     }
@@ -31,23 +32,26 @@ public class Bot : Player, IPauseable
 
     public void MakeRotation()
     {
-        _rotation.RotateRandom();
+        _rotation.Rotate();
     }
 
     private void StartMakeLaunches()
     {
-        _makeLaunchesCoroutine = StartCoroutine(MakeLaunches(Second / LaunchesRate));
+        _makeLaunchesCoroutine = StartCoroutine(MakeLaunches());
     }
     
-    private IEnumerator MakeLaunches(float launchesDelay)
+    private IEnumerator MakeLaunches()
     {
-        WaitForSeconds waitForSeconds = new WaitForSeconds(launchesDelay);
-
         while (true)
         {
-            yield return waitForSeconds;
+            yield return new WaitForSeconds(GetRandomWaitingTime());
             LaunchNeeded?.Invoke();
         }
+    }
+
+    private float GetRandomWaitingTime()
+    {
+        return UnityEngine.Random.Range(MinWaitingTime, MaxWaitingTime);
     }
 
     public void Pause()

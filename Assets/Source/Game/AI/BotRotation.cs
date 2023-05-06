@@ -2,26 +2,22 @@ using UnityEngine;
 
 public class BotRotation : MonoBehaviour
 {
-    private const float MinAngle = 0;
-    private const float MaxAngle = 360;
-
     private Transform _botTransform;
     private Transform _ballTransform;
+    private Transform _gatesTransform;
 
-    public void Construct(Transform botTransform, Transform ballTransform)
+    public void Construct(Transform botTransform, Transform ballTransform, Transform gatesTransform)
     {
         _botTransform = botTransform;
         _ballTransform = ballTransform;
+        _gatesTransform = gatesTransform;
     }
 
-    public void RotateRandom()
+    public void Rotate()
     {
-        float angle = GetRandomAngle();
+        Vector3 gatesToBallDirection = _ballTransform.position - _gatesTransform.position;
+        Vector3 ballToBotDirection = transform.position - _ballTransform.position;
+        float angle = -Vector3.Angle(gatesToBallDirection, ballToBotDirection);
         _botTransform.RotateAround(_ballTransform.position, Vector3.up, angle);
-    }
-
-    private float GetRandomAngle()
-    {
-        return Random.Range(MinAngle, MaxAngle);
     }
 }

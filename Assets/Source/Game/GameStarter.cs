@@ -92,7 +92,7 @@ public class GameStarter : MonoBehaviour
     {
         Ball ball = Create(GamePrefabs.BallPrefab, map.BotSpawnPosition + BallOffset);
         Bot bot = Create(GamePrefabs.BotPrefab, map.BotSpawnPosition);
-        bot.Construct(skinPrefab, score, ball.transform, -BallOffset);
+        bot.Construct(skinPrefab, score, ball.transform, map.Gates.transform, -BallOffset);
         BotBallLauncher botBallLauncher = new BotBallLauncher(bot, ball);
 
         _botScoreCounter.Construct(score);
