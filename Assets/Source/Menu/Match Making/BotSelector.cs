@@ -10,14 +10,17 @@ public class BotSelector : MonoBehaviour
     private const int MinBotsChanges = 7;
     private const int MaxBotsChanges = 12;
     private const float SelectingTime = 5f;
+    private const int MaxBotRatingDifference = 45;
 
     private Transform _botSpawnPoint;
     private TMP_Text _botNickText;
+    private RatingDisplay _ratingDisplay;
 
-    public void Construct(Transform botSpawnPoint, TMP_Text botNickText)
+    public void Construct(Transform botSpawnPoint, TMP_Text botNickText, RatingDisplay ratingDisplay)
     {
         _botSpawnPoint = botSpawnPoint;
         _botNickText = botNickText;
+        _ratingDisplay = ratingDisplay;
         _botNickText.gameObject.SetActive(false);
     }
 
@@ -52,7 +55,15 @@ public class BotSelector : MonoBehaviour
     private void ChangeBot(TMP_Text nickText, SkinCustomization skin)
     {
         nickText.text = NickNameGenerator.GetRandomName();
+        _ratingDisplay.DisplayBotRating(GetRandomBotRating());
         skin.ApplyRandom();
+    }
+
+    private int GetRandomBotRating()
+    {
+        int minRating = Mathf.Max(0, DataHolder.PlayerData.PlayerRating - MaxBotRatingDifference);
+        int maxRating = DataHolder.PlayerData.PlayerRating + MaxBotRatingDifference;
+        return UnityEngine.Random.Range(minRating, maxRating);
     }
 
     private int GetBotsChanges()

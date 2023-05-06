@@ -9,6 +9,7 @@ public class MenuStarter : MonoBehaviour
     [SerializeField] private MatchMaker _matchMaker;
     [SerializeField] private BotSelector _botSelector;
     [SerializeField] private TMP_Text _botNickText;
+    [SerializeField] private RatingDisplay _ratingDisplay;
 
     [Header("Buttons")]
     [SerializeField] private SkinButtons _skinButtons;
@@ -19,8 +20,9 @@ public class MenuStarter : MonoBehaviour
     private void Start()
     {
         LoadData();
-        InitMatchMaking(_matchMaker, _botSelector, _botSkinSpawnPoint, _botNickText);
+        InitMatchMaking(_matchMaker, _botSelector, _botSkinSpawnPoint, _botNickText, _ratingDisplay);
         InitPlayerSkin(GamePrefabs.SkinPrefab, _playerSkinSpawnPoint);
+        _ratingDisplay.DisplayPlayerRating(DataHolder.PlayerData.PlayerRating);
     }
 
     private void LoadData()
@@ -30,10 +32,10 @@ public class MenuStarter : MonoBehaviour
     }
 
     private void InitMatchMaking(MatchMaker matchMaker, BotSelector botSelector, 
-        Transform botSkinSpawnPoint, TMP_Text botNickText)
+        Transform botSkinSpawnPoint, TMP_Text botNickText, RatingDisplay ratingDisplay)
     {
         LevelLoader levelLoader = new LevelLoader();
-        botSelector.Construct(botSkinSpawnPoint, botNickText);
+        botSelector.Construct(botSkinSpawnPoint, botNickText, ratingDisplay);
         matchMaker.Construct(botSelector, levelLoader);
     }
 

@@ -2,11 +2,7 @@ using UnityEngine;
 
 public class SlideEffect : MonoBehaviour
 {
-    [SerializeField] private MoveAnimation _skinButtonsMoveAnimation;
-    [SerializeField] private MoveAnimation _playerSkinMoveAnimation;
-    [SerializeField] private MoveAnimation _botSkinMoveAnimation;
-    [SerializeField] private MoveAnimation _playerNickMoveAnimation;
-    [SerializeField] private MoveAnimation _botNickMoveAnimation;
+    [SerializeField] private MoveAnimation[] _moveAnimations;
 
     [Header("Match Maker")]
     [SerializeField] private MatchMaker _matchMaker;
@@ -23,10 +19,9 @@ public class SlideEffect : MonoBehaviour
 
     private void OnMatchMakingStarted()
     {
-        _skinButtonsMoveAnimation.PlayOnce();
-        _playerSkinMoveAnimation.PlayOnce();
-        _playerNickMoveAnimation.PlayOnce();
-        _botSkinMoveAnimation.PlayOnce();
-        _botNickMoveAnimation.PlayOnce();
+        for (int i = 0; i < _moveAnimations.Length; i++)
+        {
+            _moveAnimations[i].PlayOnce();
+        }
     }
 }
