@@ -6,13 +6,15 @@ public class EndGame : MonoBehaviour
 
     private Score _playerScore;
     private Score _botScore;
+    private Money _money;
     private Pause _pause;
     private RatingCalculator _ratingCalculator;
 
-    public void Construct(Score playerScore, Score botScore, Pause pause)
+    public void Construct(Score playerScore, Score botScore, Money money, Pause pause)
     {
         _playerScore = playerScore;
         _botScore = botScore;
+        _money = money;
         _pause = pause;
         _ratingCalculator = new RatingCalculator();
     }
@@ -35,20 +37,22 @@ public class EndGame : MonoBehaviour
         if (_playerScore.Points > _botScore.Points)
         {
             ratingChange = _ratingCalculator.GetRandomWinRating();
+            _money.AddWinMoney();
             Debug.Log("Win!");
         }
         else if (_playerScore.Points < _botScore.Points)
         {
             ratingChange = _ratingCalculator.GetRandomDefeatRating();
+            _money.SubDefeatMoney();
             Debug.Log("Lose!");
         }
         else
         {
             ratingChange = _ratingCalculator.GetDrawRating();
+            _money.AddDrawMoney();
             Debug.Log("Draw!");
         }
 
         DataHolder.PlayerData.PlayerRating += ratingChange;
-        Debug.Log(DataHolder.PlayerData.PlayerRating);
     }
 }
