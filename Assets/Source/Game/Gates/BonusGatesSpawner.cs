@@ -27,6 +27,7 @@ public class BonusGatesSpawner : MonoBehaviour
 
     public Gates Gates => _gatesSpawner.Gates;
     private bool IsGatesActive => _gatesSpawner.Gates.gameObject.activeInHierarchy == true;
+    private float SkinTimeDecrease => DataHolder.PlayerLuck / 2f;
 
     private void Update()
     {
@@ -58,7 +59,7 @@ public class BonusGatesSpawner : MonoBehaviour
 
     private float GetRandomTimeToSpawn()
     {
-        return Random.Range(MinTimeToSpawnGates, MaxTimeToSpawnGates);
+        return Random.Range(MinTimeToSpawnGates - SkinTimeDecrease, MaxTimeToSpawnGates - SkinTimeDecrease);
     }
 
     private void OnDestroy()
