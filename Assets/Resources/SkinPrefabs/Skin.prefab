@@ -157,7 +157,7 @@ MonoBehaviour:
   Cost: 200
   Force: 0
   Accuracy: 0
-  Luck: 0.5
+  Luck: -0.5
 --- !u!1 &93013032141382775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,7 +1363,7 @@ MonoBehaviour:
   Id: 5
   Cost: 5000
   Force: -0.3
-  Accuracy: 3
+  Accuracy: 0.35
   Luck: 0
 --- !u!1 &838100168699354280
 GameObject:
@@ -2549,8 +2549,8 @@ MonoBehaviour:
   Id: 10
   Cost: 1000
   Force: 1
-  Accuracy: 5
-  Luck: -4
+  Accuracy: 0.5
+  Luck: -0.45
 --- !u!1 &1871857921949498048
 GameObject:
   m_ObjectHideFlags: 0
@@ -2866,7 +2866,7 @@ MonoBehaviour:
   Cost: 200
   Force: 0
   Accuracy: 0
-  Luck: 2
+  Luck: 1
 --- !u!1 &1920176074941081397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3127,7 +3127,7 @@ MonoBehaviour:
   Cost: 300
   Force: -0.5
   Accuracy: 1
-  Luck: 2
+  Luck: 0.15
 --- !u!1 &1940189730617654373
 GameObject:
   m_ObjectHideFlags: 0
@@ -3227,8 +3227,8 @@ MonoBehaviour:
   Id: 25
   Cost: 3000
   Force: 0
-  Accuracy: -5
-  Luck: 5
+  Accuracy: -0.5
+  Luck: 0.5
 --- !u!1 &1995944534016073899
 GameObject:
   m_ObjectHideFlags: 0
@@ -4415,9 +4415,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 6
   Cost: 5000
-  Force: 3
+  Force: -0.3
   Accuracy: 1
-  Luck: -4
+  Luck: -0.4
 --- !u!1 &2474829546266071275
 GameObject:
   m_ObjectHideFlags: 0
@@ -4574,7 +4574,7 @@ MonoBehaviour:
   Id: 4
   Cost: 5000
   Force: 1
-  Accuracy: 2
+  Accuracy: 0.25
   Luck: 0
 --- !u!1 &2482395550151403510
 GameObject:
@@ -5930,7 +5930,7 @@ MonoBehaviour:
   Id: 2
   Cost: 100
   Force: 0
-  Accuracy: 1
+  Accuracy: -0.15
   Luck: 0
 --- !u!1 &3311824483816299294
 GameObject:
@@ -7164,9 +7164,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 7
   Cost: 5000
-  Force: 5
-  Accuracy: -1
-  Luck: 4
+  Force: 0.5
+  Accuracy: -0.15
+  Luck: -0.4
 --- !u!1 &4004588355558291450
 GameObject:
   m_ObjectHideFlags: 0
@@ -7422,7 +7422,7 @@ MonoBehaviour:
   Id: 4
   Cost: 300
   Force: 0
-  Accuracy: 2
+  Accuracy: 1
   Luck: 0
 --- !u!1 &4339292153219321651
 GameObject:
@@ -9805,7 +9805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 6
   Cost: 300
-  Force: -3
+  Force: -0.3
   Accuracy: 1
   Luck: 0
 --- !u!1 &6458695625977828999
@@ -10737,9 +10737,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 8
   Cost: 5000
-  Force: 5
-  Accuracy: -1
-  Luck: 4
+  Force: 1
+  Accuracy: -0.25
+  Luck: 0.45
 --- !u!1 &6848345161921180831
 GameObject:
   m_ObjectHideFlags: 0
@@ -10990,7 +10990,7 @@ MonoBehaviour:
   Id: 7
   Cost: 500
   Force: 0
-  Accuracy: 2
+  Accuracy: 0.2
   Luck: 0.5
 --- !u!1 &7087326124921527131
 GameObject:
@@ -11794,8 +11794,8 @@ MonoBehaviour:
   Id: 23
   Cost: 3000
   Force: 0
-  Accuracy: -5
-  Luck: 5
+  Accuracy: -0.5
+  Luck: 0.5
 --- !u!1 &7600784808592398570
 GameObject:
   m_ObjectHideFlags: 0
@@ -11996,8 +11996,8 @@ MonoBehaviour:
   Id: 22
   Cost: 3000
   Force: 0
-  Accuracy: -5
-  Luck: 5
+  Accuracy: -0.5
+  Luck: 0.5
 --- !u!1 &7856332212882119752
 GameObject:
   m_ObjectHideFlags: 0
@@ -12635,7 +12635,7 @@ MonoBehaviour:
   Id: 8
   Cost: 500
   Force: 0
-  Accuracy: -1
+  Accuracy: -0.15
   Luck: 0
 --- !u!1 &8234826414387456090
 GameObject:
@@ -12951,7 +12951,7 @@ MonoBehaviour:
   Id: 3
   Cost: 300
   Force: 0
-  Accuracy: -2
+  Accuracy: -1
   Luck: 0
 --- !u!1 &8298862557722070278
 GameObject:
@@ -13765,8 +13765,8 @@ MonoBehaviour:
   Id: 9
   Cost: 750
   Force: 0
-  Accuracy: -2
-  Luck: 2
+  Accuracy: -0.5
+  Luck: 0.75
 --- !u!1 &8614844789877903527
 GameObject:
   m_ObjectHideFlags: 0
@@ -14694,8 +14694,8 @@ MonoBehaviour:
   Id: 10
   Cost: 750
   Force: 0
-  Accuracy: -1
-  Luck: 0
+  Accuracy: -0.1
+  Luck: 0.1
 --- !u!1 &9143470131408772729
 GameObject:
   m_ObjectHideFlags: 0
@@ -14858,5 +14858,5 @@ MonoBehaviour:
   Id: 24
   Cost: 3000
   Force: 0
-  Accuracy: -5
-  Luck: 5
+  Accuracy: -0.5
+  Luck: 0.5
