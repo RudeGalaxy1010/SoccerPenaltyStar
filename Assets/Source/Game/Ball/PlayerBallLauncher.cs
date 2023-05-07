@@ -22,7 +22,7 @@ public class PlayerBallLauncher : BallLauncher, IPauseable
 
     public bool IsHolding => _startMousePosition != Vector3.zero;
     public Vector3 Force => GetForce(GetDelta());
-    private float SkinForceMultiplier => 1 + DataHolder.PlayerForce;
+    private float SkinForceMultiplier => 1 + DataHolder.PlayerForce / 5f;
 
     private void OnLeftMouseButtonPressStarted()
     {
