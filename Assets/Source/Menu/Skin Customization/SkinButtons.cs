@@ -5,8 +5,8 @@ public class SkinButtons : MonoBehaviour
 {
     [SerializeField] private Button _previousColorButton;
     [SerializeField] private Button _nextColorButton;
-    [SerializeField] private Button _previousBodyButton;
-    [SerializeField] private Button _nextBodyButton;
+    [SerializeField] private Button _previousAccessoriesButton;
+    [SerializeField] private Button _nextAccessoriesButton;
     [SerializeField] private Button _previousEyesButton;
     [SerializeField] private Button _nextEyesButton;
     [SerializeField] private Button _previousGlovesButton;
@@ -17,8 +17,6 @@ public class SkinButtons : MonoBehaviour
     [SerializeField] private Button _nextMouthButton;
     [SerializeField] private Button _previousNoseButton;
     [SerializeField] private Button _nextNoseButton;
-    [SerializeField] private Button _previousHatButton;
-    [SerializeField] private Button _nextHatButton;
     [SerializeField] private Button _previousTailButton;
     [SerializeField] private Button _nextTailButton;
     [SerializeField] private Button _randomSkinButton;
@@ -26,34 +24,32 @@ public class SkinButtons : MonoBehaviour
     [Header("Match Maker")]
     [SerializeField] private MatchMaker _matchMaker;
 
-    private SkinCustomization _skin;
+    private Skin _skin;
 
-    public void Construct(SkinCustomization skinCustomization)
+    public void Construct(Skin skin)
     {
-        _skin = skinCustomization;
+        _skin = skin;
         Enable();
     }
 
     private void OnEnable()
     {
         _previousColorButton.onClick.AddListener(OnPreviousColorButtonClicked);
-        _previousBodyButton.onClick.AddListener(OnPreviousBodyButtonClicked);
+        _previousAccessoriesButton.onClick.AddListener(OnPreviousAccessoriesButtonClicked);
         _previousEyesButton.onClick.AddListener(OnPreviousEyesButtonClicked);
         _previousGlovesButton.onClick.AddListener(OnPreviousGlovesButtonClicked);
         _previousHeadButton.onClick.AddListener(OnPreviousHeadButtonClicked);
         _previousMouthButton.onClick.AddListener(OnPreviousMouthButtonClicked);
         _previousNoseButton.onClick.AddListener(OnPreviousNoseButtonClicked);
-        _previousHatButton.onClick.AddListener(OnPreviousHatButtonClicked);
         _previousTailButton.onClick.AddListener(OnPreviousTailButtonClicked);
 
         _nextColorButton.onClick.AddListener(OnNextColorButtonClicked);
-        _nextBodyButton.onClick.AddListener(OnNextBodyButtonClicked);
+        _nextAccessoriesButton.onClick.AddListener(OnNextAccessoriesButtonClicked);
         _nextEyesButton.onClick.AddListener(OnNextEyesButtonClicked);
         _nextGlovesButton.onClick.AddListener(OnNextGlovesButtonClicked);
         _nextHeadButton.onClick.AddListener(OnNextHeadButtonClicked);
         _nextMouthButton.onClick.AddListener(OnNextMouthButtonClicked);
         _nextNoseButton.onClick.AddListener(OnNextNoseButtonClicked);
-        _nextHatButton.onClick.AddListener(OnNextHatButtonClicked);
         _nextTailButton.onClick.AddListener(OnNextTailButtonClicked);
 
         _randomSkinButton.onClick.AddListener(OnRandomSkinButtonClicked);
@@ -63,23 +59,21 @@ public class SkinButtons : MonoBehaviour
     private void OnDisable()
     {
         _previousColorButton.onClick.RemoveListener(OnPreviousColorButtonClicked);
-        _previousBodyButton.onClick.RemoveListener(OnPreviousBodyButtonClicked);
+        _previousAccessoriesButton.onClick.RemoveListener(OnPreviousAccessoriesButtonClicked);
         _previousEyesButton.onClick.RemoveListener(OnPreviousEyesButtonClicked);
         _previousGlovesButton.onClick.RemoveListener(OnPreviousGlovesButtonClicked);
         _previousHeadButton.onClick.RemoveListener(OnPreviousHeadButtonClicked);
         _previousMouthButton.onClick.RemoveListener(OnPreviousMouthButtonClicked);
         _previousNoseButton.onClick.RemoveListener(OnPreviousNoseButtonClicked);
-        _previousHatButton.onClick.RemoveListener(OnPreviousHatButtonClicked);
         _previousTailButton.onClick.RemoveListener(OnPreviousTailButtonClicked);
 
         _nextColorButton.onClick.RemoveListener(OnNextColorButtonClicked);
-        _nextBodyButton.onClick.RemoveListener(OnNextBodyButtonClicked);
+        _nextAccessoriesButton.onClick.RemoveListener(OnNextAccessoriesButtonClicked);
         _nextEyesButton.onClick.RemoveListener(OnNextEyesButtonClicked);
         _nextGlovesButton.onClick.RemoveListener(OnNextGlovesButtonClicked);
         _nextHeadButton.onClick.RemoveListener(OnNextHeadButtonClicked);
         _nextMouthButton.onClick.RemoveListener(OnNextMouthButtonClicked);
         _nextNoseButton.onClick.RemoveListener(OnNextNoseButtonClicked);
-        _nextHatButton.onClick.RemoveListener(OnNextHatButtonClicked);
         _nextTailButton.onClick.RemoveListener(OnNextTailButtonClicked);
 
         _randomSkinButton.onClick.RemoveListener(OnRandomSkinButtonClicked);
@@ -94,23 +88,21 @@ public class SkinButtons : MonoBehaviour
     private void Enable()
     {
         _previousColorButton.interactable = true;
-        _previousBodyButton.interactable = true;
+        _previousAccessoriesButton.interactable = true;
         _previousEyesButton.interactable = true;
         _previousGlovesButton.interactable = true;
         _previousHeadButton.interactable = true;
         _previousMouthButton.interactable = true;
         _previousNoseButton.interactable = true;
-        _previousHatButton.interactable = true;
         _previousTailButton.interactable = true;
 
         _nextColorButton.interactable = true;
-        _nextBodyButton.interactable = true;
+        _nextAccessoriesButton.interactable = true;
         _nextEyesButton.interactable = true;
         _nextGlovesButton.interactable = true;
         _nextHeadButton.interactable = true;
         _nextMouthButton.interactable = true;
         _nextNoseButton.interactable = true;
-        _nextHatButton.interactable = true;
         _nextTailButton.interactable = true;
 
         _randomSkinButton.interactable = true;
@@ -119,23 +111,21 @@ public class SkinButtons : MonoBehaviour
     private void Disable()
     {
         _previousColorButton.interactable = false;
-        _previousBodyButton.interactable = false;
+        _previousAccessoriesButton.interactable = false;
         _previousEyesButton.interactable = false;
         _previousGlovesButton.interactable = false;
         _previousHeadButton.interactable = false;
         _previousMouthButton.interactable = false;
         _previousNoseButton.interactable = false;
-        _previousHatButton.interactable = false;
         _previousTailButton.interactable = false;
 
         _nextColorButton.interactable = false;
-        _nextBodyButton.interactable = false;
+        _nextAccessoriesButton.interactable = false;
         _nextEyesButton.interactable = false;
         _nextGlovesButton.interactable = false;
         _nextHeadButton.interactable = false;
         _nextMouthButton.interactable = false;
         _nextNoseButton.interactable = false;
-        _nextHatButton.interactable = false;
         _nextTailButton.interactable = false;
 
         _randomSkinButton.interactable = false;
@@ -143,96 +133,86 @@ public class SkinButtons : MonoBehaviour
 
     private void OnPreviousColorButtonClicked()
     {
-        _skin.SetPreviousPart(CustomizationPart.Color);
+        _skin.ColorSkinParts.SetPreviousPart();
     }
 
-    private void OnPreviousBodyButtonClicked()
+    private void OnPreviousAccessoriesButtonClicked()
     {
-        _skin.SetPreviousPart(CustomizationPart.Body);
+        _skin.AccessoriesSkinParts.SetPreviousPart();
     }
 
     private void OnPreviousEyesButtonClicked()
     {
-        _skin.SetPreviousPart(CustomizationPart.Eyes);
+        _skin.EyesSkinParts.SetPreviousPart();
     }
 
     private void OnPreviousGlovesButtonClicked()
     {
-        _skin.SetPreviousPart(CustomizationPart.Gloves);
+        _skin.GlovesSkinParts.SetPreviousPart();
     }
 
     private void OnPreviousHeadButtonClicked()
     {
-        _skin.SetPreviousPart(CustomizationPart.Head);
+        _skin.HeadSkinParts.SetPreviousPart();
     }
 
     private void OnPreviousMouthButtonClicked()
     {
-        _skin.SetPreviousPart(CustomizationPart.Mouth);
+        _skin.MouthSkinParts.SetPreviousPart();
     }
 
     private void OnPreviousNoseButtonClicked()
     {
-        _skin.SetPreviousPart(CustomizationPart.Nose);
-    }
-
-    private void OnPreviousHatButtonClicked()
-    {
-        _skin.SetPreviousPart(CustomizationPart.Hat);
+        _skin.NoseSkinParts.SetPreviousPart();
     }
 
     private void OnPreviousTailButtonClicked()
     {
-        _skin.SetPreviousPart(CustomizationPart.Tail);
+        _skin.TailSkinParts.SetPreviousPart();
     }
 
     private void OnNextColorButtonClicked()
     {
-        _skin.SetNextPart(CustomizationPart.Color);
+        _skin.ColorSkinParts.SetNextPart();
     }
 
-    private void OnNextBodyButtonClicked()
+    private void OnNextAccessoriesButtonClicked()
     {
-        _skin.SetNextPart(CustomizationPart.Body);
+        _skin.AccessoriesSkinParts.SetNextPart();
     }
 
     private void OnNextEyesButtonClicked()
     {
-        _skin.SetNextPart(CustomizationPart.Eyes);
+        _skin.EyesSkinParts.SetNextPart();
     }
 
     private void OnNextGlovesButtonClicked()
     {
-        _skin.SetNextPart(CustomizationPart.Gloves);
+        _skin.GlovesSkinParts.SetNextPart();
     }
 
     private void OnNextHeadButtonClicked()
     {
-        _skin.SetNextPart(CustomizationPart.Head);
+        _skin.HeadSkinParts.SetNextPart();
     }
 
     private void OnNextMouthButtonClicked()
     {
-        _skin.SetNextPart(CustomizationPart.Mouth);
+        _skin.MouthSkinParts.SetNextPart();
     }
 
     private void OnNextNoseButtonClicked()
     {
-        _skin.SetNextPart(CustomizationPart.Nose);
-    }
-
-    private void OnNextHatButtonClicked()
-    {
-        _skin.SetNextPart(CustomizationPart.Hat);
+        _skin.NoseSkinParts.SetNextPart();
     }
 
     private void OnNextTailButtonClicked()
     {
-        _skin.SetNextPart(CustomizationPart.Tail);
+        _skin.TailSkinParts.SetNextPart();
     }
 
     private void OnRandomSkinButtonClicked()
     {
-        _skin.ApplyRandom();
+        _skin.ApplyRandomFromAvailable();
     }
 }

@@ -7,10 +7,10 @@ public abstract class Player : MonoBehaviour
     [SerializeField] private GameObject _star;
     [SerializeField] private SkinApplier _skinApplier;
 
-    public void Construct(Score score, SkinCustomization skinPrefab, SkinCustomizationData skinCustomizationData)
+    public void Construct(Score score, Skin skinPrefab, SkinData skinData)
     {
         Score = score;
-        _skinApplier.Construct(skinPrefab, skinCustomizationData);
+        _skinApplier.Construct(skinPrefab, skinData);
     }
 
     public GameObject Star => _star;

@@ -10,7 +10,7 @@ public static class GamePrefabs
     private const string GatesPrefabPath = "GatePrefabs/Gates";
     private const string BonusGatesPrefabPath = "GatePrefabs/BonusGates";
 
-    private static SkinCustomization _skinPrefab;
+    private static Skin _skinPrefab;
     private static Ball _ballPrefab;
     private static Map[] _mapPrefabs;
     private static ActualPlayer _playerPrefab;
@@ -18,7 +18,7 @@ public static class GamePrefabs
     private static Gates _gatesPrefab;
     private static BonusGates _bonusGatesPrefab;
 
-    public static SkinCustomization SkinPrefab => _skinPrefab;
+    public static Skin SkinPrefab => _skinPrefab;
     public static Ball BallPrefab => _ballPrefab;
     public static Map[] MapPrefabs => _mapPrefabs;
     public static ActualPlayer PlayerPrefab => _playerPrefab;
@@ -28,7 +28,7 @@ public static class GamePrefabs
 
     static GamePrefabs()
     {
-        _skinPrefab = Resources.Load<SkinCustomization>(SkinPrefabsPath);
+        _skinPrefab = Resources.Load<Skin>(SkinPrefabsPath);
         _mapPrefabs = Resources.LoadAll<Map>(MapPrefabsFolderPath);
         _ballPrefab = Resources.Load<Ball>(BallPrefabPath);
         _playerPrefab = Resources.Load<ActualPlayer>(PlayerPrefabPath);

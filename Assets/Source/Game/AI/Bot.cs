@@ -13,10 +13,10 @@ public class Bot : Player, IPauseable
     private BotRotation _rotation;
     private Coroutine _makeLaunchesCoroutine;
 
-    public void Construct(SkinCustomization skinPrefab, Score score, Transform ballTransform, 
+    public void Construct(Skin skinPrefab, Score score, Transform ballTransform, 
         Transform gatesTransform, Vector3 offsetFromBall)
     {
-        Construct(score, skinPrefab, DataHolder.PlayerData.BotSkinCustomizationData);
+        Construct(score, skinPrefab, DataHolder.PlayerData.BotSkinData);
         _move = GetComponent<PlayerMove>();
         _move.Construct(transform, ballTransform, offsetFromBall);
         _rotation = GetComponent<BotRotation>();

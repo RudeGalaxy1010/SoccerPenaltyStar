@@ -70,7 +70,7 @@ public class GameStarter : MonoBehaviour
         return map;
     }
 
-    private ActualPlayer InitPlayer(SkinCustomization skinPrefab, Score score, Controls controls, Map map, Pause pause)
+    private ActualPlayer InitPlayer(Skin skinPrefab, Score score, Controls controls, Map map, Pause pause)
     {
         Ball ball = Create(GamePrefabs.BallPrefab, map.PlayerSpawnPosition + BallOffset);
         ActualPlayer player = Create(GamePrefabs.PlayerPrefab, map.PlayerSpawnPosition);
@@ -86,7 +86,7 @@ public class GameStarter : MonoBehaviour
         return player;
     }
 
-    private Bot InitBot(SkinCustomization skinPrefab, Score score, Map map, Pause pause)
+    private Bot InitBot(Skin skinPrefab, Score score, Map map, Pause pause)
     {
         Ball ball = Create(GamePrefabs.BallPrefab, map.BotSpawnPosition + BallOffset);
         Bot bot = Create(GamePrefabs.BotPrefab, map.BotSpawnPosition);

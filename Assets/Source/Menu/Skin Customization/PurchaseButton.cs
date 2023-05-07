@@ -2,12 +2,10 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelButtons : MonoBehaviour
+public class PurchaseButton : MonoBehaviour
 {
-    [SerializeField] private Button _readyButton;
-
-    [Header("Match Maker")]
-    [SerializeField] private MatchMaker _matchMaker;
+    [SerializeField] private Button _purchaseButton;
+    [SerializeField] private PurchaseCostDisplay _purchaseCostDisplay;
 
     private SkinPartsUnlocker _skinPartsUnlocker;
 
@@ -17,22 +15,18 @@ public class LevelButtons : MonoBehaviour
         _skinPartsUnlocker.PurchaseNeeded += OnPurchaseNeeded;
         _skinPartsUnlocker.PurchaseCompleted += OnPurchaseCompleted;
         _skinPartsUnlocker.PurchaseCancelled += OnPurchaseCancelled;
-    }
-
-    private void Start()
-    {
-        _readyButton.interactable = true;
+        _purchaseButton.gameObject.SetActive(false);
+        _purchaseCostDisplay.Hide();
     }
 
     private void OnEnable()
     {
-        _readyButton.onClick.AddListener(OnStartButtonClicked);
-        _matchMaker.MatchMakingStarted += OnMatchMakingStarted;
+        _purchaseButton.onClick.AddListener(OnPurchaseButtonClicked);
     }
 
     private void OnDisable()
     {
-        _readyButton.onClick.RemoveListener(OnStartButtonClicked);
+        _purchaseButton.onClick.RemoveListener(OnPurchaseButtonClicked);
     }
 
     private void OnDestroy()
@@ -45,28 +39,32 @@ public class LevelButtons : MonoBehaviour
         }
     }
 
-    private void OnMatchMakingStarted()
+    private void OnPurchaseButtonClicked()
     {
-        _readyButton.interactable = false;
-    }
-
-    private void OnStartButtonClicked()
-    {
-        _matchMaker.StartSelectingBot();
+        _skinPartsUnlocker.Purchase();
+        Hide();
     }
 
     private void OnPurchaseNeeded()
     {
-        _readyButton.interactable = false;
+            _purchaseButton.gameObject.SetActive(true);
+        _purchaseButton.interactable = _skinPartsUnlocker.CanPurchase;
+        _purchaseCostDisplay.Display(_skinPartsUnlocker.TotalCost);
     }
 
     private void OnPurchaseCompleted()
     {
-        _readyButton.interactable = true;
+        Hide();
     }
 
     private void OnPurchaseCancelled()
     {
-        _readyButton.interactable = true;
+        Hide();
+    }
+
+    private void Hide()
+    {
+        _purchaseButton.gameObject.SetActive(false);
+        _purchaseCostDisplay.Hide();
     }
 }

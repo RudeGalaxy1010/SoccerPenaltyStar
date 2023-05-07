@@ -6,10 +6,10 @@ public class ActualPlayer : Player, IPauseable
     private PlayerRotation _rotation;
     private bool _isPause;
 
-    public void Construct(SkinCustomization skinPrefab, Score score, Controls controls, 
+    public void Construct(Skin skinPrefab, Score score, Controls controls, 
         Transform ballTransform, Vector3 offsetFromBall)
     {
-        Construct(score, skinPrefab, DataHolder.PlayerData.PlayerSkinCustomizationData);
+        Construct(score, skinPrefab, DataHolder.PlayerData.PlayerSkinData);
         _move = GetComponent<PlayerMove>();
         _move.Construct(transform, ballTransform, offsetFromBall);
         _rotation = GetComponent<PlayerRotation>();

@@ -3,15 +3,17 @@ using System;
 [Serializable]
 public class PlayerData
 {
-    public SkinCustomizationData PlayerSkinCustomizationData;
-    public SkinCustomizationData BotSkinCustomizationData;
+    public SkinData PlayerSkinData;
+    public SkinData BotSkinData;
+    public UnlockedParts UnlockedParts;
     public int PlayerRating;
     public int Money;
 
     public PlayerData()
     {
-        PlayerSkinCustomizationData = new SkinCustomizationData();
-        BotSkinCustomizationData = new SkinCustomizationData();
+        PlayerSkinData = new SkinData();
+        BotSkinData = new SkinData();
+        UnlockedParts = new UnlockedParts();
         PlayerRating = 1000;
         Money = 0;
     }

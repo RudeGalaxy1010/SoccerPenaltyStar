@@ -4,6 +4,8 @@ public class Money
 {
     public event Action<int> MoneyChanged;
 
+    private const string NotEnoughMoneyToPurchaseSkinExceptionMessage = "Not enough money to purchase skin part";
+
     private const int WinMoney = 500;
     private const int DefeatMoney = 100;
     private const int DrawMoney = 250;
@@ -30,6 +32,17 @@ public class Money
     public void AddDrawMoney()
     {
         DataHolder.PlayerData.Money += DrawMoney;
+        MoneyChanged?.Invoke(DataHolder.PlayerData.Money);
+    }
+
+    public void PurchaseSkinPart(SkinPart skinPart)
+    {
+        if (DataHolder.PlayerData.Money < skinPart.Cost)
+        {
+            throw new ArgumentException(NotEnoughMoneyToPurchaseSkinExceptionMessage);
+        }
+
+        DataHolder.PlayerData.Money -= skinPart.Cost;
         MoneyChanged?.Invoke(DataHolder.PlayerData.Money);
     }
 }

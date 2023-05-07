@@ -11,9 +11,11 @@ public class MenuStarter : MonoBehaviour
     [SerializeField] private TMP_Text _botNickText;
     [SerializeField] private RatingDisplay _ratingDisplay;
     [SerializeField] private MoneyDisplay _moneyDisplay;
+    [SerializeField] private SkinStatsDisplay _skinStatsDisplay;
 
     [Header("Buttons")]
     [SerializeField] private SkinButtons _skinButtons;
+    [SerializeField] private PurchaseButton _purchaseButton;
     [SerializeField] private LevelButtons _levelButtons;
 
     private DataSaveLoad _dataSaveLoad;
@@ -23,8 +25,8 @@ public class MenuStarter : MonoBehaviour
     {
         LoadData();
         InitMatchMaking(_matchMaker, _botSelector, _botSkinSpawnPoint, _botNickText, _ratingDisplay);
-        InitPlayerSkin(GamePrefabs.SkinPrefab, _playerSkinSpawnPoint);
         InitMoney();
+        InitPlayerSkin(GamePrefabs.SkinPrefab, _playerSkinSpawnPoint, _money);
         _ratingDisplay.DisplayPlayerRating(DataHolder.PlayerData.PlayerRating);
     }
 
@@ -42,11 +44,17 @@ public class MenuStarter : MonoBehaviour
         matchMaker.Construct(botSelector, levelLoader);
     }
 
-    private void InitPlayerSkin(SkinCustomization skinPrefab, Transform spawnPoint)
+    private void InitPlayerSkin(Skin skinPrefab, Transform spawnPoint, Money money)
     {
-        SkinCustomization skin = Instantiate(skinPrefab, spawnPoint.position, spawnPoint.rotation, spawnPoint);
-        skin.Apply(DataHolder.PlayerData.PlayerSkinCustomizationData);
+        Skin skin = Instantiate(skinPrefab, spawnPoint.position, spawnPoint.rotation, spawnPoint);
+        skin.Apply(DataHolder.PlayerData.PlayerSkinData);
+        PlayerSkinSaver playerSkinSaver = new PlayerSkinSaver(skin);
+        SkinPartsUnlocker skinPartsUnlocker = new SkinPartsUnlocker();
+        skinPartsUnlocker.Construct(skin, money, DataHolder.PlayerData.UnlockedParts);
+        _purchaseButton.Construct(skinPartsUnlocker);
         _skinButtons.Construct(skin);
+        _levelButtons.Construct(skinPartsUnlocker);
+        _skinStatsDisplay.Construct(skin);
     }
 
     private void InitMoney()

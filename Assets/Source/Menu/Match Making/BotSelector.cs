@@ -26,22 +26,22 @@ public class BotSelector : MonoBehaviour
 
     public void StartSelectingBot()
     {
-        SkinCustomization skin = CreateBot();
+        Skin skin = CreateBot();
         int botsChanges = GetBotsChanges();
         StartCoroutine(SelectBot(botsChanges, _botNickText, skin));
         _botNickText.gameObject.SetActive(true);
     }
 
-    private SkinCustomization CreateBot()
+    private Skin CreateBot()
     {
-        SkinCustomization skin = Instantiate(GamePrefabs.SkinPrefab, _botSpawnPoint.position, 
+        Skin skin = Instantiate(GamePrefabs.SkinPrefab, _botSpawnPoint.position, 
             _botSpawnPoint.rotation, _botSpawnPoint);
-        skin.Apply(DataHolder.PlayerData.BotSkinCustomizationData);
+        skin.Apply(DataHolder.PlayerData.BotSkinData);
         ChangeBot(_botNickText, skin);
         return skin;
     }
 
-    private IEnumerator SelectBot(int botsChanges, TMP_Text nickText, SkinCustomization skin)
+    private IEnumerator SelectBot(int botsChanges, TMP_Text nickText, Skin skin)
     {
         for (int i = 0; i < botsChanges; i++)
         {
@@ -52,11 +52,12 @@ public class BotSelector : MonoBehaviour
         BotSelected?.Invoke();
     }
 
-    private void ChangeBot(TMP_Text nickText, SkinCustomization skin)
+    private void ChangeBot(TMP_Text nickText, Skin skin)
     {
         nickText.text = NickNameGenerator.GetRandomName();
         _ratingDisplay.DisplayBotRating(GetRandomBotRating());
         skin.ApplyRandom();
+        DataHolder.PlayerData.BotSkinData = skin.SkinData;
     }
 
     private int GetRandomBotRating()

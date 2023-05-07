@@ -1,12 +1,11 @@
-public enum CustomizationPart
+public enum SkinPartType
 {
     Color,
-    Body,
+    Accessories,
     Eyes,
     Gloves,
     Head,
     Mouth,
     Nose,
-    Hat,
     Tail
 }
