@@ -3494,7 +3494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc231e26e2764974bb97a92d0518899d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shift: {x: -2, y: 0, z: 0}
+  _shift: {x: -0.2, y: 0, z: 0}
   _duration: 0.5
 --- !u!1 &433223349
 GameObject:
@@ -4095,7 +4095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc231e26e2764974bb97a92d0518899d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shift: {x: 0, y: 5, z: 0}
+  _shift: {x: 0, y: 0.5, z: 0}
   _duration: 0
 --- !u!1 &483710826
 GameObject:
@@ -6881,7 +6881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc231e26e2764974bb97a92d0518899d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shift: {x: 0, y: 5, z: 0}
+  _shift: {x: 0, y: 0.5, z: 0}
   _duration: 0.5
 --- !u!1 &931135933
 GameObject:
@@ -6987,7 +6987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc231e26e2764974bb97a92d0518899d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shift: {x: 0, y: 5, z: 0}
+  _shift: {x: 0, y: 0.5, z: 0}
   _duration: 0.5
 --- !u!1 &937013180
 GameObject:
@@ -7932,7 +7932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc231e26e2764974bb97a92d0518899d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shift: {x: 0, y: -3, z: 0}
+  _shift: {x: 0, y: -0.3, z: 0}
   _duration: 0
 --- !u!114 &1095032086
 MonoBehaviour:
@@ -8337,7 +8337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc231e26e2764974bb97a92d0518899d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shift: {x: -1.1, y: 0, z: 0}
+  _shift: {x: -0.11, y: 0, z: 0}
   _duration: 0.5
 --- !u!114 &1243063799
 MonoBehaviour:
@@ -9676,7 +9676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc231e26e2764974bb97a92d0518899d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shift: {x: -2, y: 0, z: 0}
+  _shift: {x: -0.2, y: 0, z: 0}
   _duration: 0.5
 --- !u!1 &1611152189
 GameObject:
@@ -10155,7 +10155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc231e26e2764974bb97a92d0518899d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shift: {x: 0, y: 5, z: 0}
+  _shift: {x: 0, y: 0.5, z: 0}
   _duration: 0.5
 --- !u!114 &1634383619
 MonoBehaviour:
@@ -10506,7 +10506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc231e26e2764974bb97a92d0518899d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shift: {x: -1.1, y: 0, z: 0}
+  _shift: {x: -0.11, y: 0, z: 0}
   _duration: 0.5
 --- !u!1 &1692123291
 GameObject:
@@ -11934,7 +11934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc231e26e2764974bb97a92d0518899d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shift: {x: -5, y: 0, z: 0}
+  _shift: {x: -1, y: 0, z: 0}
   _duration: 0.5
 --- !u!114 &1994923079
 MonoBehaviour:
