@@ -9,6 +9,7 @@ public static class GamePrefabs
     private const string BotPrefabPath = "BotPrefabs/Bot";
     private const string GatesPrefabPath = "GatePrefabs/Gates";
     private const string BonusGatesPrefabPath = "GatePrefabs/BonusGates";
+    private const string ShopItemPrefabPath = "ShopItems/ShopItem";
 
     private static Skin _skinPrefab;
     private static Ball _ballPrefab;
@@ -17,6 +18,7 @@ public static class GamePrefabs
     private static Bot _botPrefab;
     private static Gates _gatesPrefab;
     private static BonusGates _bonusGatesPrefab;
+    private static ShopItemView _shopItemViewPrefab;
 
     public static Skin SkinPrefab => _skinPrefab;
     public static Ball BallPrefab => _ballPrefab;
@@ -25,6 +27,7 @@ public static class GamePrefabs
     public static Bot BotPrefab => _botPrefab;
     public static Gates GatesPrefab => _gatesPrefab;
     public static BonusGates BonusGatesPrefab => _bonusGatesPrefab;
+    public static ShopItemView ShopItemViewPrefab => _shopItemViewPrefab;
 
     static GamePrefabs()
     {
@@ -35,5 +38,6 @@ public static class GamePrefabs
         _botPrefab = Resources.Load<Bot>(BotPrefabPath);
         _gatesPrefab = Resources.Load<Gates>(GatesPrefabPath);
         _bonusGatesPrefab = Resources.Load<BonusGates>(BonusGatesPrefabPath);
+        _shopItemViewPrefab = Resources.Load<ShopItemView>(ShopItemPrefabPath);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -6,27 +7,37 @@ public class MenuStarter : MonoBehaviour
     [Header("Common")]
     [SerializeField] private Transform _playerSkinSpawnPoint;
     [SerializeField] private Transform _botSkinSpawnPoint;
+    [SerializeField] private LevelButtons _levelButtons;
+
+    [Header("Match Making")]
     [SerializeField] private MatchMaker _matchMaker;
     [SerializeField] private BotSelector _botSelector;
     [SerializeField] private TMP_Text _botNickText;
     [SerializeField] private RatingDisplay _ratingDisplay;
-    [SerializeField] private MoneyDisplay _moneyDisplay;
-    [SerializeField] private SkinStatsDisplay _skinStatsDisplay;
 
-    [Header("Buttons")]
+    [Header("Money")]
+    [SerializeField] private MoneyDisplay _coinsDisplay;
+    [SerializeField] private MoneyDisplay _dollarsDisplay;
+
+    [Header("Customization")]
+    [SerializeField] private SkinStatsDisplay _skinStatsDisplay;
     [SerializeField] private SkinButtons _skinButtons;
     [SerializeField] private PurchaseButton _purchaseButton;
-    [SerializeField] private LevelButtons _levelButtons;
+
+    [Header("Shop")]
+    [SerializeField] private CoinsShop _coinsShop;
 
     private DataSaveLoad _dataSaveLoad;
-    private Money _money;
+    private Coins _coins;
+    private Dollars _dollars;
 
     private void Start()
     {
         LoadData();
         InitMatchMaking(_matchMaker, _botSelector, _botSkinSpawnPoint, _botNickText, _ratingDisplay);
         InitMoney();
-        InitPlayerSkin(GamePrefabs.SkinPrefab, _playerSkinSpawnPoint, _money);
+        InitPlayerSkin(GamePrefabs.SkinPrefab, _playerSkinSpawnPoint, _coins);
+        InitCoinsShop(GamePrefabs.ShopItemViewPrefab, _coins, _dollars);
         _ratingDisplay.DisplayPlayerRating(DataHolder.PlayerData.PlayerRating);
     }
 
@@ -44,7 +55,7 @@ public class MenuStarter : MonoBehaviour
         matchMaker.Construct(botSelector, levelLoader);
     }
 
-    private void InitPlayerSkin(Skin skinPrefab, Transform spawnPoint, Money money)
+    private void InitPlayerSkin(Skin skinPrefab, Transform spawnPoint, Coins money)
     {
         Skin skin = Instantiate(skinPrefab, spawnPoint.position, spawnPoint.rotation, spawnPoint);
         skin.Apply(DataHolder.PlayerData.PlayerSkinData);
@@ -59,8 +70,15 @@ public class MenuStarter : MonoBehaviour
 
     private void InitMoney()
     {
-        _money = new Money();
-        _moneyDisplay.Construct(_money);
+        _coins = new Coins();
+        _coinsDisplay.Construct(_coins);
+        _dollars = new Dollars();
+        _dollarsDisplay.Construct(_dollars);
+    }
+
+    private void InitCoinsShop(ShopItemView shopItemViewPrefab, Coins coins, Dollars dollars)
+    {
+        _coinsShop.Construct(coins, dollars, shopItemViewPrefab);
     }
 
     private void OnDestroy()

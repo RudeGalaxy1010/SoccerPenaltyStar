@@ -8,7 +8,7 @@ public class SkinPartsUnlocker
     public event Action PurchaseCancelled;
 
     private Skin _skin;
-    private Money _money;
+    private Coins _money;
 
     private Dictionary<SkinPartType, SkinPart> _skinPartsToUnlock;
     private UnlockedParts _unlockedParts;
@@ -17,7 +17,7 @@ public class SkinPartsUnlocker
     public int TotalCost => _totalCost;
     public bool CanPurchase => _totalCost <= _money.Value;
 
-    public void Construct(Skin skin, Money money, UnlockedParts unlockedParts)
+    public void Construct(Skin skin, Coins money, UnlockedParts unlockedParts)
     {
         _skin = skin;
         _money = money;

@@ -7,7 +7,8 @@ public class PlayerData
     public SkinData BotSkinData;
     public UnlockedParts UnlockedParts;
     public int PlayerRating;
-    public int Money;
+    public int Coins;
+    public float Dollars;
 
     public PlayerData()
     {
@@ -15,6 +16,7 @@ public class PlayerData
         BotSkinData = new SkinData();
         UnlockedParts = new UnlockedParts();
         PlayerRating = 1000;
-        Money = 0;
+        Coins = 0;
+        Dollars = 0;
     }
 }

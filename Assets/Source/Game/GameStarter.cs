@@ -20,7 +20,7 @@ public class GameStarter : MonoBehaviour
     [SerializeField] private ScoreCounter _botScoreCounter;
 
     private DataSaveLoad _dataSaveLoad;
-    private Money _money;
+    private Coins _money;
     private Pause _pause;
 
     private void Start()
@@ -37,7 +37,7 @@ public class GameStarter : MonoBehaviour
         ActualPlayer player = InitPlayer(GamePrefabs.SkinPrefab, playerScore, controls, map, _pause);
         Bot bot = InitBot(GamePrefabs.SkinPrefab, botScore, map, _pause);
 
-        _money = new Money();
+        _money = new Coins();
         _endGame.Construct(playerScore, botScore, _money, _pause);
         _reverseTimer.Construct(Time);
         _goalSign.Construct(map.Gates, map.BonusGates);

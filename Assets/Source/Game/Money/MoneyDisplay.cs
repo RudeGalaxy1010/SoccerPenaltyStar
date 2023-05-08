@@ -5,12 +5,12 @@ public class MoneyDisplay : MonoBehaviour
 {
     [SerializeField] private TMP_Text _moneyText;
 
-    private Money _money;
+    private IMoney _money;
 
-    public void Construct(Money money)
+    public void Construct(IMoney money)
     {
         _money = money;
-        _money.MoneyChanged += OnMoneyChanged;
+        _money.Changed += OnMoneyChanged;
         DisplayMoney(_money.Value);
     }
 
@@ -18,16 +18,16 @@ public class MoneyDisplay : MonoBehaviour
     {
         if (_money != null)
         {
-            _money.MoneyChanged -= OnMoneyChanged;
+            _money.Changed -= OnMoneyChanged;
         }
     }
 
-    private void OnMoneyChanged(int value)
+    private void OnMoneyChanged(float value)
     {
         DisplayMoney(value);
     }
 
-    private void DisplayMoney(int value)
+    private void DisplayMoney(float value)
     {
         _moneyText.text = value.ToString();
     }

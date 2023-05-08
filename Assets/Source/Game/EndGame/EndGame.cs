@@ -6,11 +6,11 @@ public class EndGame : MonoBehaviour
 
     private Score _playerScore;
     private Score _botScore;
-    private Money _money;
+    private Coins _money;
     private Pause _pause;
     private RatingCalculator _ratingCalculator;
 
-    public void Construct(Score playerScore, Score botScore, Money money, Pause pause)
+    public void Construct(Score playerScore, Score botScore, Coins money, Pause pause)
     {
         _playerScore = playerScore;
         _botScore = botScore;
