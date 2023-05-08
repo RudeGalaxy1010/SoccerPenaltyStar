@@ -19,7 +19,6 @@ public class SkinButtons : MonoBehaviour
     [SerializeField] private Button _nextNoseButton;
     [SerializeField] private Button _previousTailButton;
     [SerializeField] private Button _nextTailButton;
-    [SerializeField] private Button _randomSkinButton;
 
     [Header("Match Maker")]
     [SerializeField] private MatchMaker _matchMaker;
@@ -52,7 +51,6 @@ public class SkinButtons : MonoBehaviour
         _nextNoseButton.onClick.AddListener(OnNextNoseButtonClicked);
         _nextTailButton.onClick.AddListener(OnNextTailButtonClicked);
 
-        _randomSkinButton.onClick.AddListener(OnRandomSkinButtonClicked);
         _matchMaker.MatchMakingStarted += OnMatchMakingStarted;
     }
 
@@ -76,7 +74,6 @@ public class SkinButtons : MonoBehaviour
         _nextNoseButton.onClick.RemoveListener(OnNextNoseButtonClicked);
         _nextTailButton.onClick.RemoveListener(OnNextTailButtonClicked);
 
-        _randomSkinButton.onClick.RemoveListener(OnRandomSkinButtonClicked);
         _matchMaker.MatchMakingStarted -= OnMatchMakingStarted;
     }
 
@@ -104,8 +101,6 @@ public class SkinButtons : MonoBehaviour
         _nextMouthButton.interactable = true;
         _nextNoseButton.interactable = true;
         _nextTailButton.interactable = true;
-
-        _randomSkinButton.interactable = true;
     }
 
     private void Disable()
@@ -127,8 +122,6 @@ public class SkinButtons : MonoBehaviour
         _nextMouthButton.interactable = false;
         _nextNoseButton.interactable = false;
         _nextTailButton.interactable = false;
-
-        _randomSkinButton.interactable = false;
     }
 
     private void OnPreviousColorButtonClicked()
@@ -209,10 +202,5 @@ public class SkinButtons : MonoBehaviour
     private void OnNextTailButtonClicked()
     {
         _skin.TailSkinParts.SetNextPart();
-    }
-
-    private void OnRandomSkinButtonClicked()
-    {
-        _skin.ApplyRandomFromAvailable();
     }
 }

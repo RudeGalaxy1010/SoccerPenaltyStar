@@ -16,7 +16,10 @@ public class MoneyDisplay : MonoBehaviour
 
     private void OnDestroy()
     {
-        _money.MoneyChanged -= OnMoneyChanged;
+        if (_money != null)
+        {
+            _money.MoneyChanged -= OnMoneyChanged;
+        }
     }
 
     private void OnMoneyChanged(int value)
