@@ -6,9 +6,9 @@ public class Coins : IMoney
 
     private const string NotEnoughMoneyToPurchaseSkinExceptionMessage = "Not enough money to purchase skin part";
 
-    private const int WinMoney = 500;
-    private const int DefeatMoney = 100;
-    private const int DrawMoney = 250;
+    public const int WinMoney = 500;
+    public const int DefeatMoney = 100;
+    public const int DrawMoney = 250;
 
     public float Value => DataHolder.PlayerData.Coins;
 

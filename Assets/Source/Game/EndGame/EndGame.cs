@@ -3,6 +3,7 @@ using UnityEngine;
 public class EndGame : MonoBehaviour
 {
     [SerializeField] private ReverseTimer _timer;
+    [SerializeField] private EndGamePanel _endGamePanel;
 
     private Score _playerScore;
     private Score _botScore;
@@ -38,19 +39,19 @@ public class EndGame : MonoBehaviour
         {
             ratingChange = _ratingCalculator.GetRandomWinRating();
             _money.AddWinMoney();
-            Debug.Log("Win!");
+            _endGamePanel.DisplayWin(Coins.WinMoney, ratingChange);
         }
         else if (_playerScore.Points < _botScore.Points)
         {
             ratingChange = _ratingCalculator.GetRandomDefeatRating();
             _money.SubDefeatMoney();
-            Debug.Log("Lose!");
+            _endGamePanel.DisplayLose(-Coins.DefeatMoney, ratingChange);
         }
         else
         {
             ratingChange = _ratingCalculator.GetDrawRating();
             _money.AddDrawMoney();
-            Debug.Log("Draw!");
+            _endGamePanel.DisplayDraw(Coins.DrawMoney, ratingChange);
         }
 
         DataHolder.PlayerData.PlayerRating += ratingChange;
