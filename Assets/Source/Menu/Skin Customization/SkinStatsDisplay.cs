@@ -1,11 +1,12 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkinStatsDisplay : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _forceText;
-    [SerializeField] private TMP_Text _accuracyText;
-    [SerializeField] private TMP_Text _luckText;
+    [SerializeField] private Slider _forceSlider;
+    [SerializeField] private Slider _accuracySlider;
+    [SerializeField] private Slider _luckSlider;
 
     private Skin _skin;
 
@@ -25,14 +26,12 @@ public class SkinStatsDisplay : MonoBehaviour
 
     private void OnSkinChanged()
     {
-        DisplayFormat(_forceText, _skin.GetForce());
-        DisplayFormat(_accuracyText, _skin.GetAccuracy());
-        DisplayFormat(_luckText, _skin.GetLuck());
-    }
+        float force = _skin.GetForce();
+        float accuracy = _skin.GetAccuracy();
+        float luck = _skin.GetLuck();
 
-    private void DisplayFormat(TMP_Text text, float value)
-    {
-        string valueFormat = value > 0 ? $"+{value}" : $"{value}";
-        text.text = valueFormat;
+        _forceSlider.value = force;
+        _accuracySlider.value = accuracy;
+        _luckSlider.value = luck;
     }
 }
