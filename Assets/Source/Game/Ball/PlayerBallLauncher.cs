@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerBallLauncher : BallLauncher, IPauseable
 {
@@ -15,8 +14,8 @@ public class PlayerBallLauncher : BallLauncher, IPauseable
     public PlayerBallLauncher(ActualPlayer player, Ball ball, Controls controls) : base(player, ball)
     {
         _controls = controls;
-        _controls.DefaultActionMap.LeftMouseButtonPress.started += (ctx) => OnLeftMouseButtonPressStarted();
-        _controls.DefaultActionMap.LeftMouseButtonPress.canceled += (ctx) => OnLeftMouseButtonPressCanceled();
+        _controls.DefaultMap.FireButtonPressed.started += (ctx) => OnLeftMouseButtonPressStarted();
+        _controls.DefaultMap.FireButtonPressed.canceled += (ctx) => OnLeftMouseButtonPressCanceled();
         _player = player;
     }
 
@@ -69,7 +68,7 @@ public class PlayerBallLauncher : BallLauncher, IPauseable
     protected override float GetDelta()
     {
         Vector3 endMousePosition = GetMousePositionInWorld();
-        Vector3 delta = endMousePosition - _startMousePosition;        
+        Vector3 delta = endMousePosition - _startMousePosition;
         return delta.magnitude;
     }
 
@@ -81,7 +80,7 @@ public class PlayerBallLauncher : BallLauncher, IPauseable
             _cameraPositionZ = _camera.transform.position.z;
         }
 
-        Vector2 rawScreenPosition = Mouse.current.position.ReadValue();
+        Vector2 rawScreenPosition = _controls.DefaultMap.Position.ReadValue<Vector2>();
         Vector3 screenPosition = new Vector3(rawScreenPosition.x, rawScreenPosition.y, -_cameraPositionZ);
         return _camera.ScreenToWorldPoint(screenPosition);
     }

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 
-public class Pause : MonoBehaviour
+public class Pause
 {
     private List<IPauseable> _pauseables = new List<IPauseable>();
 
