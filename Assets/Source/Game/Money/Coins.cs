@@ -51,4 +51,10 @@ public class Coins : IMoney
         DataHolder.PlayerData.Coins -= skinPart.Cost;
         Changed?.Invoke(DataHolder.PlayerData.Coins);
     }
+
+    public void AddFromItem(ShopItem item)
+    {
+        DataHolder.PlayerData.Coins += item.Value;
+        Changed?.Invoke(DataHolder.PlayerData.Coins);
+    }
 }

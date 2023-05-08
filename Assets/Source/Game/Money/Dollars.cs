@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public class Dollars : IMoney
 {
@@ -9,14 +8,9 @@ public class Dollars : IMoney
 
     public float Value => DataHolder.PlayerData.Dollars;
 
-    public void PurchaseItem(ShopItem item)
+    public void AddFromItem(ShopItem item)
     {
-        if (DataHolder.PlayerData.Dollars < item.Cost)
-        {
-            throw new ArgumentException(NotEnoughMoneyToPurchaseExceptionMessage);
-        }
-
-        DataHolder.PlayerData.Dollars -= item.Cost;
+        DataHolder.PlayerData.Dollars += item.Value;
         Changed?.Invoke(DataHolder.PlayerData.Dollars);
     }
 }

@@ -25,7 +25,8 @@ public class MenuStarter : MonoBehaviour
     [SerializeField] private PurchaseButton _purchaseButton;
 
     [Header("Shop")]
-    [SerializeField] private CoinsShop _coinsShop;
+    [SerializeField] private Shop _coinsShop;
+    [SerializeField] private Shop _dollarsShop;
 
     private DataSaveLoad _dataSaveLoad;
     private Coins _coins;
@@ -37,7 +38,7 @@ public class MenuStarter : MonoBehaviour
         InitMatchMaking(_matchMaker, _botSelector, _botSkinSpawnPoint, _botNickText, _ratingDisplay);
         InitMoney();
         InitPlayerSkin(GamePrefabs.SkinPrefab, _playerSkinSpawnPoint, _coins);
-        InitCoinsShop(GamePrefabs.ShopItemViewPrefab, _coins, _dollars);
+        InitShop(GamePrefabs.ShopItemViewPrefab, _coins, _dollars);
         _ratingDisplay.DisplayPlayerRating(DataHolder.PlayerData.PlayerRating);
     }
 
@@ -76,9 +77,10 @@ public class MenuStarter : MonoBehaviour
         _dollarsDisplay.Construct(_dollars);
     }
 
-    private void InitCoinsShop(ShopItemView shopItemViewPrefab, Coins coins, Dollars dollars)
+    private void InitShop(ShopItemView shopItemViewPrefab, Coins coins, Dollars dollars)
     {
-        _coinsShop.Construct(coins, dollars, shopItemViewPrefab);
+        _coinsShop.Construct(coins, shopItemViewPrefab);
+        _dollarsShop.Construct(dollars, shopItemViewPrefab);
     }
 
     private void OnDestroy()

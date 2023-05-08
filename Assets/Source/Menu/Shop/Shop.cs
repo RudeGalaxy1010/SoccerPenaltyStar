@@ -1,16 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Shop : MonoBehaviour
+public class Shop : MonoBehaviour
 {
     [SerializeField] private ShopItem[] _items;
     [SerializeField] private Transform _viewsContainer;
 
+    private IMoney _money;
     private ShopItemView _itemViewPrefab;
     private ShopItemView[] _itemViews;
 
-    protected void Construct(ShopItemView itemViewPrefab)
+    public void Construct(IMoney money, ShopItemView itemViewPrefab)
     {
+        _money = money;
         _itemViewPrefab = itemViewPrefab;
         _itemViews = CreateItemViews();
         Subscribe();
@@ -57,5 +59,9 @@ public abstract class Shop : MonoBehaviour
         }
     }
 
-    protected abstract void OnItemClicked(ShopItem item);
+    protected void OnItemClicked(ShopItem item)
+    {
+        _money.AddFromItem(item);
+        // TODO: purchase
+    }
 }
