@@ -68,8 +68,8 @@ public class PlayerBallLauncher : BallLauncher, IPauseable
     protected override float GetDelta()
     {
         Vector3 endMousePosition = GetMousePositionInWorld();
-        Vector3 delta = endMousePosition - _startMousePosition;
-        return delta.magnitude;
+        float delta = _startMousePosition.z - endMousePosition.z;
+        return delta;
     }
 
     private Vector3 GetMousePositionInWorld()

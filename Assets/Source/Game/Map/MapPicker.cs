@@ -16,12 +16,21 @@ public class MapPicker
             throw new ArgumentException(MapPrefabsCountExceptionMessage);
         }
 
-        switch (rating)
+        if (rating >= MaxRatingForMap3)
         {
-            case >= MaxRatingForMap3: return mapPrefabs[3];
-            case >= MaxRatingForMap2: return mapPrefabs[2];
-            case >= MaxRatingForMap1: return mapPrefabs[1];
-            default: return mapPrefabs[0];
+            return mapPrefabs[3];
+        }
+        else if (rating >= MaxRatingForMap2)
+        {
+            return mapPrefabs[2];
+        }
+        else if (rating >= MaxRatingForMap1)
+        {
+            return mapPrefabs[1];
+        }
+        else
+        {
+            return mapPrefabs[0];
         }
     }
 }

@@ -1,7 +1,6 @@
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoader : MonoBehaviour
+public class LevelLoader
 {
     public const int MenuSceneIndex = 0;
     public const int GameSceneIndex = 1;
