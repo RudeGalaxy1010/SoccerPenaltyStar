@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class BallLauncher
 {
-    public const float MinForce = 0f;
+    public const float MinForce = -10f;
     public const float MaxForce = 10f;
     public const float ForceScale = 5f;
 
