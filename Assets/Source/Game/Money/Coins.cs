@@ -1,4 +1,5 @@
 using System;
+using static UnityEditor.Progress;
 
 public class Coins : IMoney
 {
@@ -9,6 +10,7 @@ public class Coins : IMoney
     public const int WinMoney = 500;
     public const int DefeatMoney = 100;
     public const int DrawMoney = 250;
+    public const int FreeMoney = 200;
 
     public float Value => DataHolder.PlayerData.Coins;
 
@@ -55,6 +57,12 @@ public class Coins : IMoney
     public void AddFromItem(ShopItem item)
     {
         DataHolder.PlayerData.Coins += item.Value;
+        Changed?.Invoke(DataHolder.PlayerData.Coins);
+    }
+
+    public void AddFreeMoney()
+    {
+        DataHolder.PlayerData.Coins += FreeMoney;
         Changed?.Invoke(DataHolder.PlayerData.Coins);
     }
 }

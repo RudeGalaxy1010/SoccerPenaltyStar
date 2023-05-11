@@ -25,6 +25,7 @@ public class MenuStarter : MonoBehaviour
     [SerializeField] private PurchaseButton _purchaseButton;
 
     [Header("Shop")]
+    [SerializeField] private FreeCoins _freeCoins;
     [SerializeField] private Shop _coinsShop;
     [SerializeField] private Shop _dollarsShop;
 
@@ -81,6 +82,7 @@ public class MenuStarter : MonoBehaviour
     {
         _coinsShop.Construct(coins, shopItemViewPrefab);
         _dollarsShop.Construct(dollars, shopItemViewPrefab);
+        _freeCoins.Construct(coins);
     }
 
     private void OnDestroy()

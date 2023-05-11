@@ -3771,6 +3771,7 @@ GameObject:
   - component: {fileID: 465870738}
   - component: {fileID: 465870737}
   - component: {fileID: 465870736}
+  - component: {fileID: 465870740}
   - component: {fileID: 465870739}
   m_Layer: 5
   m_Name: Free coins Button
@@ -3896,6 +3897,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shift: {x: 0, y: 0.5, z: 0}
   _duration: 0
+--- !u!114 &465870740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465870734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09f4b39ece94e349a650240d1710eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _freeCoinsButton: {fileID: 465870736}
 --- !u!1 &483710826
 GameObject:
   m_ObjectHideFlags: 0
@@ -8439,6 +8453,7 @@ MonoBehaviour:
   _skinStatsDisplay: {fileID: 915991404}
   _skinButtons: {fileID: 1994923079}
   _purchaseButton: {fileID: 766719759}
+  _freeCoins: {fileID: 465870740}
   _coinsShop: {fileID: 433223353}
   _dollarsShop: {fileID: 768062788}
 --- !u!4 &1440333524
