@@ -23,6 +23,7 @@ public class MenuStarter : MonoBehaviour
     [SerializeField] private SkinStatsDisplay _skinStatsDisplay;
     [SerializeField] private SkinButtons _skinButtons;
     [SerializeField] private PurchaseButton _purchaseButton;
+    [SerializeField] private CustomizationButton _customizationButton;
 
     [Header("Shop")]
     [SerializeField] private FreeCoins _freeCoins;
@@ -68,6 +69,7 @@ public class MenuStarter : MonoBehaviour
         _skinButtons.Construct(skin);
         _levelButtons.Construct(skinPartsUnlocker);
         _skinStatsDisplay.Construct(skin);
+        _customizationButton.Construct(skin, skinPartsUnlocker);
     }
 
     private void InitMoney()

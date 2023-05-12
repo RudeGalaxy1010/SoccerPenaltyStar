@@ -16,6 +16,7 @@ public class SkinPartsUnlocker
 
     public int TotalCost => _totalCost;
     public bool CanPurchase => _totalCost <= _money.Value;
+    public bool HasLockedParts => _totalCost > 0;
 
     public void Construct(Skin skin, Coins money, UnlockedParts unlockedParts)
     {
@@ -33,13 +34,13 @@ public class SkinPartsUnlocker
             _unlockedParts.UnlockPart(key, _skinPartsToUnlock[key].Id);
         }
 
+        ResetCurrentPartsData();
         PurchaseCompleted?.Invoke();
     }
 
     private void OnSkinChanged()
     {
-        _skinPartsToUnlock = new Dictionary<SkinPartType, SkinPart>();
-        _totalCost = 0;
+        ResetCurrentPartsData();
 
         if (_unlockedParts.IsUnlocked(SkinPartType.Color, _skin.ColorSkinParts.CurrentPart.Id) == false)
         {
@@ -90,5 +91,11 @@ public class SkinPartsUnlocker
         {
             PurchaseCancelled?.Invoke();
         }
+    }
+
+    private void ResetCurrentPartsData()
+    {
+        _skinPartsToUnlock = new Dictionary<SkinPartType, SkinPart>();
+        _totalCost = 0;
     }
 }

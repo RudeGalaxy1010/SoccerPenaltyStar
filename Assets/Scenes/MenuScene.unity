@@ -3531,7 +3531,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 959.4826, y: -357.6456}
+  m_AnchoredPosition: {x: 959.48254, y: -357.6456}
   m_SizeDelta: {x: 1918.9652, y: 265.2912}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &433223351
@@ -6290,7 +6290,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 959.4826, y: -722.93677}
+  m_AnchoredPosition: {x: 959.48254, y: -722.93677}
   m_SizeDelta: {x: 1918.9652, y: 265.2912}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &768062786
@@ -9066,6 +9066,7 @@ MonoBehaviour:
   _skinStatsDisplay: {fileID: 915991404}
   _skinButtons: {fileID: 1994923079}
   _purchaseButton: {fileID: 766719759}
+  _customizationButton: {fileID: 937013185}
   _freeCoins: {fileID: 465870740}
   _coinsShop: {fileID: 433223353}
   _dollarsShop: {fileID: 768062788}
