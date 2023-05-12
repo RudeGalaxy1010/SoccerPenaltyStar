@@ -62,6 +62,6 @@ public class Shop : MonoBehaviour
     protected void OnItemClicked(ShopItem item)
     {
         // TODO: Call payment function
-        _money.AddFromItem(item);
+        _money.AddItemValue(item);
     }
 }

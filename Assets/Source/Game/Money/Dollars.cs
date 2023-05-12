@@ -8,7 +8,7 @@ public class Dollars : IMoney
 
     public float Value => DataHolder.PlayerData.Dollars;
 
-    public void AddFromItem(ShopItem item)
+    public void AddItemValue(ShopItem item)
     {
         DataHolder.PlayerData.Dollars += item.Value;
         Changed?.Invoke(DataHolder.PlayerData.Dollars);

@@ -37,12 +37,6 @@ public class Coins : IMoney
         Changed?.Invoke(DataHolder.PlayerData.Coins);
     }
 
-    public void AddItemMoney(ShopItem item)
-    {
-        DataHolder.PlayerData.Coins += item.Value;
-        Changed?.Invoke(DataHolder.PlayerData.Coins);
-    }
-
     public void PurchaseSkinPart(SkinPart skinPart)
     {
         if (DataHolder.PlayerData.Coins < skinPart.Cost)
@@ -54,7 +48,7 @@ public class Coins : IMoney
         Changed?.Invoke(DataHolder.PlayerData.Coins);
     }
 
-    public void AddFromItem(ShopItem item)
+    public void AddItemValue(ShopItem item)
     {
         DataHolder.PlayerData.Coins += item.Value;
         Changed?.Invoke(DataHolder.PlayerData.Coins);
