@@ -47,9 +47,10 @@ public class PurchaseButton : MonoBehaviour
 
     private void OnPurchaseNeeded()
     {
-            _purchaseButton.gameObject.SetActive(true);
+        _purchaseButton.gameObject.SetActive(true);
         _purchaseButton.interactable = _skinPartsUnlocker.CanPurchase;
-        _purchaseCostDisplay.Display(_skinPartsUnlocker.TotalCost);
+        _purchaseCostDisplay.Display(_skinPartsUnlocker.TotalCoinsCost, 
+            _skinPartsUnlocker.TotalDollarsCost, _skinPartsUnlocker.TotalAdsCost);
     }
 
     private void OnPurchaseCompleted()

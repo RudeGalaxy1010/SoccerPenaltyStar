@@ -39,7 +39,7 @@ public class MenuStarter : MonoBehaviour
         LoadData();
         InitMatchMaking(_matchMaker, _botSelector, _botSkinSpawnPoint, _botNickText, _ratingDisplay);
         InitMoney();
-        InitPlayerSkin(GamePrefabs.SkinPrefab, _playerSkinSpawnPoint, _coins);
+        InitPlayerSkin(GamePrefabs.SkinPrefab, _playerSkinSpawnPoint, _coins, _dollars);
         InitShop(GamePrefabs.ShopItemViewPrefab, _coins, _dollars);
         _ratingDisplay.DisplayPlayerRating(DataHolder.PlayerData.PlayerRating);
     }
@@ -58,13 +58,13 @@ public class MenuStarter : MonoBehaviour
         matchMaker.Construct(botSelector, levelLoader);
     }
 
-    private void InitPlayerSkin(Skin skinPrefab, Transform spawnPoint, Coins money)
+    private void InitPlayerSkin(Skin skinPrefab, Transform spawnPoint, Coins coins, Dollars dollars)
     {
         Skin skin = Instantiate(skinPrefab, spawnPoint.position, spawnPoint.rotation, spawnPoint);
         skin.Apply(DataHolder.PlayerData.PlayerSkinData);
         PlayerSkinSaver playerSkinSaver = new PlayerSkinSaver(skin);
         SkinPartsUnlocker skinPartsUnlocker = new SkinPartsUnlocker();
-        skinPartsUnlocker.Construct(skin, money, DataHolder.PlayerData.UnlockedParts);
+        skinPartsUnlocker.Construct(skin, coins, dollars, DataHolder.PlayerData.UnlockedParts);
         _purchaseButton.Construct(skinPartsUnlocker);
         _skinButtons.Construct(skin);
         _levelButtons.Construct(skinPartsUnlocker);

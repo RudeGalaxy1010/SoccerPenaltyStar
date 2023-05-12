@@ -1,11 +1,10 @@
 using System;
-using static UnityEditor.Progress;
 
 public class Coins : IMoney
 {
     public event Action<float> Changed;
 
-    private const string NotEnoughMoneyToPurchaseSkinExceptionMessage = "Not enough money to purchase skin part";
+    private const string NotEnoughMoneyToPurchaseExceptionMessage = "Not enough money to purchase";
 
     public const int WinMoney = 500;
     public const int DefeatMoney = 100;
@@ -41,7 +40,7 @@ public class Coins : IMoney
     {
         if (DataHolder.PlayerData.Coins < skinPart.Cost)
         {
-            throw new ArgumentException(NotEnoughMoneyToPurchaseSkinExceptionMessage);
+            throw new ArgumentException(NotEnoughMoneyToPurchaseExceptionMessage);
         }
 
         DataHolder.PlayerData.Coins -= skinPart.Cost;
