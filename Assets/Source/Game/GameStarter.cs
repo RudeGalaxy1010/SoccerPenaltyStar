@@ -75,7 +75,8 @@ public class GameStarter : MonoBehaviour
         Ball ball = Create(GamePrefabs.BallPrefab, map.PlayerSpawnPosition + BallOffset);
         ActualPlayer player = Create(GamePrefabs.PlayerPrefab, map.PlayerSpawnPosition);
         player.Construct(skinPrefab, score, controls, ball.transform, -BallOffset);
-        PlayerBallLauncher ballLauncher = new PlayerBallLauncher(player, ball, controls);
+        PlayerRotation playerRotation = player.GetComponent<PlayerRotation>();
+        PlayerBallLauncher ballLauncher = new PlayerBallLauncher(player, playerRotation, ball, controls);
 
         _smoothFollow.SetTarget(ball.transform);
         _forceArrow.Construct(player.transform, ballLauncher);

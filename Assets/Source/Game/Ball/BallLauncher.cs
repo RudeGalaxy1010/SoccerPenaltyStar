@@ -8,6 +8,7 @@ public abstract class BallLauncher
 
     protected Player Player;
     protected Ball Ball;
+    protected bool SideSwitched;
 
     public BallLauncher(Player player, Ball ball)
     {
@@ -32,6 +33,17 @@ public abstract class BallLauncher
         Vector2 ballFlatPosition = new Vector3(Ball.transform.position.x, Ball.transform.position.z);
         Vector2 playerFlatPosition = new Vector3(Player.transform.position.x, Player.transform.position.z);
         Vector2 forceDirection = ballFlatPosition - playerFlatPosition;
+
+        if (playerFlatPosition.y > ballFlatPosition.y)
+        {
+            forceDirection = -forceDirection;
+            SideSwitched = true;
+        }
+        else
+        {
+            SideSwitched = false;
+        }
+
         return new Vector3(forceDirection.x, 0, forceDirection.y).normalized;
     }
 }

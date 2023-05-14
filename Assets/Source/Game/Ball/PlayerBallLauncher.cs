@@ -4,19 +4,23 @@ public class PlayerBallLauncher : BallLauncher, IPauseable
 {
     private Controls _controls;
     private ActualPlayer _player;
+    private PlayerRotation _playerRotation;
 
     private Vector3 _startMousePosition;
 
     private float _cameraPositionZ;
     private Camera _camera;
     private bool _isPause;
+    private float _delta;
 
-    public PlayerBallLauncher(ActualPlayer player, Ball ball, Controls controls) : base(player, ball)
+    public PlayerBallLauncher(ActualPlayer player, PlayerRotation playerRotation, Ball ball, Controls controls) 
+        : base(player, ball)
     {
         _controls = controls;
         _controls.DefaultMap.FireButtonPressed.started += (ctx) => OnLeftMouseButtonPressStarted();
         _controls.DefaultMap.FireButtonPressed.canceled += (ctx) => OnLeftMouseButtonPressCanceled();
         _player = player;
+        _playerRotation = playerRotation;
     }
 
     public bool IsHolding => _startMousePosition != Vector3.zero;
@@ -45,6 +49,7 @@ public class PlayerBallLauncher : BallLauncher, IPauseable
 
     public override void PrepareLaunch()
     {
+        _delta = 0;
         Ball.ResetMove();
         _player.TeleportToBall();
         _player.EnableRotation();
@@ -69,8 +74,15 @@ public class PlayerBallLauncher : BallLauncher, IPauseable
     {
         Vector3 endMousePosition = GetMousePositionInWorld();
         float directionSign = Mathf.Sign(_startMousePosition.z - endMousePosition.z);
-        float delta = directionSign * (_startMousePosition - endMousePosition).magnitude;
-        return delta;
+        float newDelta = directionSign * (_startMousePosition - endMousePosition).magnitude;
+
+        if (newDelta * _delta < 0)
+        {
+            _playerRotation.SwitchRotationSide();
+        }
+
+        _delta = newDelta;
+        return _delta;
     }
 
     private Vector3 GetMousePositionInWorld()

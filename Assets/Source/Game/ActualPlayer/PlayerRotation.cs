@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerRotation : MonoBehaviour
 {
+    private const int SwitchSideAngle = 180;
     private const float Speed = 180f;
 
     private Transform _playerTransform;
@@ -16,16 +17,6 @@ public class PlayerRotation : MonoBehaviour
         _ballTransform = ballTransform;
     }
 
-    public void Enable()
-    {
-        _isHolding = true;
-    }
-
-    public void Disable()
-    {
-        _isHolding = false;
-    }
-
     private void Update()
     {
         if (_isHolding == false)
@@ -38,5 +29,20 @@ public class PlayerRotation : MonoBehaviour
         Vector3 lookDirection = _ballTransform.position;
         lookDirection.y = transform.position.y;
         _playerTransform.LookAt(lookDirection);
+    }
+
+    public void SwitchRotationSide()
+    {
+        _playerTransform.transform.RotateAround(_ballTransform.position, Vector3.up, SwitchSideAngle);
+    }
+
+    public void Enable()
+    {
+        _isHolding = true;
+    }
+
+    public void Disable()
+    {
+        _isHolding = false;
     }
 }
