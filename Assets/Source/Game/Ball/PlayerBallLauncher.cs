@@ -13,6 +13,8 @@ public class PlayerBallLauncher : BallLauncher, IPauseable
     private bool _isPause;
     private float _delta;
 
+    public Joystick joystick;
+
     public PlayerBallLauncher(ActualPlayer player, PlayerRotation playerRotation, Ball ball, Controls controls) 
         : base(player, ball)
     {
@@ -72,9 +74,10 @@ public class PlayerBallLauncher : BallLauncher, IPauseable
 
     protected override float GetDelta()
     {
-        Vector3 endMousePosition = GetMousePositionInWorld();
-        float directionSign = Mathf.Sign(_startMousePosition.z - endMousePosition.z);
-        float newDelta = directionSign * (_startMousePosition - endMousePosition).magnitude;
+        joystick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<Joystick>();
+        Vector3 m = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+        float directionSign = Mathf.Sign(0 - m.z);
+        float newDelta = directionSign * (Vector3.zero - m).magnitude;
 
         if (newDelta * _delta < 0)
         {
@@ -82,6 +85,7 @@ public class PlayerBallLauncher : BallLauncher, IPauseable
         }
 
         _delta = newDelta;
+
         return _delta;
     }
 

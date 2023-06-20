@@ -1,8 +1,12 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class SkinPartsUnlocker
 {
+    private Init initSDK;
+    private SkinPart skinAd;
+
     private const string UnknownCostTypeExceptionMessage = "Unknown cost type";
 
     public event Action PurchaseNeeded;
@@ -59,11 +63,20 @@ public class SkinPartsUnlocker
                 break;
             case CostType.Dollars: _dollars.PurchaseSkinPart(skinPart);
                 break;
-            case CostType.Ads: // TODO: Call ADs function
+            case CostType.Ads: 
+                initSDK = GameObject.FindGameObjectWithTag("Init").GetComponent<Init>();
+                initSDK.skinPartsUnlocker = this;
+                skinAd = skinPart;
+                initSDK.ShowRewardedAd("Skin");
                 break;
             default:
                 throw new ArgumentException(UnknownCostTypeExceptionMessage);
         }
+    }
+
+    public void BuySkinForAd()
+    {
+        _dollars.PurchaseSkinPart(skinAd);
     }
 
     private void OnSkinChanged()
@@ -125,9 +138,13 @@ public class SkinPartsUnlocker
     {
         switch (skinPart.CostType) 
         {
-            case CostType.Coins: _totalCoinsCost += skinPart.Cost;
+            case CostType.Coins: 
+                _totalCoinsCost += skinPart.Cost;
+                _totalAdsCost = 0;
                 break;
-            case CostType.Dollars: _totalDollarsCost += skinPart.Cost;
+            case CostType.Dollars: 
+                _totalDollarsCost += skinPart.Cost;
+                _totalAdsCost = 0;
                 break;
             case CostType.Ads: _totalAdsCost++;
                 break;

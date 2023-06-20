@@ -25,18 +25,17 @@ public abstract class BallLauncher
         Vector3 forceDirection = GetNormalizedForceDirection();
         Vector3 rawForce = forceDirection;
         float clampedDelta = Mathf.Clamp(delta, MinForce, MaxForce);
-        return rawForce * clampedDelta * ForceScale;
+        return rawForce * ForceScale * 10;//clampedDelta * ForceScale;
     }
 
     protected Vector3 GetNormalizedForceDirection()
     {
         Vector2 ballFlatPosition = new Vector3(Ball.transform.position.x, Ball.transform.position.z);
         Vector2 playerFlatPosition = new Vector3(Player.transform.position.x, Player.transform.position.z);
-        Vector2 forceDirection = ballFlatPosition - playerFlatPosition;
+        Vector3 forceDirection = Player.transform.forward;
 
-        if (playerFlatPosition.y > ballFlatPosition.y)
+        if (playerFlatPosition.y < ballFlatPosition.y)
         {
-            forceDirection = -forceDirection;
             SideSwitched = true;
         }
         else
@@ -44,6 +43,6 @@ public abstract class BallLauncher
             SideSwitched = false;
         }
 
-        return new Vector3(forceDirection.x, 0, forceDirection.y).normalized;
+        return forceDirection;
     }
 }

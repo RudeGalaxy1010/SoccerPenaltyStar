@@ -55,6 +55,7 @@ public class ForceArrow : MonoBehaviour
 
     private Vector3 GetLineEndPoint(Vector3 force)
     {
+        force = new Vector3(force.x/10,force.y/10,force.z/10);
         Vector3 endPoint = _startPoint.position + NormalizeForceMagnitude(force);
         return endPoint;
     }

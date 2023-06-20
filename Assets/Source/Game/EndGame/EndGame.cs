@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class EndGame : MonoBehaviour
 {
+    private Init initSDK;
+    public static int gameNumber;
+
     [SerializeField] private ReverseTimer _timer;
     [SerializeField] private EndGamePanel _endGamePanel;
 
@@ -23,11 +26,13 @@ public class EndGame : MonoBehaviour
     private void OnEnable()
     {
         _timer.Expired += OnTimerExpired;
+        initSDK = GameObject.FindGameObjectWithTag("Init").GetComponent<Init>();
     }
 
     private void OnDisable()
     {
         _timer.Expired -= OnTimerExpired;
+        initSDK = null;
     }
 
     private void OnTimerExpired()
@@ -55,5 +60,14 @@ public class EndGame : MonoBehaviour
         }
 
         DataHolder.PlayerData.PlayerRating += ratingChange;
+        gameNumber += 1;
+        if (gameNumber == 2)
+        {
+            initSDK.RateGameFunc();
+        }
+        else
+        {
+            initSDK.ShowInterstitialAd();
+        }
     }
 }

@@ -30,7 +30,7 @@ public class MenuStarter : MonoBehaviour
     [SerializeField] private Shop _coinsShop;
     [SerializeField] private Shop _dollarsShop;
 
-    private DataSaveLoad _dataSaveLoad;
+    private Init initSDK;
     private Coins _coins;
     private Dollars _dollars;
 
@@ -46,8 +46,8 @@ public class MenuStarter : MonoBehaviour
 
     private void LoadData()
     {
-        _dataSaveLoad = new DataSaveLoad();
-        _dataSaveLoad.LoadData();
+        initSDK = GameObject.FindGameObjectWithTag("Init").GetComponent<Init>();
+        initSDK.Load();
     }
 
     private void InitMatchMaking(MatchMaker matchMaker, BotSelector botSelector, 
@@ -89,6 +89,6 @@ public class MenuStarter : MonoBehaviour
 
     private void OnDestroy()
     {
-        _dataSaveLoad.SaveData();
+        initSDK.Save();
     }
 }

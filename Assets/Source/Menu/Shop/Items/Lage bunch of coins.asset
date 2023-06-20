@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a8d1cde53660a54fa225c1419e65187, type: 3}
   m_Name: Lage bunch of coins
   m_EditorClassIdentifier: 
-  Name: Large bunch of coins
+  Name: +5000
   Icon: {fileID: -2051697469, guid: 910bcb6a0ab76c948a8d24475b5a84fe, type: 3}
   Value: 5000
-  Cost: 12
+  Cost: 7

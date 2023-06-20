@@ -181,7 +181,7 @@ public class SkinButtons : MonoBehaviour
 
     private void OnNextGlovesButtonClicked()
     {
-        _skin.GlovesSkinParts.SetNextPart();
+        _skin.GlovesSkinParts.SetPreviousPart();
     }
 
     private void OnNextHeadButtonClicked()

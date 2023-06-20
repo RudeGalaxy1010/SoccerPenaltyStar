@@ -157,7 +157,7 @@ MonoBehaviour:
   Force: 0
   Accuracy: 0
   Luck: -0.5
-  CostType: 0
+  CostType: 2
   Cost: 200
 --- !u!1 &93013032141382775
 GameObject:
@@ -4060,7 +4060,7 @@ MonoBehaviour:
   Force: 0
   Accuracy: 0
   Luck: 1
-  CostType: 0
+  CostType: 2
   Cost: 200
 --- !u!1 &2374631293970878866
 GameObject:
@@ -11450,7 +11450,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4231422979731255895
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11467,8 +11467,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &3133994858519436537
 MonoBehaviour:
   m_ObjectHideFlags: 0

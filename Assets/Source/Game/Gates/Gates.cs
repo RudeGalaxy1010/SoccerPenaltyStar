@@ -18,14 +18,12 @@ public class Gates : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponent<Collider>();
-        _collider.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Ball ball))
         {
-            _collider.enabled = false;
             ball.Owner.AddPoints(PointsToAdd);
             GoalStarted?.Invoke(this);
             StartCoroutine(PlayGoalAnimation());

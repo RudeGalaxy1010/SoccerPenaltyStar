@@ -12,6 +12,7 @@ public class Coins : IMoney
     public const int FreeMoney = 200;
 
     public float Value => DataHolder.PlayerData.Coins;
+    Init initSDK;
 
     public void AddWinMoney()
     {

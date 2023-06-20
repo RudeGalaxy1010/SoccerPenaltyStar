@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BotSelectingText : MonoBehaviour
 {
+    private Init initSDK;
+
     private const float TextChangeTime = 0.5f;
     private const string BotSelectedText = "Opponent found";
     private readonly string[] SelectingTexts = new string[]
@@ -13,6 +15,24 @@ public class BotSelectingText : MonoBehaviour
         "Searching for opponent.",
         "Searching for opponent..",
         "Searching for opponent...",
+    };
+
+    private const string BotSelectedTextRus = "Оппонент найден";
+    private readonly string[] SelectingTextsRus = new string[]
+    {
+        "Поиск оппонента",
+        "Поиск оппонента.",
+        "Поиск оппонента..",
+        "Поиск оппонента...",
+    };
+
+    private const string BotSelectedTextTur = "Rakip bulundu";
+    private readonly string[] SelectingTextsTur = new string[]
+    {
+        "Rakip aranıyor",
+        "Rakip aranıyor.",
+        "Rakip aranıyor..",
+        "Rakip aranıyor...",
     };
 
     [SerializeField] private TMP_Text _botSelectingText;
@@ -41,7 +61,17 @@ public class BotSelectingText : MonoBehaviour
     private void OnMatchMakingFinished()
     {
         StopCoroutine(_textChangingCoroutine);
-        _botSelectingText.text = BotSelectedText;
+        if (initSDK.language == "en")
+            _botSelectingText.text = BotSelectedText;
+        else if (initSDK.language == "ru")
+            _botSelectingText.text = BotSelectedTextRus;
+        else if (initSDK.language == "tr")
+            _botSelectingText.text = BotSelectedTextTur;
+    }
+
+    void Start()
+    {
+        initSDK = GameObject.FindGameObjectWithTag("Init").GetComponent<Init>();
     }
 
     private IEnumerator ChangeText(float textChangeTime)
@@ -52,14 +82,39 @@ public class BotSelectingText : MonoBehaviour
 
         while (true)
         {
-            if (textIndex >= SelectingTexts.Length)
+            if (initSDK.language == "en")
             {
-                textIndex = 0;
-            }
+                if (textIndex >= SelectingTexts.Length)
+                {
+                    textIndex = 0;
+                }
 
-            _botSelectingText.text = SelectingTexts[textIndex];
-            textIndex++;
-            yield return waitForSeconds;
+                _botSelectingText.text = SelectingTexts[textIndex];
+                textIndex++;
+                yield return waitForSeconds;
+            }
+            else if (initSDK.language == "ru")
+            {
+                if (textIndex >= SelectingTextsRus.Length)
+                {
+                    textIndex = 0;
+                }
+
+                _botSelectingText.text = SelectingTextsRus[textIndex];
+                textIndex++;
+                yield return waitForSeconds;
+            }
+            else if (initSDK.language == "tr")
+            {
+                if (textIndex >= SelectingTextsTur.Length)
+                {
+                    textIndex = 0;
+                }
+
+                _botSelectingText.text = SelectingTextsTur[textIndex];
+                textIndex++;
+                yield return waitForSeconds;
+            }
         }
     }
 }

@@ -19,7 +19,7 @@ public class GameStarter : MonoBehaviour
     [Header("Bot")]
     [SerializeField] private ScoreCounter _botScoreCounter;
 
-    private DataSaveLoad _dataSaveLoad;
+    private Init initSDK;
     private Coins _money;
     private Pause _pause;
 
@@ -46,12 +46,8 @@ public class GameStarter : MonoBehaviour
 
     private void LoadData()
     {
-        _dataSaveLoad = new DataSaveLoad();
-
-        if (DataHolder.PlayerData == null)
-        {
-            _dataSaveLoad.LoadData();
-        }
+        initSDK = GameObject.FindGameObjectWithTag("Init").GetComponent<Init>();
+        initSDK.Load();
     }
 
     private Controls InitInput()
@@ -109,6 +105,6 @@ public class GameStarter : MonoBehaviour
 
     private void OnDestroy()
     {
-        _dataSaveLoad.SaveData();
+        initSDK.Save();
     }
 }
