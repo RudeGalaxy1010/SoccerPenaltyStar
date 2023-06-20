@@ -57,9 +57,8 @@ public class GameStarter : MonoBehaviour
 
     private void LoadData()
     {
-        DataHolder.PlayerData = new PlayerData();
-        //initSDK = GameObject.FindGameObjectWithTag("Init").GetComponent<Init>();
-        //initSDK.Load();
+        initSDK = GameObject.FindGameObjectWithTag("Init").GetComponent<Init>();
+        initSDK.Load();
     }
 
     private Controls InitInput()
