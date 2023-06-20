@@ -41,6 +41,7 @@ public class BonusGatesSpawner : MonoBehaviour
             _timer = 0;
             _bonusGates.gameObject.SetActive(true);
             _bonusGates.Timer.Construct(GatesActiveTime);
+            _bonusGates.Gates.Reset();
         }
 
         _timer += Time.deltaTime;

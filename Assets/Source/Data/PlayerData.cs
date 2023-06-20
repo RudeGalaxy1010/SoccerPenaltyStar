@@ -9,6 +9,7 @@ public class PlayerData
     public int PlayerRating;
     public int Coins;
     public float Dollars;
+    public bool IsFirstLaunch;
 
     public PlayerData()
     {
@@ -18,5 +19,6 @@ public class PlayerData
         PlayerRating = 1000;
         Coins = 0;
         Dollars = 0;
+        IsFirstLaunch = true;
     }
 }
