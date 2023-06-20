@@ -28,6 +28,7 @@ public class GatesSpawner : MonoBehaviour
     {
         gates.transform.position = GetRandomGatesPosition();
         gates.transform.rotation = GetRandomGatesRotation();
+        gates.Reset();
     }
 
     private Vector3 GetRandomGatesPosition()

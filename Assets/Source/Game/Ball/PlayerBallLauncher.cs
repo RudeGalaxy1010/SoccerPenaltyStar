@@ -65,6 +65,7 @@ public class PlayerBallLauncher : BallLauncher, IPauseable
         Vector3 force = GetForce(delta) * SkinForceMultiplier;
         Ball.AddForce(force);
         ResetMousePositions();
+        BallLaunched?.Invoke();
     }
 
     private void ResetMousePositions()

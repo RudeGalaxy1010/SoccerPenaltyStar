@@ -36,6 +36,7 @@ public class BotBallLauncher : BallLauncher, IDisposable
         float delta = GetDelta();
         Vector3 force = GetForce(delta);
         Ball.AddForce(force);
+        BallLaunched?.Invoke();
     }
 
     public void Dispose()

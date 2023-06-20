@@ -10,6 +10,7 @@ public class GameStarter : MonoBehaviour
     [SerializeField] private ReverseTimer _reverseTimer;
     [SerializeField] private GoalSign _goalSign;
     [SerializeField] private WinnerDisplayer _winnerDisplayer;
+    [SerializeField] private SoundPlayer _soundPlayer;
 
     [Header("Player")]
     [SerializeField] private SmoothFollow _smoothFollow;
@@ -22,6 +23,8 @@ public class GameStarter : MonoBehaviour
     private Init initSDK;
     private Coins _money;
     private Pause _pause;
+    private PlayerBallLauncher _playerBallLauncher;
+    private BotBallLauncher _botBallLauncher;
 
     private void Start()
     {
@@ -36,6 +39,10 @@ public class GameStarter : MonoBehaviour
 
         ActualPlayer player = InitPlayer(GamePrefabs.SkinPrefab, playerScore, controls, map, _pause);
         Bot bot = InitBot(GamePrefabs.SkinPrefab, botScore, map, _pause);
+
+        Gates[] gates = new Gates[] { map.Gates, map.BonusGates };
+        BallLauncher[] ballLaunchers = new BallLauncher[] { _playerBallLauncher, _botBallLauncher };
+        _soundPlayer.Construct(gates, ballLaunchers);
 
         _money = new Coins();
         _endGame.Construct(playerScore, botScore, _money, _pause);
@@ -72,13 +79,13 @@ public class GameStarter : MonoBehaviour
         ActualPlayer player = Create(GamePrefabs.PlayerPrefab, map.PlayerSpawnPosition);
         player.Construct(skinPrefab, score, controls, ball.transform, -BallOffset);
         PlayerRotation playerRotation = player.GetComponent<PlayerRotation>();
-        PlayerBallLauncher ballLauncher = new PlayerBallLauncher(player, playerRotation, ball, controls);
+        _playerBallLauncher = new PlayerBallLauncher(player, playerRotation, ball, controls);
 
         _smoothFollow.SetTarget(ball.transform);
-        _forceArrow.Construct(player.transform, ballLauncher);
+        _forceArrow.Construct(player.transform, _playerBallLauncher);
         _playerScoreCounter.Construct(score);
         ball.SetOwner(player);
-        pause.Add(player, ball, ballLauncher);
+        pause.Add(player, ball, _playerBallLauncher);
 
         return player;
     }
@@ -88,7 +95,7 @@ public class GameStarter : MonoBehaviour
         Ball ball = Create(GamePrefabs.BallPrefab, map.BotSpawnPosition + BallOffset);
         Bot bot = Create(GamePrefabs.BotPrefab, map.BotSpawnPosition);
         bot.Construct(skinPrefab, score, ball.transform, map.Gates.transform, -BallOffset);
-        BotBallLauncher botBallLauncher = new BotBallLauncher(bot, ball);
+        _botBallLauncher = new BotBallLauncher(bot, ball);
 
         _botScoreCounter.Construct(score);
         ball.SetOwner(bot);

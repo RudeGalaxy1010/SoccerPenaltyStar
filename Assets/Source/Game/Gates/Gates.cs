@@ -18,7 +18,6 @@ public class Gates : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponent<Collider>();
-        _collider.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,6 +29,11 @@ public class Gates : MonoBehaviour
             GoalStarted?.Invoke(this);
             StartCoroutine(PlayGoalAnimation());
         }
+    }
+
+    public void Reset()
+    {
+        _collider.enabled = true;
     }
 
     private IEnumerator PlayGoalAnimation()
