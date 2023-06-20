@@ -1,11 +1,15 @@
+using UnityEngine;
+
 public class PlayerSkinSaver
 {
     private Skin _playerSkin;
+    private Init _initSDK;
 
     public PlayerSkinSaver(Skin playerSkin)
     {
         _playerSkin = playerSkin;
         _playerSkin.Changed += OnSkinChanged;
+        _initSDK = GameObject.FindGameObjectWithTag("Init").GetComponent<Init>();
     }
 
     private void OnSkinChanged()
@@ -18,6 +22,7 @@ public class PlayerSkinSaver
             DataHolder.PlayerForce = _playerSkin.GetForce();
             DataHolder.PlayerAccuracy = _playerSkin.GetAccuracy();
             DataHolder.PlayerLuck = _playerSkin.GetLuck();
+            _initSDK.Save();
         }
     }
 
